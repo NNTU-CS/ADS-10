@@ -11,7 +11,7 @@ class Tree {
     char value;
     std::vector<Node*> sheet;
   };
-  Node* root = new Node;
+  Node* root;
   std::vector<std::string> permutation;
   void constructTree(Node* root, std::vector<char> figure) {
     if (!figure.size()) {
@@ -50,7 +50,9 @@ class Tree {
   }
 
  public:
+  Tree() :root(nullptr) {}
   Tree(std::vector<char> v) {
+    root = new Node;
     root->value = '*';
     constructTree(root, v);
     Permutation(root);
