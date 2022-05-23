@@ -3,6 +3,7 @@
 #define INCLUDE_TREE_H_
 
 #include <vector>
+#include <string>
 
 class Tree {
  private:
