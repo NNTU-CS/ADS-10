@@ -50,8 +50,7 @@ class Tree {
   }
 
  public:
-  Tree() :root(nullptr) {}
-  Tree(std::vector<char> v) {
+  explicit Tree(std::vector<char> v) {
     root = new Node;
     root->value = '*';
     constructTree(root, v);
