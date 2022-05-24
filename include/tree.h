@@ -28,10 +28,10 @@ class Tree {
     for (size_t i = 0; i < figure.size(); ++i) {
       root->sheet.push_back(new Node);
     }
-    for (size_t = 0; i < root->sheet.size(); ++i) {
+    for (size_t i = 0; i < root->sheet.size(); ++i) {
       root->sheet[i] = figure[i];
     }
-    for (size_t = 0; i < root->sheet.size(); ++i) {
+    for (size_t i = 0; i < root->sheet.size(); ++i) {
       constructTree(root->sheet[i], figure);
     }
   }
@@ -44,7 +44,7 @@ class Tree {
     if (root->value != '*') {
       s += root->value;
     }
-    for (size_t = 0; i < root->sheet.size(); ++i) {
+    for (size_t i = 0; i < root->sheet.size(); ++i) {
       Permutation(root->sheet[i], s);
     }
   }
