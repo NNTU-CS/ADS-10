@@ -8,5 +8,3 @@ target_compile_definitions(${PROJECT_NAME}.test
 
 install(TARGETS ${PROJECT_NAME}.test
         DESTINATION "${tool_dest}")
-
-file(COPY ${PROJECT_SOURCE_DIR}/src/war_peace.txt DESTINATION "/home/runner/work/ADS-6/ADS-6/build/test")
