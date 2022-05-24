@@ -29,7 +29,7 @@ class Tree {
       root->sheet.push_back(new Node);
     }
     for (size_t i = 0; i < root->sheet.size(); ++i) {
-      root->sheet[i] = figure[i];
+      root->sheet[i]->value = figure[i];
     }
     for (size_t i = 0; i < root->sheet.size(); ++i) {
       constructTree(root->sheet[i], figure);
