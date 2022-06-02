@@ -11,7 +11,7 @@ class Tree {
     char val;
     std::vector<Node*> list;
   };
-  
+
   Node* root;
 
   void addTree(Node* root, std::vector<char> pathway) {
