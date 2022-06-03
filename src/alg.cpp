@@ -6,5 +6,12 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+  int b = n - 1;
+  std::string Razm = tree[b];
+  std::vector<char> Kol;
+  int i;
+  for (i = 0; i < Razm.length(); i++) {
+    Kol.push_back(Razm[i]);
+  }
+  return Kol;
 }
