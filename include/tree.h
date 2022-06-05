@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-class Tree { 
+class Tree {
  private:
     struct Node {
         char value;
@@ -47,7 +47,7 @@ class Tree {
             constructTree(root->list[i], path);
         }
     }
- 
+
  public:
     std::string operator[](int i) const {
         if (i >= perest.size()) {
