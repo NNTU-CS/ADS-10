@@ -5,7 +5,7 @@
 #include <string>
 
 class Tree {
-  private:
+   private:
     struct Node {
         char value;
         std::vector<Node> list;
@@ -48,7 +48,7 @@ class Tree {
         }
     }
 
-  public:
+   public:
     std::string operator[](int i) const {
         if (i >= perm.size()) {
             return "";
