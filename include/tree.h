@@ -21,7 +21,7 @@ class Tree {
         if (root->value != '') {
             f = f + root->value;
         }
-        for (size1 i = 0; i < root->list.size(); ++i) {
+        for (size_t i = 0; i < root->list.size(); ++i) {
             Permutation(root->list[i], f);
         }
     }
@@ -37,13 +37,13 @@ class Tree {
                 }
             }
         }
-        for (size1 i = 0; i < path.size(); ++i) {
+        for (int size_t = 0; i < path.size(); ++i) {
             root->list.push_back(new Node);
         }
-        for (size1 i = 0; i < root->list.size(); ++i) {
+        for (size_t i = 0; i < root->list.size(); ++i) {
             root->list[i]->value = path[i];
         }
-        for (size1 i = 0; i < root->list.size(); ++i) {
+        for (size_t i = 0; i < root->list.size(); ++i) {
             constructTree(root->list[i], path);
         }
     }
