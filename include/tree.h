@@ -8,17 +8,16 @@ class Tree {
  private:
 	struct  Branch {
 		char Data;
-		std::vector<Branch*> subsidiary;
+    std::vector<Branch*> subsidiary;
 	};
 	Branch* root;
-	
 	std::vector <char> val;
 	std::string element;
 	std::vector<char> trunsf;
 	std::vector <std::vector<char>> res;
 
-  public:
-	explicit Tree(std::vector <char> in) {
+   public:
+  explicit Tree(std::vector <char> in) {
 		val = in;
 		element.resize(in.size());
 		trunsf.resize(in.size());
@@ -26,7 +25,6 @@ class Tree {
 		root->Data = '*';
 		transformm(in, -1, 0, root);
 	}
-	
 	Branch* Create_Tree(char val) {
 		Branch* temp = new Branch;
 		temp->Data = val;
@@ -38,13 +36,13 @@ class Tree {
 			return;
 		}
 		auto c = in.cbegin();
-		if (b >= 0) {
+    if (b >= 0) {
 			num++;
 			in.erase(c + b);
 		}
 		for (int i = 0; i < in.size(); i++) {
 			root->subsidiary.push_back(Create_Tree(in[i]));
-			trunsf[num] = in[i];
+      trunsf[num] = in[i];
 			transformm(in, i, num, root->subsidiary[i]);
 		}
 	}
