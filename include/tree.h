@@ -5,40 +5,39 @@
 #include <string>
 
 class Tree {
-private: 
- private:
+  private:
     struct Node {
         char value;
-        std::vector<Node*> list;
+        std::vector<Node> list;
     };
-    Node* root;
-    std::vector<std::string> perest;
-    void Perestanovka(Node* root, std::string f = "") {
+    Node root;
+    std::vector<std::string> perm;
+    void Permutation(Node* root, std::string f = "") {
         if (!root->list.size()) {
-            f += root->value;
-            perest.push_back(f);
+            f = f + root->value;
+            perm.push_back(f);
             return;
         }
-        if (root->value != '*') {
-            f += root->value;
+        if (root->value != '') {
+            f = f + root->value;
         }
         for (size_t i = 0; i < root->list.size(); ++i) {
-            Perestanovka(root->list[i], f);
+            Permutation(root->list[i], f);
         }
     }
-    void constructTree(Node* root, std::vector<char> path) {
+    void constructTree(Node root, std::vector<char> path) {
         if (!path.size()) {
             return;
         }
-        if (root->value != '*') {
+        if (root->value != '') {
             for (auto i = path.begin(); i != path.end(); ++i) {
-                if (*i == root->value) {
+                if (i == root->value) {
                     path.erase(i);
                     break;
                 }
             }
         }
-        for (size_t i = 0; i < path.size(); ++i) {
+        for (int size_t = 0; i < path.size(); ++i) {
             root->list.push_back(new Node);
         }
         for (size_t i = 0; i < root->list.size(); ++i) {
@@ -49,19 +48,18 @@ private:
         }
     }
 
-public: 
- public:
+  public:
     std::string operator[](int i) const {
-        if (i >= perest.size()) {
+        if (i >= perm.size()) {
             return "";
         }
-        return perest[i];
+        return perm[i];
     }
     explicit Tree(std::vector<char> value) {
         root = new Node;
         root->value = '*';
         constructTree(root, value);
-        Perestanovka(root);
+        Permutation(root);
     }
 };
 #endif  // INCLUDE_TREE_H_
