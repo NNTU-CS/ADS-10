@@ -7,7 +7,7 @@
 #include <string>
 
 class Tree {
-private:
+ private:
     struct Node {
         std::vector<Node*> point;
         char znach;
@@ -19,7 +19,7 @@ private:
     std::vector<char> transfr;
     std::vector<std::vector<char>> reslt;
 
-public:
+ public:
     explicit Tree(std::vector <char> in) {
         values = in;
         elm.resize(in.size());
@@ -45,8 +45,8 @@ public:
         }
         for (int i = 0; i < in.size(); i++) {
             root->point.push_back(createNode(in[i]));
-            transfr[num] = in[i];
-            transformm(in, i, num, root->point[i]);
+            transfr[number] = in[i];
+            transformm(in, i, number, root->point[i]);
         }
     }
     std::vector<char> getPerm(Tree tree, int number) {
