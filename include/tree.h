@@ -18,7 +18,7 @@ class Tree {
 	std::vector <std::vector<char>> res;
 
   public:
-	explicit Branch(std::vector <char> in) {
+	explicit Tree(std::vector <char> in) {
 		Data = in;
 		element.resize(a.size());
 		transf.resize(a.size());
