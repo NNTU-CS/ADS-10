@@ -19,9 +19,9 @@ class Tree {
 
   public:
 	explicit Tree(std::vector <char> in) {
-		Data = in;
-		element.resize(a.size());
-		transf.resize(a.size());
+		val = in;
+		element.resize(in.size());
+		trunsf.resize(in.size());
 		Branch* root = new Branch;
 		root->Data = '*';
 		transformm(in, -1, 0, root);
