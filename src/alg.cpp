@@ -5,6 +5,7 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int n) {
+std::vector<char> getPerm(const Tree& tree, int x) {
   // напишите реализацию
+  return Tree(tree).getPerm(x);
 }
