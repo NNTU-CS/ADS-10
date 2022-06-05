@@ -53,7 +53,7 @@ Tree::Tree(const std::vector<char> &data) {
   perm(root);
 }
 
-std::string Tree::operator [] (const unsigned int i) const {
+std::string Tree::operator[] (const unsigned int i) const {
   if (i >= permutations.size() || i < 0) {
     return "";
   }
