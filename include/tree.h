@@ -1,8 +1,9 @@
 // Copyright 2022 NNTU-CS
-#ifndef INCLUDE_TREEH
-#define INCLUDE_TREEH
+#ifndef INCLUDE_TREE_H_
+#define INCLUDE_TREE_H_
 #include <vector>
 #include <string>
+
 class Tree {
  private:
     struct Node {
@@ -61,4 +62,4 @@ class Tree {
         Permutation(root);
     }
 };
-#endif  // INCLUDE_TREEH
+#endif  // INCLUDE_TREE_H_
