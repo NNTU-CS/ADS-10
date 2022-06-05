@@ -3,7 +3,6 @@
 #define INCLUDE_TREEH
 #include <vector>
 #include <string>
-
 class Tree {
  private:
     struct Node {
