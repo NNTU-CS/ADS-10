@@ -16,9 +16,8 @@ class Tree {
 	std::string element;
 	std::vector<char> trunsf;
 	std::vector <std::vector<char>> res;
-	
- public:
-	
+
+  public:
 	explicit Branch(std::vector <char> in) {
 		Data = in;
 		element.resize(a.size());
@@ -33,9 +32,9 @@ class Tree {
 		temp->Data = val;
 		return temp;
 	}
-	void Transform(std::vector <char> in, int b, int num, Branch* root) {
+	void transformm(std::vector <char> in, int b, int num, Branch* root) {
 		if (in.size() == 1) {
-			res.push_back(tras);
+			res.push_back(trunsf);
 			return;
 		}
 		auto c = in.cbegin();
@@ -44,8 +43,8 @@ class Tree {
 			in.erase(c + b);
 		}
 		for (int i = 0; i < in.size(); i++) {
-			root->subsidiary.push_back(Create_Tree(a[i]));
-			transf[num] = in[i];
+			root->subsidiary.push_back(Create_Tree(in[i]));
+			trunsf[num] = in[i];
 			transformm(in, i, num, root->subsidiary[i]);
 		}
 	}
@@ -56,3 +55,4 @@ class Tree {
 };
 
 #endif  // INCLUDE_TREE_H_
+
