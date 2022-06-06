@@ -1,3 +1,4 @@
+
 // Copyright 2022 NNTU-CS
 #include  <iostream>
 #include  <fstream>
@@ -6,5 +7,12 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+  std::string nachalo = tree[n - 1];
+    std::vector<char> itog;
+    int a = 0;
+    while (a < nachalo.length()) {
+        itog.push_back(nachalo[a]);
+        a++;
+    }
+    return itog;
 }
