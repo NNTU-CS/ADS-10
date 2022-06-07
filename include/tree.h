@@ -47,7 +47,7 @@ class Tree {
             constructTree(root->list[i], path);
         }
     }
- 
+
  public:
     std::string operator[](int i) const {
         if (i >= perest.size()) {
