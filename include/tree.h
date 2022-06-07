@@ -1,4 +1,4 @@
-// Copyright 2022 NNTU-C\
+// Copyright 2022 NNTU-C
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
