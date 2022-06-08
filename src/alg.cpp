@@ -5,6 +5,12 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+  using std::vector;
+vector<char> getPerm(const Tree& trea, int kk) {
+  vector<char> resulll;
+  for (int i = 0; i < trea[kk - 1].length(); i++) {
+  resulll.push_back(trea[kk - 1][i]);
+  }
+  return resulll;
 }
+
