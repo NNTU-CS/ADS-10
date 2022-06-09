@@ -5,6 +5,13 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+std::vector<char> getPerm(const Tree& tree, int num) {
+    int i = 0;
+    std::string chisla = tree[--num];
+    std::vector<char> result;
+    while (i < chisla.size()) {
+        result.push_back(chisla[i]);
+        i++;
+    }
+    return result;
 }
