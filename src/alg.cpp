@@ -4,7 +4,11 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
-
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+  std::string origin = tree[n - 1];
+  std::vector<char> prm;
+  for (int l = 0; l < origin.length(); l++) {
+    prm.push_back(origin[l]);
+  }
+  return prm;
 }
