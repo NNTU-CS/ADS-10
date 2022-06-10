@@ -1,123 +1,83 @@
 // Copyright 2022 NNTU-CS
-
 #ifndef INCLUDE_TREE_H_
-
 #define INCLUDE_TREE_H_
 
+#include <vector>
 #include <string>
 
-#include <vector>
-
-#include <algorithm>
-
-
-
 class Tree {
+ public:
+    explicit Tree(std::vector<char> x) {
+        rt = new Node;
+        rt->val = '/';
+        BuildT(rt, x);
+        PermNumb(rt);
+    }
+    std::string operator[](int i) const {
+        if (i >= prm.size()) {
+            return "";
+        }
+    return prm[i];
+    }
+
+    std::vector<char> getPrm(const Tree& tree, int n) {
+        std::string res = tree[n-1];
+        std::vector<char> prm;
+        for (int i = 0; i < res.length(); ++i) {
+            prm.push_back(res[i]);
+        }
+      return prm;
+    }
 
  private:
-
     struct Node {
-
-      char val;
-
-      std::vector<Node*> numbers;
-
+        char val;
+        std::vector<Node*> vect;
     };
-
-    Node* root;
-
-    std::vector<std::string> permut;
-
-
-
-    void makeNode(Node* root, std::vector<char> v) {
-
-      if (!v.size()) {
-
-        return;
-
-      }
-
-      if (root->val != '*') {
-
-        v.erase(std::find(v.begin(), v.end(), root->val));
-
-      }
-
-      for (int i = 0; i < v.size(); i++) {
-
-        root->numbers.push_back(new Node());
-
-      }
-
-      for (int i = 0; i < root->numbers.size(); i++) {
-
-        root->numbers[i]->val = v[i];
-
-        makeNode(root->numbers[i], v);
-
-      }
-
+    Node* rt;
+    std::vector<std::string> prm;
+    void BuildT(Node* rt, std::vector<char> temp) {
+    if (!temp.size()) {
+     return;
+    }
+        if (rt->val != '/') {
+            std::vector<char>::iterator t = temp.begin();
+            while (t != temp.end()) {
+                if (*t == rt->val) {
+                    temp.erase(t);
+                    break;
+                }
+                t++;
+            }
+        }
+    int i = 0;
+        while (i < temp.size()) {
+            rt->vect.push_back(new Node);
+            i++;
+        }
+        for (int i = 0; i < rt->vect.size(); ++i) {
+            rt->vect[i]->val = temp[i];
+        }
+        for (int i = 0; i < rt->vect.size(); ++i) {
+            BuildT(rt->vect[i], temp);
+        }
     }
 
-
-
-    void Perm(Node* root, std::string s = "") {
-
-      if (!root->numbers.size()) {
-
-        s += root->val;
-
-        permut.push_back(s);
-
-        return;
-
-      }
-
-      if (root->val != '*') {
-
-        s += root->val;
-
-      }
-
-      for (int i = 0; i < root->numbers.size(); ++i) {
-
-        Perm(root->numbers[i], s);
-
-      }
-
+    void PermNumb(Node* rt, std::string s = "") {
+        if (!rt->vect.size()) {
+            s = s + rt->val;
+            prm.push_back(s);
+            return;
+        }
+        if (rt->val != '/') {
+            s = s + rt->val;
+        }
+        int i = 0;
+        while (i < rt->vect.size()) {
+            PermNumb(rt->vect[i], s);
+            i++;
+        }
     }
-
-
-
- public:
-
-    explicit Tree(std::vector<char> v) {
-
-      root = new Node();
-
-      root->val = '*';
-
-      makeNode(root, v);
-
-      Perm(root);
-
-    }
-
-
-
-    std::string get(int i) const{
-
-      if (i >= permut.size()) {
-
-        return "";
-
-      }
-
-      return permut[i];
-
-    }
-
 };
 
 #endif  // INCLUDE_TREE_H_
