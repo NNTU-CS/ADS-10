@@ -18,7 +18,7 @@ class Tree {
  public:
     Tree(std::vector<char> in);
     ~Tree();
-    std::vector<char> getPerm(int num);
+    std::vector<char> getperm(int num);
 };
 int Tree::calculateperm(int num) {
     if (num == 1) return 1;
@@ -72,12 +72,12 @@ void Tree::perm(int num, std::vector<char>& v, Node* root) {
         return;
     }
     int g = 0;
-    g = ceil(num / next);
+    g = std::ceil(num / next);
     v.push_back(root->under[g - 1]->value);
     perm(num -next*(g-1), v, root->under[g - 1]);
 }
 
-std::vector<char> Tree::getPerm(int num) {
+std::vector<char> Tree::getperm(int num) {
     std::vector<char> temp;
     if (num<= countperm)
         perm(num,temp,root);
