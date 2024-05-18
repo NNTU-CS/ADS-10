@@ -1,31 +1,31 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
-using namespace std;
+
 class Tree {
     struct Node {
         char value;
-        vector<Node*> under;
+        std::vector<Node*> under;
     };
     int countperm;
     Node* root;
     Node* addNode(Node* root, char value, int size);
     void delTree(Node*);
-    void makeTree(Node* root, vector<char> in);
+    void makeTree(Node* root, std::vector<char> in);
     int calculateperm(int num);
-    void perm(int num, vector<char>& v, Node* root);
+    void perm(int num, std::vector<char>& v, Node* root);
 
  public:
-    Tree(vector<char> in);
+    Tree(std::vector<char> in);
     ~Tree();
-    vector<char> getPerm(int num);
+    std::vector<char> getPerm(int num);
 };
 int Tree::calculateperm(int num) {
     if (num == 1) return 1;
     else return calculateperm(num - 1) * num;
 }
 
-Tree::Tree(vector<char> in) {
+Tree::Tree(std::vector<char> in) {
     countperm = calculateperm(in.size());
     root = nullptr;
     root = addNode(root, '\0', in.size());
@@ -40,8 +40,8 @@ Tree::Node* Tree::addNode(Node* root, char value, int size) {
     }
     return root;
 }
-void Tree::makeTree(Node* root, vector<char> in) {
-    vector<char> temp;
+void Tree::makeTree(Node* root, std::vector<char> in) {
+    std::vector<char> temp;
     for (int i = 0; i < in.size(); ++i) {
         root->under[i] = addNode(root->under[i], in[i], in.size() - 1);
         temp = in;
@@ -63,7 +63,7 @@ Tree::~Tree() {
     }
     return;
 }
-void Tree::perm(int num, vector<char>& v, Node* root) {
+void Tree::perm(int num, std::vector<char>& v, Node* root) {
     float next;
     if (root->under.size() >1) {
         next = root->under[0]->under.size();
@@ -77,8 +77,8 @@ void Tree::perm(int num, vector<char>& v, Node* root) {
     perm(num -next*(g-1), v, root->under[g - 1]);
 }
 
-vector<char> Tree::getPerm(int num) {
-    vector<char> temp;
+std::vector<char> Tree::getPerm(int num) {
+    std::vector<char> temp;
     if (num<= countperm)
         perm(num,temp,root);
     return temp;
