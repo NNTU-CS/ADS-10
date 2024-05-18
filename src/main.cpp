@@ -1,7 +1,7 @@
 // Copyright 2022 NNTU-CS
 #include "tree.h"
 
-std::vector<char> getPerm(Tree& tree, int n);
+std::vector<char> getPerm(const Tree& tree, int n);
 
 int main() {
   // определяем входной вектор для дерева
