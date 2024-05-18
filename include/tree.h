@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+#include <cmath>
 class Tree {
     struct Node {
         char value;
@@ -72,7 +73,7 @@ void Tree::perm(int num, std::vector<char>& v, Node* root) {
         return;
     }
     int g = 0;
-    g = std::ceil(num / next);
+    g = ceil(num / next);
     v.push_back(root->under[g - 1]->value);
     perm(num -next*(g-1), v, root->under[g - 1]);
 }
