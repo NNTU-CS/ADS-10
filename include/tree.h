@@ -23,7 +23,7 @@ class Tree {
 };
 int Tree::calculateperm(int num) {
     if (num == 1) return 1;
-    else 
+    else
         return calculateperm(num - 1) * num;
 }
 
@@ -31,7 +31,7 @@ Tree::Tree(std::vector<char> in) {
     countperm = calculateperm(in.size());
     root = nullptr;
     root = addNode(root, '\0', in.size());
-    makeTree(root,in);
+    makeTree(root, in);
 }
 Tree::Node* Tree::addNode(Node* root, char value, int size) {
     if (root == nullptr) {
