@@ -14,16 +14,17 @@ class Tree {
     void delTree(Node*);
     void makeTree(Node* root, std::vector<char> in);
     int calculateperm(int num);
-    void perm(int num, std::vector<char>& v, Node* root) const;
+    void perm(int num, std::vector<char>* v, Node* root) const;
 
  public:
-    Tree(std::vector<char> in);
+    explicit Tree(std::vector<char> in);
     ~Tree();
     std::vector<char> getperm(int num) const;
 };
 int Tree::calculateperm(int num) {
     if (num == 1) return 1;
-    else return calculateperm(num - 1) * num;
+    else 
+        return calculateperm(num - 1) * num;
 }
 
 Tree::Tree(std::vector<char> in) {
@@ -64,24 +65,24 @@ Tree::~Tree() {
     }
     return;
 }
-void Tree::perm(int num, std::vector<char>& v, Node* root) const {
+void Tree::perm(int num, std::vector<char>* v, Node* root) const {
     float next;
     if (root->under.size() >1) {
         next = root->under[0]->under.size();
     } else {
-        v.push_back(root->under[0]->value);
+        (*v).push_back(root->under[0]->value);
         return;
     }
     int g = 0;
     g = ceil(num / next);
-    v.push_back(root->under[g - 1]->value);
+    (*v).push_back(root->under[g - 1]->value);
     perm(num -next*(g-1), v, root->under[g - 1]);
 }
 
 std::vector<char> Tree::getperm(int num) const {
     std::vector<char> temp;
-    if (num<= countperm)
-        perm(num,temp,root);
+    if (num <= countperm)
+        perm(num, &temp, root);
     return temp;
 }
 #endif  // INCLUDE_TREE_H_
