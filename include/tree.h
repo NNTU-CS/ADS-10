@@ -36,16 +36,13 @@ class Tree {
         if (x >= 1 && x <= static_cast<int>(result.size())) {
             return result[x - 1];
         }
-        return {}; 
+        return {};
     }
 
  private:
     Node* root = nullptr;
-
-    
     void buildTree(const std::vector<char>& el, Node* node) {
         if (el.empty()) return;
-
         for (size_t i = 0; i < el.size(); ++i) {
             std::vector<char> nextElems(el.begin(), el.end());
             nextElems.erase(nextElems.begin() + i);
@@ -54,19 +51,15 @@ class Tree {
             buildTree(nextElems, child);
         }
     }
-
-    
-    void getAllPermutationsRec(Node* node, std::vector<char>& current, std::vector<std::vector<char>>& result) const {
+    void getAllPermRec(Node* node, std::vector<char>& current, std::vector<std::vector<char>>& result) const {
         if (!node) return;
-
         if (node->value != 0)
             current.push_back(node->value);
-
         if (node->children.empty()) {
             result.push_back(current);
         } else {
             for (Node* child : node->children) {
-                getAllPermutationsRec(child, current, result);
+                getAllPermRec(child, current, result);
             }
         }
 
