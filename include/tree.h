@@ -1,10 +1,10 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
+#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 
 class Node {
  public:
@@ -59,7 +59,8 @@ class Tree {
         }
     }
 
-    void getAllPermRec(Node* node, std::vector<char>* current, std::vector<std::vector<char>>* result) const {
+    void getAllPermRec(Node* node, std::vector<char>* current,
+                       std::vector<std::vector<char>>* result) const {
         if (!node) return;
 
         if (node->value != 0)
