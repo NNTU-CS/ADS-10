@@ -1,5 +1,7 @@
 // Copyright 2022 NNTU-CS
 #include "tree.h"
+#include <iostream>
+#include <vector>
 
 std::vector<char> getPerm(const Tree& tree, int n);
 
