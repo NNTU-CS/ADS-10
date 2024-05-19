@@ -7,16 +7,16 @@
 #include <iostream>
 
 class Node {
-public:
+ public:
     char value;
     std::vector<Node*> children;
-    Node(char val) : value(val) {}
+    explicit Node(char val) : value(val) {}
     ~Node() { for (auto child : children) delete child; }
 };
 
 class Tree {
  public:
-    Tree(const std::vector<char>& el) {
+    explicit Tree(const std::vector<char>& el) {
         if (!el.empty()) {
             root = new Node(0); // корень не содержит значения
             buildTree(el, root);
@@ -44,7 +44,7 @@ class Tree {
 
     
     void buildTree(const std::vector<char>& el, Node* node) {
-        if (elems.empty()) return;
+        if (el.empty()) return;
 
         for (size_t i = 0; i < el.size(); ++i) {
             std::vector<char> nextElems(el.begin(), el.end());
