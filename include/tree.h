@@ -30,16 +30,16 @@ class Tree {
         }
     }
 
-    void generatePermutations(Node *node, const std::vector<char> &current) {
+    void generatePermutations(Node* node, const std::vector<char>& current) {
         std::vector<char> updatedCurrent = current;
         for (int i = 0; i < node->children.size(); i++) {
             updatedCurrent.push_back(node->children[i]->value);
             if (node->children[i]->children.empty()) {
                 if (current.size() != 1) {
-                    permutations.push_back(current);
+                    permutations.push_back(updatedCurrent);
                 }
             }
-            generatePermutations(node->children[i], current);
+            generatePermutations(node->children[i], updatedCurrent);
             updatedCurrent.pop_back();
         }
     }
