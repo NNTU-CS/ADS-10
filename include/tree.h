@@ -5,7 +5,7 @@
 #include <vector>
 
 class Tree {
-private:
+ private:
     struct Node {
         std::vector<Node *> children;
         char value;
@@ -30,16 +30,17 @@ private:
         }
     }
 
-    void generatePermutations(Node *node, std::vector<char>& current) {
+    void generatePermutations(Node *node, const std::vector<char> &current) {
+        std::vector<char> updatedCurrent = current;
         for (int i = 0; i < node->children.size(); i++) {
-            current.push_back(node->children[i]->value);
+            updatedCurrent.push_back(node->children[i]->value);
             if (node->children[i]->children.empty()) {
                 if (current.size() != 1) {
                     permutations.push_back(current);
                 }
             }
             generatePermutations(node->children[i], current);
-            current.pop_back();
+            updatedCurrent.pop_back();
         }
     }
 
