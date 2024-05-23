@@ -30,7 +30,7 @@ class Tree {
         }
     }
 
-    void generatePermutations(Node* node, std::vector<char>& current) {
+    std::vector<char>& generatePermutations(Node* node, std::vector<char>& current) {
         for (int i = 0; i < node->children.size(); i++) {
             current.push_back(node->children[i]->value);
             if (node->children[i]->children.empty()) {
