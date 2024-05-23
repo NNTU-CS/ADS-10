@@ -5,15 +5,15 @@
 #include <vector>
 
 class Tree {
- private:
+private:
     struct Node {
-        std::vector<Node*> children;
+        std::vector<Node *> children;
         char value;
     };
-    Node* root;
+    Node *root;
     std::vector<std::vector<char>> permutations;
 
-    void buildTree(Node* node, std::vector<char> values) {
+    void buildTree(Node *node, std::vector<char> values) {
         if (!node) {
             node = new Node;
         }
@@ -22,7 +22,7 @@ class Tree {
         }
         for (int i = 0; i < values.size(); i++) {
             std::vector<char> remainingValues = values;
-            Node* child = new Node;
+            Node *child = new Node;
             child->value = values[i];
             node->children.push_back(child);
             remainingValues.erase(remainingValues.begin() + i);
@@ -30,7 +30,7 @@ class Tree {
         }
     }
 
-    std::vector<char>& generatePermutations(Node* node, std::vector<char>& current) {
+    void generatePermutations(Node *node, std::vector<char>& current) {
         for (int i = 0; i < node->children.size(); i++) {
             current.push_back(node->children[i]->value);
             if (node->children[i]->children.empty()) {
