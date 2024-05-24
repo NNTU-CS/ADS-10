@@ -55,7 +55,8 @@ class Tree {
     void getPermsRecursive(Node* node, int remaining,
 std::vector<char> perm, const std::vector<std::vector<char>>& perms) const {
         if (remaining == 0) {
-            std::vector<std::vector<char>>& nonConstPerms = const_cast<std::vector<std::vector<char>>&>(perms);
+            std::vector<std::vector<char>>& nonConstPerms =
+            const_cast<std::vector<std::vector<char>>&>(perms);
             nonConstPerms.push_back(perm);
             return;
         }
