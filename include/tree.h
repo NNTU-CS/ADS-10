@@ -9,14 +9,15 @@ struct Node {
     std::vector<Node*> children;
 };
 class Tree {
-private:
+ private:
     int size;
-public:
+
+ public:
     Node* root;
-    Tree(std::vector<char> in): size(0) {
+    explicit Tree(std::vector<char> in): size(0) {
         root = new Node;
         root->data = '0';
-        for (int i = 0; i < in.size(); i++) { 
+        for (int i = 0; i < in.size(); i++) {
             Node* newNode = new Node;
             newNode->data = in[i];
             root->children.push_back(newNode);
@@ -51,7 +52,8 @@ public:
         getPermsRecursive(root, k, perm, perms);
         return perms;
     }
-    void getPermsRecursive(Node* node, int remaining, std::vector<char> perm, std::vector<std::vector<char>>& perms) const {
+    void getPermsRecursive(Node* node, int remaining,
+std::vector<char> perm, std::vector<std::vector<char>> perms) const {
         if (remaining == 0) {
             perms.push_back(perm);
             return;
