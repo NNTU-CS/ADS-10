@@ -34,7 +34,7 @@ class Tree {
         }
     }
 
-    void generatePermutations(Node *node, std::vector<char> &permutation) {
+    void generatePermutations(Node* node, std::vector<char> &permutation) {
         permutation.push_back(node->value);
         if (node->children.empty()) {
             permutations.push_back(permutation);
