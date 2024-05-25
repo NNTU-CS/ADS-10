@@ -6,7 +6,7 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPermutationByIndex(const PermutationTree &tree, \
+std::vector<char> getPerm(const Tree &tree, \
     int index) {
     std::vector<std::vector<char>> permutations = tree.getAllPermutations();
     size_t size = permutations.size();
