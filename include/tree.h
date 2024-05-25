@@ -10,7 +10,7 @@ struct Node {
     char value;
     std::vector<Node*> children;
 
-    Node(char val) : value(val) {}
+    explicit Node(char val) : value(val) {}
     ~Node() {
         for (auto child : children) {
             delete child;
@@ -24,7 +24,7 @@ class Tree {
     std::vector<std::vector<char>> permutations;
 
     void buildTree(Node* current, const std::vector<char>& elements);
-    void traverseTree(Node* current, std::vector<char>& permutation);
+    void traverseTree(Node* current, const std::vector<char>& permutation);
 
  public:
     explicit Tree(const std::vector<char>& elements);
@@ -32,5 +32,7 @@ class Tree {
     std::vector<std::vector<char>> getPermutations() const;
     std::vector<char> getPermutation(int n) const;
 };
+
+std::vector<char> getPerm(const Tree& tree, int n);
 
 #endif  // INCLUDE_TREE_H_
