@@ -6,13 +6,15 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPermutationByIndex(const PermutationTree &tree, int index) {
+std::vector<char> getPermutationByIndex(const PermutationTree &tree, \
+    int index) {
     std::vector<std::vector<char>> permutations = tree.getAllPermutations();
     size_t size = permutations.size();
     std::vector<char> result;
 
     while (index > 0) {
         result = permutations[index - 1];
+        break;
     }
     return result;
 }
