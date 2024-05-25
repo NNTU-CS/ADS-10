@@ -52,7 +52,8 @@ class PermutationTree {
             currentPermutation.push_back(currentNode->value);
         if (currentNode->children.empty())
             permutations.push_back(currentPermutation);
-        else {
+        else
+        {
             auto index = currentNode->children.begin();
             while (index != currentNode->children.end()) {
                 collectPermutations(*index, currentPermutation);
@@ -64,7 +65,7 @@ class PermutationTree {
  public:
     explicit PermutationTree(const std::vector<char> &initialChars) {
         rootNode = createNode('\0');
-        rootNode->isRootNode = true;
+        insertChildren(rootNode, initialChars);
         std::vector<char> currentPermutation;
         collectPermutations(rootNode, currentPermutation);
     }
