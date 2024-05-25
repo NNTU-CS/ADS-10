@@ -20,7 +20,7 @@ struct TreeNode {
 };
 
 class Tree {
-private:
+ private:
     std::vector<std::vector<char>> permutations;
     TreeNode *rootNode;
 
@@ -61,7 +61,7 @@ private:
         }
     }
 
-public:
+ public:
     explicit Tree(const std::vector<char> &initialChars) {
         rootNode = createNode('\0');
         rootNode->isRootNode = true;
