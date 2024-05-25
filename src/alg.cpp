@@ -8,6 +8,7 @@
 Tree::Tree(const std::vector<char>& elements) {
     root = new Node(0);
     buildTree(root, elements);
+    traverseTree(root, {});  // Запускаем генерацию перестановок сразу после построения дерева
 }
 
 Tree::~Tree() {
@@ -28,16 +29,16 @@ void Tree::buildTree(Node* current, const std::vector<char>& elements) {
     }
 }
 
-void Tree::traverseTree(Node* current, std::vector<char>& permutation) {
+void Tree::traverseTree(Node* current, const std::vector<char>& permutation) {
     if (current->children.empty()) {
         permutations.push_back(permutation);
         return;
     }
 
     for (Node* child : current->children) {
-        permutation.push_back(child->value);
-        traverseTree(child, permutation);
-        permutation.pop_back();
+        std::vector<char> newPermutation(permutation);
+        newPermutation.push_back(child->value);
+        traverseTree(child, newPermutation);
     }
 }
 
@@ -50,4 +51,8 @@ std::vector<char> Tree::getPermutation(int n) const {
         return permutations[n - 1];
     }
     return {};
+}
+
+std::vector<char> getPerm(const Tree& tree, int n) {
+    return tree.getPermutation(n);
 }
