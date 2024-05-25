@@ -14,7 +14,7 @@ class Tree {
         explicit Node(char val) : value(val) {}
 
         ~Node() {
-            for (auto child: children) {
+            for (auto child : children) {
                 delete child;
             }
         }
@@ -24,11 +24,12 @@ class Tree {
     std::vector<std::vector<char>> permutations;
 
     void fillNode(Node *node, std::vector<char> values) {
-        values.erase(std::remove(values.begin(), values.end(), node->value), values.end());
-        for (auto value: values) {
+        values.erase(std::remove(values.begin(),
+                                 values.end(), node->value), values.end());
+        for (auto value : values) {
             node->children.push_back(new Node(value));
         }
-        for (auto child: node->children) {
+        for (auto child : node->children) {
             fillNode(child, values);
         }
     }
@@ -38,7 +39,7 @@ class Tree {
         if (node->children.empty()) {
             permutations.push_back(permutation);
         } else {
-            for (auto child: node->children) {
+            for (auto child : node->children) {
                 generatePermutations(child, permutation);
             }
         }
@@ -47,7 +48,7 @@ class Tree {
 
  public:
     explicit Tree(const std::vector<char> &input) : root(new Node(' ')) {
-        for (auto value: input) {
+        for (auto value : input) {
             Node *child = new Node(value);
             root->children.push_back(child);
             fillNode(child, input);
