@@ -20,7 +20,7 @@ struct TreeNode {
 };
 
 class Tree {
- private:
+private:
     std::vector<std::vector<char>> permutations;
     TreeNode *rootNode;
 
@@ -50,9 +50,9 @@ class Tree {
     std::vector<char> currentPermutation) {
         if (!currentNode->isRootNode)
             currentPermutation.push_back(currentNode->value);
-        if (currentNode->children.empty())
+        if (currentNode->children.empty()) {
             permutations.push_back(currentPermutation);
-        else {
+        } else {
             auto index = currentNode->children.begin();
             while (index != currentNode->children.end()) {
                 collectPermutations(*index, currentPermutation);
@@ -61,7 +61,7 @@ class Tree {
         }
     }
 
- public:
+public:
     explicit Tree(const std::vector<char> &initialChars) {
         rootNode = createNode('\0');
         rootNode->isRootNode = true;
