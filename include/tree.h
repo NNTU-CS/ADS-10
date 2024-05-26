@@ -1,7 +1,6 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
-
 #include <vector>
 #include <algorithm>
 
@@ -44,7 +43,6 @@ class Tree {
         if (!current->isRoot) {
             currentPerm.push_back(current->value);
         }
-
         if (current->children.empty()) {
             permutations.push_back(currentPerm);
         } else {
@@ -60,7 +58,6 @@ class Tree {
         root = createNode('\0');
         root->isRoot = true;
         addChildren(root, initialChars);
-
         std::vector<char> currentPerm;
         gatherPermutations(root, currentPerm);
     }
@@ -75,3 +72,4 @@ class Tree {
 };
 
 #endif  // INCLUDE_TREE_H_
+
