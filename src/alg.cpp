@@ -14,3 +14,4 @@ std::vector<char> getPermutation(const Tree &tree, int permIndex) {
     }
     return result;
 }
+
