@@ -27,19 +27,20 @@ class Tree {
         return node;
     }
 
-    void addChildren(TreeNode* current, 
+    void addChildren(TreeNode* current,
     const std::vector<char>& remainingChars) {
         for (char ch : remainingChars) {
             TreeNode* newNode = createNode(ch);
             current->children.push_back(newNode);
             std::vector<char> nextChars = remainingChars;
-            nextChars.erase(std::remove(nextChars.begin(), 
+            nextChars.erase(std::remove(nextChars.begin(),
               nextChars.end(), ch), nextChars.end());
             addChildren(newNode, nextChars);
         }
     }
 
-    void gatherPermutations(TreeNode* current, std::vector<char>& currentPerm) {
+    void gatherPermutations(TreeNode* current, 
+    std::vector<char>& currentPerm) {
         if (!current->isRoot) {
             currentPerm.push_back(current->value);
         }
