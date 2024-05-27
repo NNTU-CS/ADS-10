@@ -40,7 +40,7 @@ class Tree {
     }
 
     void gatherPermutations(TreeNode* current,
-    std::vector<char>& currentPerm) {
+    std::vector<char> currentPerm) {
         if (!current->isRoot) {
             currentPerm.push_back(current->value);
         }
@@ -49,7 +49,6 @@ class Tree {
         } else {
             for (TreeNode* child : current->children) {
                 gatherPermutations(child, currentPerm);
-                currentPerm.pop_back();
             }
         }
     }
