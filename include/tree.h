@@ -58,7 +58,8 @@ class Tree {
     void getRecursive(Data* data, int residuary,
         std::vector<char> permanent, const std::vector<std::vector<char>>& permanents) const {
         if (residuary == 0) {
-            std::vector<std::vector<char>>& nonPermanentss = const_cast<std::vector<std::vector<char>>&>(permanents);
+            std::vector<std::vector<char>>& nonPermanentss =
+            const_cast<std::vector<std::vector<char>>&>(permanents);
             nonPermanentss.push_back(permanent);
             return;
         }
