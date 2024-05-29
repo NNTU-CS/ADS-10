@@ -5,6 +5,16 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+std::vector<char> Func_Deleted(std::vector<char> figures, float i) {
+    if (i >= 0 && i < figures.size()) {
+        figures.erase(figures.begin() + i);
+    }
+    return figures;
+}
+
+std::vector<char> getPerm(const Tree& tree, int count) {
+    std::vector<std::vector<char>> perms = tree.getPermanents(3);
+    if (perms.size() < count)
+        return {};
+    return perms[count - 1];
 }
