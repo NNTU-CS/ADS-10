@@ -5,13 +5,14 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
 
 class Node {
  public:
     std::vector<Node*> children;
     char value;
 
-    Node(char val) : value(val) {}
+    explicit Node(char val) : value(val) {}
 
     ~Node() {
         for (auto child : children) {
@@ -24,7 +25,7 @@ class Tree {
  public:
     Node* root;
 
-    Tree(const std::vector<char>& elements) {
+    explicit Tree(const std::vector<char>& elements) {
         root = new Node('\0');
         buildTree(root, elements);
     }
@@ -32,35 +33,36 @@ class Tree {
     ~Tree() {
         delete root;
     }
+
+    std::vector<std::string> getAllPermutations() {
+        std::vector<std::string> permutations;
+        genPerm(root, "", permutations);
+        return permutations;
+    }
+
  private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
             Node* child = new Node(element);
             node->children.push_back(child);
-            std::vector<char> remainingElements = elements;
-            remainingElements.erase(std::remove(remainingElements.begin(), remainingElements.end(), element), remainingElements.end());
-            buildTree(child, remainingElements);
+            std::vector<char> el = elements;
+            el.erase(std::remove(el.begin(), el.end(), element), el.end());
+            buildTree(child, el);
+        }
+    }
+
+    void genPerm(Node* node, std::string cur, std::vector<std::string>& perm) {
+        if (node->value != '\0') {
+            cur.push_back(node->value);
+        }
+        if (node->children.empty()) {
+            perm.push_back(cur);
+            return;
+        }
+        for (auto child : node->children) {
+            genPerm(child, cur, perm);
         }
     }
 };
-
-void generatePermutations(Node* node, std::string current, std::vector<std::string>& permutations) {
-    if (node->value != '\0') {
-        current.push_back(node->value);
-    }
-    if (node->children.empty()) {
-        permutations.push_back(current);
-        return;
-    }
-    for (auto child : node->children) {
-        generatePermutations(child, current, permutations);
-    }
-}
-
-std::vector<std::string> getAllPermutations(Tree& tree) {
-    std::vector<std::string> permutations;
-    generatePermutations(tree.root, "", permutations);
-    return permutations;
-}
 
 #endif  // INCLUDE_TREE_H_
