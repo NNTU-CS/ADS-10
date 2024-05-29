@@ -4,8 +4,8 @@
 #include <algorithm>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int n) {
-  std::vector<std::string> allPermutations = getAllPermutations(tree);
+std::vector<char> getPerm(Tree& tree, int index) {
+    std::vector<std::string> allPermutations = tree.getAllPermutations();
     if (index <= allPermutations.size()) {
         std::string perm = allPermutations[index - 1];
         return std::vector<char>(perm.begin(), perm.end());
