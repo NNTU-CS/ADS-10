@@ -10,14 +10,14 @@ class TreeNode {
     char value;
     std::vector<TreeNode*> children;
 
-    TreeNode(char value) : value(value) {}
+    explicit TreeNode(char value) : value(value) {}
 };
 
 class Tree {
  public:
     TreeNode* root;
 
-    Tree(const std::string& symbols) {
+    explicit Tree(const std::string& symbols) {
         root = new TreeNode(symbols[0]);
         for (size_t i = 1; i < symbols.size(); ++i) {
             addChild(root, symbols[i]);
