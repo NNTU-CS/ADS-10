@@ -5,13 +5,19 @@
 #include  <cstdlib>
 #include  <vector>
 #include  "tree.h"
-
+using namespace std;
 int fact(int n) {
     if (n == 1) return 1;
     return n * fact(n - 1);
 }
 
-void getPermHelper(std::vector<char>& values, int index, std::vector<char>& perm, std::vector<int>& idx) {
+int getChildIndex(int index, int numCh) {
+    int chIndex = index / numCh;
+    index -= chIndex * numCh;
+    return chIndex;
+}
+
+void getPermHelper(vector<char>& values, int index, vector<char>& perm, vector<int>& idx) {
     if (values.empty()) {
         return;
     }
@@ -26,7 +32,7 @@ void getPermHelper(std::vector<char>& values, int index, std::vector<char>& perm
     idx.push_back(chIndex);
     index -= chIndex * numChildren;
 
-    std::vector<char> chValues;
+    vector<char> chValues;
     for (int i = 0; i < values.size(); ++i) {
         if (i != idx.back()) {
             chValues.push_back(values[i]);
@@ -37,19 +43,13 @@ void getPermHelper(std::vector<char>& values, int index, std::vector<char>& perm
     idx.pop_back();
 }
 
-int getChildIndex(int index, int numCh) {
-    int chIndex = index / numCh;
-    index -= chIndex * numCh;
-    return chIndex;
-}
-
-std::vector<char> getPerm(const Tree& tree, int n) {
+vector<char> getPerm(const Tree& values, int index) {
     if (index < 0 || index >= fact(values.size())) {
-        throw std::out_of_range("Invalid index");
+        throw "Invalid index";
     }
 
-    std::vector<char> permutation;
-    std::vector<int> indices;
+    vector<char> permutation;
+    vector<int> indices;
     getPermHelper(values, index, permutation, indices);
     return permutation;
 }
