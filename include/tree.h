@@ -1,14 +1,12 @@
-// Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
-#pragma once
-#include <iostream>
+
 #include <vector>
-#include <algorithm>
 #include <string>
+#include <algorithm>
 
 class Node {
- public:
+public:
     std::vector<Node*> children;
     char value;
 
@@ -22,7 +20,7 @@ class Node {
 };
 
 class Tree {
- public:
+public:
     Node* root;
 
     explicit Tree(const std::vector<char>& elements) {
@@ -40,7 +38,7 @@ class Tree {
         return permutations;
     }
 
- private:
+private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
             Node* child = new Node(element);
@@ -51,18 +49,20 @@ class Tree {
         }
     }
 
-    void genPerm(Node* node, std::string cur, std::vector<std::string>& perm) {
+    void genPerm(Node* node, std::string cur, std::vector<std::string>& permutations) {
         if (node->value != '\0') {
             cur.push_back(node->value);
         }
         if (node->children.empty()) {
-            perm.push_back(cur);
+            permutations.push_back(cur);
             return;
         }
         for (auto child : node->children) {
-            genPerm(child, cur, perm);
+            genPerm(child, cur, permutations);
         }
     }
 };
+
+std::vector<char> getPerm(Tree& tree, int index);
 
 #endif  // INCLUDE_TREE_H_
