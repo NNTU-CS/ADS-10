@@ -1,13 +1,13 @@
-#include "tree.h"
+// Copyright 2022 NNTU-CS
 #include <vector>
+#include "tree.h"
 
-std::vector<char> getPerm(Tree& tree, int index) {
+std::vector<char> getPerm(const Tree& tree, int index) {
     std::vector<std::string> allPermutations = tree.getAllPermutations();
     if (index > 0 && index <= allPermutations.size()) {
         std::string perm = allPermutations[index - 1];
         return std::vector<char>(perm.begin(), perm.end());
-    }
-    else {
+    } else {
         return std::vector<char>();
     }
 }
