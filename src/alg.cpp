@@ -6,7 +6,7 @@
 #include  <vector>
 #include  "tree.h"
 
-void getPermutationHelper(TreeNode* node, int index, std::vector<char>& result) {
+void getPermHelper(TreeNode* node, int index, const std::vector<char>& result) {
     if (node == nullptr) {
         return;
     }
@@ -18,7 +18,7 @@ void getPermutationHelper(TreeNode* node, int index, std::vector<char>& result) 
 
     --index;
     for (TreeNode* child : node->children) {
-        getPermutationHelper(child, index, result);
+        getPermHelper(child, index, result);
         if (index == 0) {
             break;
         }
@@ -26,6 +26,6 @@ void getPermutationHelper(TreeNode* node, int index, std::vector<char>& result) 
 }
 std::vector<char> getPerm(Tree* tree, int index) {
     std::vector<char> result;
-    getPermutationHelper(tree->root, index, result);
+    getPermHelper(tree->root, index, result);
     return result;
 }
