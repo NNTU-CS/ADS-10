@@ -12,7 +12,7 @@ void getPermHelper(TreeNode* node, int index, const std::vector<char>& result) {
     }
 
     if (index == 0) {
-        result.push_back(node->value);
+        result.insert(result.begin(), node->value);
         return;
     }
 
