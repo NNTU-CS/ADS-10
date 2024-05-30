@@ -7,18 +7,17 @@
 using namespace std;
 
 class Node {
-public:
+ public:
     int value;
     std::vector<Node*> ch;
 
-    Node(int value) : value(value) {}
+    explicit Node(int value) : value(value) {}
 };
 
 class Tree {
  private:
     Node* root;
-
-    Tree(const std::vector<char>& values) {
+    explicit Tree(const std::vector<char>& values) {
         root = buildTree(values);
     }
 
@@ -40,7 +39,6 @@ class Tree {
             }
             levels.push_back(currentLevel);
         }
-
         return levels[0][0];
     }
 };
