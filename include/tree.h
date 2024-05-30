@@ -1,43 +1,32 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
-#include <vector>
 #include <iostream>
+#include <string>
+#include <vector>
 
-class Node {
+class TreeNode {
  public:
-    int value;
-    std::vector<Node*> ch;
+    char value;
+    std::vector<TreeNode*> children;
 
-    explicit Node(int value) : value(value) {}
+    TreeNode(char value) : value(value) {}
 };
 
 class Tree {
- private:
-    Node* root;
-    explicit Tree(const std::vector<char>& values) {
-        root = buildTree(values);
+ public:
+    TreeNode* root;
+
+    Tree(const std::string& symbols) {
+        root = new TreeNode(symbols[0]);
+        for (size_t i = 1; i < symbols.size(); ++i) {
+            addChild(root, symbols[i]);
+        }
     }
 
- public:
-    Node* buildTree(const std::vector<char>& values) {
-        if (values.empty()) {
-            return nullptr;
-        }
-
-        std::vector<std::vector<Node*>> levels;
-        levels.push_back({ new Node(values[0]) });
-
-        for (int i = 1; i < values.size(); i++) {
-            std::vector<Node*> currentLevel;
-            for (int j = 0; j < levels[levels.size() - 1].size(); j++) {
-                Node* node = levels[levels.size() - 1][j];
-                node->ch.push_back(new Node(values[i]));
-                currentLevel.push_back(node->ch.back());
-            }
-            levels.push_back(currentLevel);
-        }
-        return levels[0][0];
+    void addChild(TreeNode* node, char value) {
+        TreeNode* newNode = new TreeNode(value);
+        node->children.push_back(newNode);
     }
 };
 
