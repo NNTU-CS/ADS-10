@@ -54,12 +54,14 @@ class Tree {
  private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
-           Node* child = new Node(element);
-           node->children.push_back(child);
-           std::vector<char> neEl(elements);
-           neEl.erase(std::remove(neEl.begin(), neEl.end(), element), neEl.end());
-           buildTree(child, neEl);
-        }
+        Node* child = new Node(element);
+        node->children.push_back(child);
+        std::vector<char> nextElements(elements);
+        auto it = std::remove(nextElements.begin(), nextElements.end(), element); 
+        nextElements.erase(it, nextElements.end()); // Используем it для удаления
+        buildTree(child, nextElements);
+    }
+
     }
 
     void genPerm(Node* n, std::string cur, std::vector<std::string>* p) const {
