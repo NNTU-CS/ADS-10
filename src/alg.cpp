@@ -26,7 +26,7 @@ static void addChilds(Node* n, std::vector<char> in) {
     }
 }
 
-static void getVariations(Node n, std::string a, std::vector<std::string>& r) {
+static void getVariations(Node n, std::string a, const std::vector<std::string>& r) {
     a += n.value;
     if (n.childs.empty()) {
         r.push_back(a);
