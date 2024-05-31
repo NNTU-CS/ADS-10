@@ -6,7 +6,7 @@
 #include <algorithm>
 
 class TreeNode {
-public:
+ public:
     char value;
     std::vector<TreeNode*> children;
 
@@ -19,9 +19,8 @@ public:
 };
 
 class Tree {
-private:
-    TreeNode* root;
-    
+ private:
+    TreeNode* root; 
     void buildTree(TreeNode* node, const std::vector<char>& elements) {
         if (elements.empty()) return;
 
@@ -30,13 +29,17 @@ private:
             node->children.push_back(child);
 
             std::vector<char> remaining_elements = elements;
-            remaining_elements.erase(std::remove(remaining_elements.begin(), remaining_elements.end(), el), remaining_elements.end());
+             remaining_elements.erase(
+                std::remove(
+                    remaining_elements.begin(),
+                    remaining_elements.end(), el),
+                remaining_elements.end());
 
             buildTree(child, remaining_elements);
         }
     }
 
-public:
+ public:
     explicit Tree(const std::vector<char>& elements) {
         if (elements.empty()) {
             root = nullptr;
