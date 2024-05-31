@@ -7,8 +7,5 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-    if (n < 0 || n >= static_cast<int>(tree.allPermutations.size())) {
-    return {};
-  }
-  return tree.allPermutations[n];
+    return tree.allPermutations[index];
 }
