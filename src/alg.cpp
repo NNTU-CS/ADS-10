@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "tree.h"
 
-void getPermutation(TreeNode* node, int* n, std::vector<char>* result, 
+void getPermutation(TreeNode* node, int* n, std::vector<char>* result,
                     std::vector<char>* current) {
     if (node->children.empty()) {
         if (*n == 0) {
