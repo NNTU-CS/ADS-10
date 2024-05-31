@@ -11,6 +11,6 @@ struct Node {
 class Tree {
  public:
     Node* root;
-    Tree(std::vector<char>);
+    explicit Tree(std::vector<char>);
 };
 #endif  // INCLUDE_TREE_H_
