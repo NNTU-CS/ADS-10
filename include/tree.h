@@ -18,7 +18,7 @@ class Node {
     }
 };
 class Tree {
- private:
+ public:
     Node* root;
     std::vector<std::vector<char>> allPermutations;
 
@@ -48,9 +48,9 @@ class Tree {
  public:
     explicit Tree(const std::vector<char>& inputChars) : root(new Node(' ')) {
         buildTree(root, inputChars);
-        std::vector<char>* currentPermutation;
+        std::vector<char> currentPermutation;
         for (auto child : root->children) {
-            genPermutations(child, currentPermutation);
+            genPermutations(child, &currentPermutation);
         }
     }
 
