@@ -10,19 +10,19 @@ struct Node {
 };
 class Tree {
  private:
-    int siz;
+    int size;
 
  public:
     Node* rooter;
-    explicit Tree(std::vector<char> in): siz(0) {
+    explicit Tree(std::vector<char> in): size(0) {
         rooter = new Node;
         rooter->date = '0';
-        for (int i = 0; i < in.siz(); i++) {
+        for (int i = 0; i < in.size(); i++) {
             Node* newNode = new Node;
             newNode->date = in[i];
             rooter->children.push_back(newNode);
         }
-        for (int i = 0; i < in.siz(); i++) {
+        for (int i = 0; i < in.size(); i++) {
             std::vector<char> temp = in;
             temp = temp_delete(temp, i);
             add_childrens_for_child(temp, rooter->children[i]);
