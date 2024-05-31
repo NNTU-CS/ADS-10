@@ -6,6 +6,8 @@
 #include <vector>
 
 class Node {
+
+ public:
     char value;
     std::vector<Node*> children;
     explicit Node(char val) : value(val) {}
