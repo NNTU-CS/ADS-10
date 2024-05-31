@@ -6,18 +6,16 @@
 #include <vector>
 
 class Node {
-        char value;
-        std::vector<Node*> children;
-        explicit Node(char val) : value(val) {}
-
-        ~Node() {
-            for (auto child : children) {
-                delete child;
-            }
+    char value;
+    std::vector<Node*> children;
+    explicit Node(char val) : value(val) {}
+    ~Node() {
+        for (auto child : children) {
+            delete child;
         }
-    };
+    }
+};
 class Tree {
-
  private:
     Node* root;
     std::vector<std::vector<char>> allPermutations;
@@ -32,17 +30,17 @@ class Tree {
         }
     }
 
-    void generatePermutations(Node* node, std::vector<char>& currentPermutation) {
-        currentPermutation.push_back(node->value);
+    void genPermutations(Node* node, const std::vector<char>& curPerm) {
+        curPerm.push_back(node->value);
 
-        if (node->children.empty()) { // Достигли листа
-            allPermutations.push_back(currentPermutation);
+        if (node->children.empty()) {
+            allPermutations.push_back(curPerm);
         } else {
             for (auto child : node->children) {
-                generatePermutations(child, currentPermutation);
+                genPermutations(child, curPerm);
             }
         }
-        currentPermutation.pop_back();
+        curPerm.pop_back();
     }
 
  public:
@@ -50,7 +48,7 @@ class Tree {
         buildTree(root, inputChars);
         std::vector<char> currentPermutation;
         for (auto child : root->children) {
-            generatePermutations(child, currentPermutation);
+            genPermutations(child, currentPermutation);
         }
     }
 
