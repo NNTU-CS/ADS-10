@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include "tree.h"
 
-static std::vector<char> removeFirst(std::vector<char> a, char c) {
+std::vector<char> removeFirst(std::vector<char> a, char c) {
     std::vector<char> b = a;
     for (std::vector<char>::iterator it = b.begin(); it != b.end(); it++) {
         if (*it == c) {
@@ -17,7 +17,7 @@ static std::vector<char> removeFirst(std::vector<char> a, char c) {
     throw std::string("char not found");
 }
 
-static void addChilds(Node* n, std::vector<char> in) {
+void addChilds(Node* n, std::vector<char> in) {
     for (char c : in) {
         Node* child = new Node();
         child->value = c;
@@ -26,7 +26,7 @@ static void addChilds(Node* n, std::vector<char> in) {
     }
 }
 
-static void getVariations(Node n, std::string a, const std::vector<std::string>& r) {
+void getVariations(Node n, std::string a, const std::vector<std::string>& r) {
     a += n.value;
     if (n.childs.empty()) {
         r.push_back(a);
