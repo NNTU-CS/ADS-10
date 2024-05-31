@@ -6,73 +6,58 @@
 #include <vector>
 
 class Node {
- public:
-    std::vector<Node*> children;
-    char value;
-    int count;
+        char value;
+        std::vector<Node*> children;
+        explicit Node(char val) : value(val) {}
 
-    explicit Node(char val) : value(val), count(1) {}
-
-    ~Node() {
-        for (auto child : children) {
-            delete child;
-        }
-    }
-
-    Node* findChild(char val) {
-        for (Node* child : children) {
-            if (child->value == val) {
-                return child;
+        ~Node() {
+            for (auto child : children) {
+                delete child;
             }
         }
-        return nullptr;
-    }
-
-    void incrementCount() {
-        count++;
-    }
-};
+    };
 class Tree {
- public:
-    Node* root;
 
-    explicit Tree(const std::vector<char>& elements) {
-        root = new Node('\0');
-        buildTree(root, elements);
+ private:
+    Node* root;
+    std::vector<std::vector<char>> allPermutations;
+
+    void buildTree(Node* node, const std::vector<char>& remainingChars) {
+        for (char elem : remainingChars) {
+            Node* child = new Node(elem);
+            node->children.push_back(child);
+            std::vector<char> nextCh(remainingChars);
+            nextCh.erase(std::remove(nextCh.begin(), nextCh.end(), elem), nextCh.end());
+            buildTree(child, nextCh);
+        }
+    }
+
+    void generatePermutations(Node* node, std::vector<char>& currentPermutation) {
+        currentPermutation.push_back(node->value);
+
+        if (node->children.empty()) { // Достигли листа
+            allPermutations.push_back(currentPermutation);
+        } else {
+            for (auto child : node->children) {
+                generatePermutations(child, currentPermutation);
+            }
+        }
+        currentPermutation.pop_back();
+    }
+
+ public:
+    explicit Tree(const std::vector<char>& inputChars) : root(new Node(' ')) {
+        buildTree(root, inputChars);
+        std::vector<char> currentPermutation;
+        for (auto child : root->children) {
+            generatePermutations(child, currentPermutation);
+        }
     }
 
     ~Tree() {
         delete root;
     }
-
-    std::vector<std::string> getAllPermutations() const {
-        std::vector<std::string> permutations;
-        genPerm(root, "", &permutations);
-        return permutations;
-    }
-
- private:
-    void buildTree(Node* node, const std::vector<char>& elements) {
-        for (char element : elements) {
-        Node* child = new Node(element);
-        node->children.push_back(child);
-        std::vector<char> nextElements(elements);
-        auto it = std::remove(nextElements.begin(), nextElements.end(), element); 
-        nextElements.erase(it, nextElements.end()); // Используем it для удаления
-        buildTree(child, nextElements);
-    }
-
-    }
-
-    void genPerm(Node* n, std::string cur, std::vector<std::string>* p) const {
-        if (n->children.empty()) {
-            p->push_back(cur);
-            return;
-        }
-        for (auto child : n->children) {
-            genPerm(child, cur + n->value, p);
-        }
-    }
+    friend std::vector<char> getPerm(const Tree& tree, int n);
 };
 
 std::vector<char> getPerm(const Tree& tree, int index);
