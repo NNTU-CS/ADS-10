@@ -50,22 +50,15 @@ class Tree {
         genPerm(root, "", &permutations);
         return permutations;
     }
-
-    std::string getPrime(int index) const {
-        std::string result;
-        genPrimeHelper(root, index, result);
-        return result;
-    }
-
  private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
            Node* child = new Node(element);
            node->children.push_back(child);
-           std::vector<char> el = elements;
-           auto it = std::remove(el.begin(), el.end(), element);
-           el.erase(el.begin() + std::distance(el.begin(), it), el.end());
-           buildTree(child, el);
+           std::vector<char> neEl(elements);
+           neEl.erase(std::remove(neEl.begin(), neEl.end(), element), neEl.end());
+           buildTree(child, neEl);
+
         }
     }
 
@@ -76,20 +69,6 @@ class Tree {
         }
         for (auto child : n->children) {
             genPerm(child, cur + n->value, p);
-        }
-    }
-
-    void genPrimeHelper(Node* n, int& index, const std::string& result) const {
-        if (n->children.empty()) {
-            if (index == 0) {
-                result = n->value;
-            } else {
-                --index;
-            }
-            return;
-        }
-        for (auto child : n->children) {
-            genPrimeHelper(child, index, result);
         }
     }
 };
