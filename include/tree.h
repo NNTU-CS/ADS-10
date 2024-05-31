@@ -21,14 +21,13 @@ class Tree {
     Node* root;
     std::vector<std::vector<char>> allPermutations;
 
-    void buildTree(Node* node, const std::vector<char>& remainingChars) {
-        for (char el : remainingChars) {
-            Node* child = new Node(el);
+    void buildTree(Node* node, const std::vector<char>& elements) {
+        for (char element : elements) {
+            Node* child = new Node(element);
             node->children.push_back(child);
-            std::vector<char> nC(remainingChars);
-            auto it = std::remove(nC.begin(), nC.end(), el);
-            nC.erase(it, nC.end());
-            buildTree(child, nC);
+            std::vector<char> el = elements;
+            el.erase(std::remove(el.begin(), el.end(), element), el.end());
+            buildTree(child, el);
         }
     }
 
