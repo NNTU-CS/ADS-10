@@ -26,10 +26,10 @@ void addChilds(Node* n, std::vector<char> in) {
     }
 }
 
-void getVariations(Node n, std::string a, const std::vector<std::string>& r) {
+void getVariations(Node n, std::string a, std::vector<std::string>* r) {
     a += n.value;
     if (n.childs.empty()) {
-        r.push_back(a);
+        r->push_back(a);
         return;
     }
     for (auto c : n.childs) {
@@ -40,7 +40,7 @@ void getVariations(Node n, std::string a, const std::vector<std::string>& r) {
 std::vector<std::string> getVariations(Node root) {
     std::vector<std::string> r;
     for (Node* n : root.childs) {
-        getVariations(*n, std::string(), r);
+        getVariations(*n, std::string(), &r);
     }
     return r;
 }
