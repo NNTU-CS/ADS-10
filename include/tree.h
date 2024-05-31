@@ -6,7 +6,6 @@
 #include <vector>
 
 class Node {
-
  public:
     char value;
     std::vector<Node*> children;
@@ -27,7 +26,8 @@ class Tree {
             Node* child = new Node(el);
             node->children.push_back(child);
             std::vector<char> nC(remainingChars);
-            nC.erase(std::remove(nC.begin(), nC.end(), el), nC.end());
+            auto it = std::remove(nC.begin(), nC.end(), el);
+            nC.erase(it, nC.end());
             buildTree(child, nC);
         }
     }
