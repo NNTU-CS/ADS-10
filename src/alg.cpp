@@ -7,5 +7,5 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-    return tree.allPermutations[index];
+    return tree.allPermutations[n];
 }
