@@ -32,23 +32,23 @@ class Tree {
         }
     }
 
-    void genPermutations(Node* node, std::vector<char>& curPerm) {
-        curPerm.push_back(node->value);
+    void genPermutations(Node* node, std::vector<char>* curPerm) {
+        curPerm->push_back(node->value);
 
         if (node->children.empty()) {
-            allPermutations.push_back(curPerm);
+            allPermutations.push_back(*curPerm);
         } else {
             for (auto child : node->children) {
                 genPermutations(child, curPerm);
             }
         }
-        curPerm.pop_back();
+        curPerm->pop_back();
     }
 
  public:
     explicit Tree(const std::vector<char>& inputChars) : root(new Node(' ')) {
         buildTree(root, inputChars);
-        std::vector<char> currentPermutation;
+        std::vector<char>* currentPermutation;
         for (auto child : root->children) {
             genPermutations(child, currentPermutation);
         }
