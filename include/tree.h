@@ -50,6 +50,7 @@ class Tree {
         genPerm(root, "", &permutations);
         return permutations;
     }
+
  private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
@@ -58,7 +59,6 @@ class Tree {
            std::vector<char> neEl(elements);
            neEl.erase(std::remove(neEl.begin(), neEl.end(), element), neEl.end());
            buildTree(child, neEl);
-
         }
     }
 
