@@ -37,7 +37,7 @@ class Tree {
         if (iner.empty()) {
             return;
         }
-        for (int i = 0; i < iner.siz(); i++) {
+        for (int i = 0; i < iner.size(); i++) {
             Node* newNode = new Node;
             newNode->date = iner[i];
             parenti->children.push_back(newNode);
