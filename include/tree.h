@@ -20,7 +20,7 @@ class TreeNode {
 
 class Tree {
  private:
-    TreeNode* root; 
+   TreeNode* root; 
     void buildTree(TreeNode* node, const std::vector<char>& elements) {
         if (elements.empty()) return;
 
