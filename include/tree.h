@@ -60,11 +60,12 @@ class Tree {
  private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
-            Node* child = new Node(element);
-            node->children.push_back(child);
-            std::vector<char> el = elements;
-            el.erase(std::remove(el.begin(), el.end(), element), el.end());
-            buildTree(child, el);
+           Node* child = new Node(element);
+           node->children.push_back(child);
+           std::vector<char> el = elements;
+           auto it = std::remove(el.begin(), el.end(), element);
+           el.erase(el.begin() + std::distance(el.begin(), it), el.end());
+           buildTree(child, el);
         }
     }
 
@@ -78,12 +79,11 @@ class Tree {
         }
     }
 
-    void genPrimeHelper(Node* n, int& index, std::string& result) const {
+    void genPrimeHelper(Node* n, int& index, const std::string& result) const {
         if (n->children.empty()) {
             if (index == 0) {
                 result = n->value;
-            }
-            else {
+            } else {
                 --index;
             }
             return;
