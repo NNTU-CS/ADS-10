@@ -6,5 +6,5 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  return tree.getPermByIndex(n);
+  return tree.getPermByIndex(n - 1);
 }
