@@ -46,7 +46,7 @@ void generatePermutations(std::shared_ptr<TreeNode> node,
 
 Tree::Tree(const std::vector<char>& elements) {
     if (!elements.empty()) {
-        root = std::make_shared<TreeNode>('\0'); // Root does not hold any char
+        root = std::make_shared<TreeNode>('\0');
         buildTree(elements);
     }
 }
