@@ -13,6 +13,8 @@ class Tree {
     std::vector<std::vector<char>> vecPermutations;
 
     void treeBuild(Node *root, std::vector<char> initValues) {
+     if (node == nullptr)
+      node = new Node;
      int vecSize = initValues.size();
      for (int i = 0; i < vecSize; i++) {
        Node *potomok = new Node;
