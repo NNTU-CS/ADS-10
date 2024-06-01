@@ -28,16 +28,13 @@ class Tree {
      }
     }
     void createPerms(Node* currentNode, const std::vector<char>& initVal) {
-     std::vector<char> leftVal = initVal;
-     leftVal.push_back(currentNode->value);
-     if (currentNode->potomki.empty()) {
-         if (leftVal.size() > 1) {
-             vecPermutations.push_back(leftVal);
-         }
-     }
-     leftVal.pop_back();
      for (int i = 0; i < currentNode->potomki.size(); i++) {
+         std::vector<char> leftVal = initVal;
+         leftVal.push_back(currentNode->value);
+         if (currentNode->potomki.empty() && leftVal.size() > 1)
+          vecPermutations.push_back(leftVal);
          createPerms(currentNode->potomki[i], leftVal);
+         leftVal.pop_back();
      }
     }
 
