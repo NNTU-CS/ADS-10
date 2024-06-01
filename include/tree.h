@@ -15,6 +15,8 @@ class Tree {
     void treeBuild(Node *root, std::vector<char> initValues) {
      if (root == nullptr)
       root = new Node;
+     if (initValues.empty())
+      return;
      int vecSize = initValues.size();
      for (int i = 0; i < vecSize; i++) {
        Node *potomok = new Node;
@@ -33,9 +35,9 @@ class Tree {
              vecPermutations.push_back(leftVal);
          }
      }
+     leftVal.pop_back();
      for (int i = 0; i < currentNode->potomki.size(); i++) {
          createPerms(currentNode->potomki[i], leftVal);
-         leftVal.pop_back();
      }
     }
 
