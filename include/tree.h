@@ -53,7 +53,7 @@ class Tree {
       return std::vector<char>();
      if (i < 0)
       return std::vector<char>();
-     return vecPermutations[i - 1];
+     return vecPermutations[i];
     }
 };
 #endif  // INCLUDE_TREE_H_
