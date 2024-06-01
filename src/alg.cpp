@@ -39,9 +39,10 @@ void generatePermutations(std::shared_ptr<TreeNode> node, std::vector<char>& cur
     }
 }
 
+
 Tree::Tree(const std::vector<char>& elements) {
     if (!elements.empty()) {
-        root = std::make_shared<TreeNode>('\0');
+        root = std::make_shared<TreeNode>('\0'); 
         buildTree(elements);
     }
 }
@@ -50,16 +51,17 @@ void Tree::buildTree(const std::vector<char>& elements) {
     buildTreeRecursive(root, elements);
 }
 
-void Tree::buildTreeRecursive(std::shared_ptr<TreeNode> node, std::vector<char> elements) {
+void Tree::buildTreeRecursive(std::shared_ptr<TreeNode> node, const std::vector<char>& elements) {
     if (elements.empty()) return;
 
     for (char c : elements) {
         auto child = std::make_shared<TreeNode>(c);
         node->children.push_back(child);
-        
-        std::vector<char> remaining_elements = elements;
-        remaining_elements.erase(std::remove(remaining_elements.begin(), remaining_elements.end(), c), remaining_elements.end());
-        
+
+        std::vector<char> remaining_elements;
+        std::copy_if(elements.begin(), elements.end(), std::back_inserter(remaining_elements),
+                     [c](char elem) { return elem != c; });
+
         buildTreeRecursive(child, remaining_elements);
     }
 }
