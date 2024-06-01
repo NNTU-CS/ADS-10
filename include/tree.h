@@ -15,12 +15,11 @@ class Tree {
   void treeBuild(Node *root, std::vector<char> initValues) {
     int vecSize = initValues.size();
     for (int i = 0; i < vecSize; i++) {
-      Node *potomok = new Node; 
+      Node *potomok = new Node;
       std::vector<char> leftValues = initValues;
-      int lastElement = leftValues.begin() + i;
       potomok->value = initValues[i];
       root->potomki.emplace_back(potomok);
-      leftValues.erase(lastElement);
+      leftValues.erase(leftValues.begin() + i);
       treeBuild(potomok, leftValues);
     }
   }
@@ -43,9 +42,9 @@ public:
   std::vector<char> newValVec;
   root = new Node;
   treeBuild(root, inputValues);
-  createPerms(root, newValPerm);
+  createPerms(root, newValVec);
  }
-
+ 
  std::vector<char> getPermByIndex(int i) const {
   int vecPermSize = vecPermutations.size();
   if (i >= vecPermSize)
