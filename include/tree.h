@@ -1,6 +1,7 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
+
 #include <vector>
 #include <memory>
 
@@ -19,7 +20,8 @@ class Tree {
 
  private:
     std::shared_ptr<TreeNode> root;
-    void buildTreeRecursive(std::shared_ptr<TreeNode> node, const std::vector<char>& elements);
+    void buildTreeRecursive(std::shared_ptr<TreeNode> node,
+                            const std::vector<char>& elements);
 };
 
 #endif  // INCLUDE_TREE_H_
