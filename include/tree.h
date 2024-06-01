@@ -12,19 +12,15 @@ class Tree {
     Node *root;
     std::vector<std::vector<char>> vecPermutations;
 
-    void treeBuild(Node *root, std::vector<char> initValues) {
-     if (root == nullptr)
-      root = new Node;
-     if (initValues.empty())
-      return;
+    void treeBuild(Node* &root, std::vector<char> initValues) {
      int vecSize = initValues.size();
      for (int i = 0; i < vecSize; i++) {
-       Node *potomok = new Node;
-       std::vector<char> leftValues = initValues;
-       potomok->value = initValues[i];
-       root->potomki.push_back(potomok);
-       leftValues.erase(leftValues.begin() + i);
-       treeBuild(potomok, leftValues);
+         Node *potomok = new Node;
+         std::vector<char> leftValues = initValues;
+         potomok->value = initValues[i];
+         root->potomki.push_back(potomok);
+         leftValues.erase(leftValues.begin() + i);
+         treeBuild(root->potomki.back(), leftValues);
      }
     }
     void createPerms(Node* currentNode, const std::vector<char>& initVal) {
