@@ -1,9 +1,11 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "tree.h"
+#include <iostream>
+#include <fstream>
+#include <locale>
+#include <cstdlib>
+#include <algorithm>
+#include "tree.h"
+
 
 void generatePermutations(std::shared_ptr<TreeNode> node, std::vector<char>& current_permutation, std::vector<std::vector<char>>& permutations);
 
@@ -42,7 +44,7 @@ void generatePermutations(std::shared_ptr<TreeNode> node, std::vector<char>& cur
 
 Tree::Tree(const std::vector<char>& elements) {
     if (!elements.empty()) {
-        root = std::make_shared<TreeNode>('\0'); 
+        root = std::make_shared<TreeNode>('\0');
         buildTree(elements);
     }
 }
@@ -59,8 +61,11 @@ void Tree::buildTreeRecursive(std::shared_ptr<TreeNode> node, const std::vector<
         node->children.push_back(child);
 
         std::vector<char> remaining_elements;
-        std::copy_if(elements.begin(), elements.end(), std::back_inserter(remaining_elements),
-                     [c](char elem) { return elem != c; });
+        for (char elem : elements) {
+            if (elem != c) {
+                remaining_elements.push_back(elem);
+            }
+        }
 
         buildTreeRecursive(child, remaining_elements);
     }

@@ -20,6 +20,6 @@ public:
 
 private:
     std::shared_ptr<TreeNode> root;
-    void buildTreeRecursive(std::shared_ptr<TreeNode> node, std::vector<char> elements);
+    void buildTreeRecursive(std::shared_ptr<TreeNode> node, const std::vector<char>& elements);
 };
 #endif  // INCLUDE_TREE_H_
