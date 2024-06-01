@@ -12,7 +12,7 @@ class Tree {
     Node *root;
     std::vector<std::vector<char>> vecPermutations;
 
-    void treeBuild(Node* &root, std::vector<char> initValues) {
+    void treeBuild(Node *root, std::vector<char> initValues) {
      int vecSize = initValues.size();
      for (int i = 0; i < vecSize; i++) {
       Node* potomok = new Node;
