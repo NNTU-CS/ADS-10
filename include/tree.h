@@ -1,3 +1,4 @@
+// Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
@@ -16,7 +17,7 @@ struct TreeNode {
 };
 
 class Tree {
-private:
+ private:
     std::vector<std::vector<char>> permutations;
     TreeNode* root;
 
@@ -38,24 +39,24 @@ private:
         }
     }
 
-    void pullPermutations(TreeNode* currentN, std::vector<char> currentPermut) {
+    void pullPermutations(TreeNode* currentN, std::vector<char> currentP) {
         if (currentN->isRoot == false)
-            currentPermut.push_back(currentN->value);
+            currentP.push_back(currentN->value);
         if (currentN->children.empty())
-            permutations.push_back(currentPermut);
+            permutations.push_back(currentP);
         else
             for (TreeNode* child : currentN->children)
-                pullPermutations(child, currentPermut);
+                pullPermutations(child, currentP);
     }
 
-public:
+ public:
     explicit Tree(const std::vector<char>& initialChars) {
         root = createNode('\0');
         root->isRoot = true;
         addChildren(root, initialChars);
         std::vector<char> currentPermut;
         pullPermutations(root, currentPermut);
-    }   
+    }
 
     ~Tree() {
         delete root;
