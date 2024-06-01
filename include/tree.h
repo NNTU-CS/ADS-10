@@ -24,5 +24,35 @@ class Tree {
       treeBuild(potomok, leftValues);
     }
   }
+  void createPerms(Node* currentNode, const std::vector<char>& initVal) {
+     std::vector<char> leftVal = initVal;
+     leftVal.push_back(currentNode->value);
+     if (currentNode->potomki.empty()) {
+         if (leftVal.size() > 1) {
+             vecPermutations.push_back(leftVal);
+         }
+     }
+     for (int i = 0; i < currentNode->potomki.size(); i++) {
+         createPerms(currentNode->potomki[i], leftVal);
+         leftVal.pop_back();
+     }
+  }
+
+public:
+ explicit Tree(std::vector<char> inputValues): root(nullptr) {
+  std::vector<char> newValVec;
+  root = new Node;
+  treeBuild(root, inputValues);
+  createPerms(root, newValPerm);
+ }
+
+ std::vector<char> getPermByIndex(int i) const {
+  int vecPermSize = vecPermutations.size();
+  if (i >= vecPermSize)
+   return std::vector<char>;
+  if (i < 0)
+   return std::vector<char>;
+  return vecPermutations[i - 1];
+ }
 };
 #endif  // INCLUDE_TREE_H_
