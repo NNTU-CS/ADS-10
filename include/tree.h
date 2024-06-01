@@ -27,12 +27,12 @@ class Tree {
         return node;
     }
 
-    void addChildren(TreeNode* current, const std::vector<char>& remainingChars) {
-        for (char ch : remainingChars) {
+    void addChildren(TreeNode* current, const std::vector<char>& remainingC) {
+        for (char ch : remainingC) {
             TreeNode* newNode = createNode(ch);
             current->children.push_back(newNode);
             std::vector<char> nextChars;
-            for (char nextCh : remainingChars)
+            for (char nextCh : remainingC)
                 if (nextCh != ch)
                     nextChars.push_back(nextCh);
             addChildren(newNode, nextChars);
