@@ -7,11 +7,11 @@ class Tree {
  private:
     struct Node {
      char value;
-     std::vector<Node*> potomki;
+     std::vector<Node *> potomki;
     };
     Node *root;
     std::vector<std::vector<char>> vecPermutations;
- 
+
     void treeBuild(Node *root, std::vector<char> initValues) {
      int vecSize = initValues.size();
      for (int i = 0; i < vecSize; i++) {
@@ -45,13 +45,13 @@ class Tree {
      createPerms(root, newValVec);
     }
 
-   std::vector<char> getPermByIndex(int i) const {
-    int vecPermSize = vecPermutations.size();
-    if (i >= vecPermSize)
-     return std::vector<char>();
-    if (i < 0)
-     return std::vector<char>();
-    return vecPermutations[i - 1];
-   }
+    std::vector<char> getPermByIndex(int i) const {
+     int vecPermSize = vecPermutations.size();
+     if (i >= vecPermSize)
+      return std::vector<char>();
+     if (i < 0)
+      return std::vector<char>();
+     return vecPermutations[i - 1];
+    }
 };
 #endif  // INCLUDE_TREE_H_
