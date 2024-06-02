@@ -10,12 +10,12 @@ class Tree {
     char data;
     std::vector<Node*> children;
 
-    Node(char value) : data(value) {}
+    explicit Node(char value) : data(value) {}
   };
 
   Node* root;
 
-  void buildTree(Node* node, std::vector<char>& remaining) {
+  void buildTree(Node* node, const std::vector<char>& remaining) {
     if (remaining.empty()) return;
 
     for (char c : remaining) {
@@ -32,12 +32,12 @@ class Tree {
   }
 
  public:
-  Tree(std::vector<char>& elements) {
+  explicit Tree(const std::vector<char>& elements) {
     root = new Node(' ');
     buildTree(root, elements);
   }
 
-  Node* getRoot() const { return root; }
+  const Node* getRoot() const { return root; }
 };
 
 #endif  // INCLUDE_TREE_H_
