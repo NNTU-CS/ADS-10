@@ -3,7 +3,7 @@
 #define INCLUDE_TREE_H_
 #include <vector>
 #include <iostream>
-#include <string>
+#include <algorithm>
 
 struct Node {
     char value;
