@@ -12,7 +12,7 @@ class Tree {
   int length = 0, perm = 0;
 
  public:
-  Tree(std::vector<char> vector) vec(vector){
+  Tree(std::vector<char> vector) : vec(vector) {
     for (int i = 0; i < vec.size(); i++) {
       length++;
     }
