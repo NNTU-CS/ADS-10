@@ -12,7 +12,7 @@ struct Node {
 class Tree {
  public:
     Node* root;
-    Tree(std::vector<char> v) {
+    explicit Tree(std::vector<char> v) {
         root = new Node;
         for (int i = 0; i < v.size(); i++) {
             root->Leaves.push_back(new Node);
