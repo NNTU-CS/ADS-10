@@ -18,7 +18,7 @@ int Factorial(int n) {
 }
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-    vector<char> res;
+    std::vector<char> res;
     Tree tr = tree;
     int depth = tr.depthTree();
     int predel = 1;
