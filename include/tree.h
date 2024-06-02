@@ -12,7 +12,8 @@ class Tree {
   int length = 0, perm = 0;
 
  public:
-  /* implicit */ Tree(std::vector<char> vector) : vec(vector) {
+  explicit Tree(const std::vector<char> vector) : vec{vector} {
+    vec = vector;
     for (int i = 0; i < vec.size(); i++) {
       length++;
     }
