@@ -1,5 +1,4 @@
 // Copyright 2022 NNTU-CS
-#pragma once
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
