@@ -3,8 +3,6 @@
 #define INCLUDE_TREE_H_
 #include <algorithm>
 #include <vector>
-#include <algorithm>
-#include <vector>
 
 class Tree {
  public:
