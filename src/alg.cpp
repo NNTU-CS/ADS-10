@@ -11,7 +11,7 @@ std::vector<char> getPerm(const Tree& tree, int n) {
 
   while (n > 1 && !current->children.empty()) {
     int childCount = current->children.size();
-    int permsPerChild = 1;  // Number of permutations per child
+    int permsPerChild = 1; 
 
     for (int i = 1; i <= childCount; ++i) {
       permsPerChild *= i;
