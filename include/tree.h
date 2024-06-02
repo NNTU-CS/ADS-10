@@ -29,7 +29,7 @@ class Tree {
                 node->Leaves.push_back(tmp);
                 std::vector<char> c;
                 c = v;
-                c.erase(std::find(c.begin(), c.end(), n));
+                c.erase(find(c.begin(), c.end(), n));
                 node->Leaves[i] = addNodes(c, node->Leaves[i], c[i]);
             }
         return node;
