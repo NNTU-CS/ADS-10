@@ -16,8 +16,7 @@ std::vector<char> getPerm(const Tree& tree, int n) {
             }
         }
         return q;
-    } 
-    else {
+    } else {
         std::vector<char> q;
         return q;
     }
