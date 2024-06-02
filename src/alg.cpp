@@ -5,16 +5,15 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-int Factorial(int n)
-{
+int Factorial(int n) {
     int f = 1;
-    if ((n == 0) || (n == 1))
+    if ((n == 0) || (n == 1)) {
         f = 1;
-    else
+    } else {
         for (int i = 1; i <= n; i++)
             f *= i;
+    }
     return f;
-
 }
 
 std::vector<char> getPerm(const Tree& tree, int n) {
@@ -38,5 +37,4 @@ std::vector<char> getPerm(const Tree& tree, int n) {
         return res;
     }
     return {};
-
 }
