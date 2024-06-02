@@ -3,6 +3,8 @@
 #define INCLUDE_TREE_H_
 #include <algorithm>
 #include <vector>
+#include <algorithm>
+#include <vector>
 
 class Tree {
  public:
@@ -16,6 +18,7 @@ class Tree {
  private:
   Node* root;
 
+ public:
   void buildTree(Node* node, const std::vector<char>& remaining) {
     if (remaining.empty()) return;
 
