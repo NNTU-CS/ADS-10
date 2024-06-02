@@ -29,7 +29,7 @@ class Tree {
           std::remove(newRemaining.begin(), newRemaining.end(), c),
           newRemaining.end());
 
-      buildTree(&node.children.back(), newRemaining);
+      buildTree(&node->children.back(), newRemaining);
     }
   }
 
