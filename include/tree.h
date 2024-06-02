@@ -18,24 +18,24 @@ class Tree {
   size_t length = 0;
 
  public:
-  void buildTree(Node& node, const std::vector<char>& remaining) {
+  void buildTree(Node* node, const std::vector<char>& remaining) {
     if (remaining.empty()) return;
 
     for (char c : remaining) {
-      node.children.emplace_back(c);
+      node->children.emplace_back(c);
 
       std::vector<char> newRemaining = remaining;
       newRemaining.erase(
           std::remove(newRemaining.begin(), newRemaining.end(), c),
           newRemaining.end());
 
-      buildTree(node.children.back(), newRemaining);
+      buildTree(&node.children.back(), newRemaining);
     }
   }
 
   explicit Tree(const std::vector<char>& elements) {
     length = elements.size();
-    buildTree(root, elements);
+    buildTree(&root, elements);
   }
 
   const Node& getRoot() const { return root; }
