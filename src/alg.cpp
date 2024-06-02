@@ -1,27 +1,33 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
+#include <cstdint>
+#include <cstdlib>
 #include "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
+  size_t len = tree.getLength();
+  std::vector<uint64_t> factorials(tree.getLength() + 1, 1);
+  for (size_t i = 1; i < factorials.size(); ++i) {
+    factorials[i] = factorials[i - 1] * i;
+  }
+
+  size_t high = len;
   std::vector<char> result;
-  const Tree::Node* current = tree.getRoot();
+  const Tree::Node* current = &tree.getRoot();
 
-  while (n > 1 && !current->children.empty()) {
-    int childCount = current->children.size();
-    int permsPerChild = 1;
-
-    for (int i = 1; i <= childCount; ++i) {
-      permsPerChild *= i;
+  while (high > 0) {
+    if (factorials[high] < n) {
+      return {};
     }
-
-    int childIndex = (n - 1) / permsPerChild;
-    result.push_back(current->children[childIndex]->data);
-
-    n = (n - 1) % permsPerChild + 1;
-    current = current->children[childIndex];
+    for (const Tree::Node& child : current->children) {
+      if (factorials[high - 1] < n) {
+        n -= factorials[high - 1];
+        continue;
+      }
+      --high;
+      result.push_back(child.data);
+      current = &child;
+      break;
+    }
   }
 
   return result;
