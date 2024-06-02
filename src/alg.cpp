@@ -3,8 +3,8 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
-#include  "tree.h"
 #include <vector>
+#include  "tree.h"
 
 int Factorial(int n) {
     int f = 1;
