@@ -5,7 +5,7 @@
 #include <vector>
 
 class Tree {
- private:
+ public:
   struct Node {
     char data;
     std::vector<Node*> children;
@@ -13,6 +13,7 @@ class Tree {
     explicit Node(char value) : data(value) {}
   };
 
+ private:
   Node* root;
 
   void buildTree(Node* node, const std::vector<char>& remaining) {
@@ -31,7 +32,6 @@ class Tree {
     }
   }
 
- public:
   explicit Tree(const std::vector<char>& elements) {
     root = new Node(' ');
     buildTree(root, elements);
