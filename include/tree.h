@@ -2,19 +2,20 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+#include <string>
+#include <algorithm>
 class Node {
  public:
     char val;
     std::vector<Node*> chil;
-    Node(char val) : val(val) {}
+    explicit Node(char val) : val(val) {}
 };
 
 class Tree {
  public:
-    Tree(std::vector<char> el) {
+    explicit Tree(std::vector<char> el) {
         tor = new Node('\0');
         nud(tor, el);
-
     }
     void freeTree(Node* node) {
         for (Node* ch : node->chil) {
@@ -44,6 +45,7 @@ class Tree {
     Node* g_tor() const {
         return tor;
     }
+
  private:
     Node* tor;
     void nud(Node* node, std::vector<char> el) {
@@ -54,7 +56,8 @@ class Tree {
             Node* child = new Node(element);
             node->chil.push_back(child);
             std::vector<char> temp = el;
-            temp.erase(std::remove(temp.begin(), temp.end(), element), temp.end());
+            temp.erase(std::remove(temp.begin(),
+                temp.end(), element), temp.end());
             nud(child, temp);
         }
     }
