@@ -2,6 +2,7 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+
 class Tree {
    private:
   struct Node {
@@ -43,7 +44,7 @@ class Tree {
       tempVec.pop_back();
     }
   }
-  std::vector<char> getConst(int i) {
+  std::vector<char> getConst(int i) const {
     if (i > constant.size() - 1) {
       std::vector<char> null;
       return null;
