@@ -34,7 +34,7 @@ class Tree {
 
     std::vector<std::string> getAllPermutations() const {
         std::vector<std::string> permutations;
-        genPerm(root, "", &permutations);
+        gP(root, "", &permutations);
         return permutations;
     }
 
