@@ -34,7 +34,7 @@ class Tree {
 
     std::vector<std::string> getAllPermutations() const {
         std::vector<std::string> permutations;
-        gP(root, "", &permutations);
+        getPerm(root, "", &permutations);
         return permutations;
     }
 
@@ -49,20 +49,20 @@ class Tree {
         }
     }
 
-    void gP(Node* nd, std::string curP, std::vector<std::string>* p) const {
-        if (nd->value != '\0') {
-            curP.push_back(nd->value);
+    void getPerm(Node* n, std::string cP, std::vector<std::string>* p) const {
+        if (n->value != '\0') {
+            cP.push_back(nd->value);
         }
-        if (nd->children.empty()) {
-            p->push_back(curP);
+        if (n->children.empty()) {
+            p->push_back(cP);
             return;
         }
-        for (size_t i = 0; i < nd->children.size(); ++i) {
-            gP(nd->children[i], curP, p);
+        for (size_t i = 0; i < n->children.size(); ++i) {
+            gP(n->children[i], cP, p);
         }
     }
 };
 
-std::vector<char> gP(const Tree& tree, int index);
+std::vector<char> getPerm(const Tree& tree, int index);
 
 #endif  // INCLUDE_TREE_H_
