@@ -13,7 +13,7 @@ class Tree {
   std::vector<std::vector<char>> permanent;
 
  public:
-  Tree(std::vector<char> in) {
+  explicit Tree(std::vector<char> in) {
     root = new Node;
     std::vector<char> used;
     BuildTree(root, in);
