@@ -7,12 +7,15 @@
 
 std::vector<char> getPerm(const Tree& tree, int n) {
   // напишите реализацию
-std::vector<char> getPerm(const Tree& tree, int index) {
-    std::vector<std::string> allPermutations = tree.getAllPermutations();
-    if (index > 0 && index <= allPermutations.size()) {
-        std::string perm = allPermutations[index - 1];
-        return std::vector<char>(perm.begin(), perm.end());
-    } else {
-        return std::vector<char>();
+std::vector<char> temp_delete(std::vector<char> num, int ind_to_delete) {
+    if (ind_to_delete >= 0 && ind_to_delete < num.size()) {
+        num.erase(num.begin() + ind_to_delete);
     }
+    return num;
+}
+std::vector<char> getPerm(const Tree& tree, int d) {
+    std::vector<std::vector<char>> perms = tree.getPerms(3);
+    if (perms.size() < d)
+        return {};
+    return perms[d - 1];
 }
