@@ -46,7 +46,7 @@ void Tree::castPermutations(Node* radix, std::vector<char> variation) {
     }
     if (radix->leaves.empty()) {
         permutations.push_back(variation);
-    }else {
+    } else {
         for (Node* child : radix->leaves) {
             castPermutations(child, variation);
         }
