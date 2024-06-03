@@ -6,8 +6,6 @@
 #include <string>
 #include <algorithm>
 
-std::vector<char> getPerm(const Tree& tree, int index);
-
 struct Node {
     std::vector<Node*> children;
     char value;
@@ -59,9 +57,12 @@ class Tree {
             permutations->push_back(curPerm);
             return;
         }
-        for (size_t i = 0; i < n->children.size(); ++i) {
-            genPerm(n->children[i], cur, p);
+        for (auto child : n->children) {
+            genPerm(child, cur, p);
         }
     }
 };
+
+std::vector<char> getPerm(const Tree& tree, int index);
+
 #endif  // INCLUDE_TREE_H_
