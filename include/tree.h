@@ -52,12 +52,12 @@ public:
         }
         return result;
     }
-    std::string getPermutation(NodeTree* node, int index) const {
-        std::vector<std::string> allPermutations = getPermutations(node, "");
-        if (index < 1 || index > allPermutations.size()) {
+    std::string getPermutation(NodeTree* nod, int ord) const {
+        std::vector<std::string> allPermutations = getPermutations(nod, "");
+        if (ord < 1 || ord > allPermutations.size()) {
             return "0";
         }
-        return allPermutations[index - 1];
+        return allPermutations[ord - 1];
     }
     NodeTree* getRoot() const {
         return root;
