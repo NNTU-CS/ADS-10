@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <stack>
 
 class NodeTree {
  public:
@@ -17,7 +18,7 @@ class Tree {
  private:
     NodeTree* root;
     void buildTree(NodeTree* nod, std::vector<char> characters) {
-        if (characters.empty()) {
+        if (nod == nullptr || characters.empty()) {
             return;
         }
         for (char character : characters) {
@@ -32,13 +33,21 @@ class Tree {
     }
 
  public:
+explicit Tree(std::vector<char> characters) {
+        root = new NodeTree('\0');
+        buildTree(root, characters);
+    }
     void freeTree(NodeTree* nod) {
-        int i = 0;
-        while (i < nod->kids.size()) {
-            freeTree(nod->kids[i]);
-            i++;
+        std::stack<NodeTree*> st;
+        st.push(nod);
+        while (!st.empty()) {
+            nod = st.top();
+            st.pop();
+            for (NodeTree* child : nod->kids) {
+                st.push(child);
+            }
+            delete nod;
         }
-        delete nod;
     }
     std::vector<std::string> getPermutations(NodeTree* nod,
 const std::string& currentString) const {
@@ -64,10 +73,6 @@ const std::string& currentString) const {
     }
     NodeTree* getRoot() const {
         return root;
-    }
-    explicit Tree(std::vector<char> characters) {
-        root = new NodeTree('\0');
-        buildTree(root, characters);
     }
     ~Tree() = default;
 };
