@@ -25,11 +25,13 @@ class Tree {
             nod->kids.push_back(child);
             std::vector<char> remainingCharacters = characters;
             remainingCharacters.erase(std::remove(remainingCharacters.begin(),
-                remainingCharacters.end(), character), remainingCharacters.end());
+                remainingCharacters.end(), character),
+             remainingCharacters.end());
             buildTree(child, remainingCharacters);
         }
     }
-public:
+
+ public:
     void freeTree(NodeTree* nod) {
         int i = 0;
         while (i < nod->kids.size()) {
@@ -38,7 +40,8 @@ public:
         }
         delete nod;
     }
-    std::vector<std::string> getPermutations(NodeTree* nod, std::string currentString) const {
+    std::vector<std::string> getPermutations(NodeTree* nod,
+std::string currentString) const {
         std::vector<std::string> result;
         if (nod->kids.empty()) {
             result.push_back(currentString + nod->val);
@@ -46,8 +49,10 @@ public:
         }
         int i = 0;
         while (i < nod->kids.size()) {
-            std::vector<std::string> childPermutations = getPermutations(nod->kids[i], currentString + nod->val);
-            result.insert(result.end(), childPermutations.begin(), childPermutations.end());
+            std::vector<std::string> childPermutations = getPermutations(nod->kids[i],
+         currentString + nod->val);
+            result.insert(result.end(), childPermutations.begin(),
+             childPermutations.end());
             i++;
         }
         return result;
