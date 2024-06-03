@@ -44,21 +44,21 @@ class Tree {
             Node* child = new Node(element);
             node->children.push_back(child);
             std::vector<char> remEl = elements;
-            remEl.erase(std::remove(remEl.begin(), remEl.end(), element), remEl.end());
-            buildTree(child, remEl);
+            rEl.erase(std::remove(rEl.begin(), rEl.end(), element), rEl.end());
+            buildTree(child, rEl);
         }
     }
 
-    void genPerm(Node* node, std::string curPerm, std::vector<std::string>* permutations) const {
-        if (node->value != '\0') {
-            curPerm.push_back(node->value);
+    void genPerm(Node* nd, std::string curP, std::vector<std::string>* perm) const {
+        if (nd->value != '\0') {
+            curP.push_back(nd->value);
         }
-        if (node->children.empty()) {
-            permutations->push_back(curPerm);
+        if (nd->children.empty()) {
+            perm->push_back(curP);
             return;
         }
-        for (auto child : n->children) {
-            genPerm(child, cur, p);
+        for (size_t i = 0; i < nd->children.size(); ++i) {
+            genPerm(nd->children[i], curP, perm);
         }
     }
 };
