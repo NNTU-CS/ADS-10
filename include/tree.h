@@ -1,17 +1,17 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
+#include <vector>
 class Tree {
-  private:
-  struct Node
-  {
+   private:
+  struct Node {
     std::vector<Node*> child;
     char value;
   };
   Node* root;
   std::vector<std::vector<char>> constant;
 
-  public:
+   public:
   explicit Tree(std::vector<char> entry) {
     std::vector<char> vec;
     root = new Node;
@@ -36,7 +36,7 @@ class Tree {
     std::vector<char> tempVec = vec;
     for (int i = 0; i < root->child.size(); i++) {
       tempVec.push_back(root->child[i]->value);
-      if (root->child[i]->child.size() == 0){
+      if (root->child[i]->child.size() == 0) {
         constant.push_back(tempVec);
       }
       Constant(root->child[i], tempVec);
