@@ -8,8 +8,8 @@ class Tree {
     std::vector<Node*> child;
     char value;
   };
-	Node* root;
-	std::vector<std::vector<char>> constant;
+  Node* root;
+  std::vector<std::vector<char>> constant;
 
   public:
   explicit Tree(std::vector<char> entry) {
