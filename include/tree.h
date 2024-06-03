@@ -41,7 +41,7 @@ class Tree {
         delete nod;
     }
     std::vector<std::string> getPermutations(NodeTree* nod,
-std::string currentString) const {
+const std::string& currentString) const {
     std::vector<std::string> result;
     if (nod->kids.empty()) {
         result.push_back(currentString + nod->val);
