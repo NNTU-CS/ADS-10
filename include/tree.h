@@ -3,7 +3,7 @@
 #define INCLUDE_TREE_H_
 #include <iostream>
 #include <vector>
-std::vector<char> temp_delete(std::vector<char> num, int ind_to_delete);
+std::vector<char> tmp_delete(std::vector<char> num, int ind_to_delete);
 struct Node {
     char date;
     std::vector<Node*> children;
@@ -24,7 +24,7 @@ class Tree {
         }
         for (int i = 0; i < in.size(); i++) {
             std::vector<char> tmp = in;
-            tmp = temp_delete(tmp, i);
+            tmp = tmp_delete(tmp, i);
             add_childrens_for_child(tmp, roter->children[i]);
         }
     }
@@ -42,7 +42,7 @@ class Tree {
             newNode->date = iner[i];
             parenti->children.push_back(newNode);
             std::vector<char> tmp = iner;
-            tmp = temp_delete(tmp, i);
+            tmp = tmp_delete(tmp, i);
             add_childrens_for_child(tmp, newNode);
         }
     }
