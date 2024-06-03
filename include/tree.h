@@ -43,26 +43,26 @@ class Tree {
         for (char element : elements) {
             Node* child = new Node(element);
             node->children.push_back(child);
-            std::vector<char> remEl = elements;
+            std::vector<char> rEl = elements;
             rEl.erase(std::remove(rEl.begin(), rEl.end(), element), rEl.end());
             buildTree(child, rEl);
         }
     }
 
-    void genPerm(Node* nd, std::string curP, std::vector<std::string>* perm) const {
+    void gP(Node* nd, std::string curP, std::vector<std::string>* p) const {
         if (nd->value != '\0') {
             curP.push_back(nd->value);
         }
         if (nd->children.empty()) {
-            perm->push_back(curP);
+            p->push_back(curP);
             return;
         }
         for (size_t i = 0; i < nd->children.size(); ++i) {
-            genPerm(nd->children[i], curP, perm);
+            gP(nd->children[i], curP, p);
         }
     }
 };
 
-std::vector<char> getPerm(const Tree& tree, int index);
+std::vector<char> gP(const Tree& tree, int index);
 
 #endif  // INCLUDE_TREE_H_
