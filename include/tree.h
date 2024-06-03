@@ -51,14 +51,14 @@ class Tree {
 
     void getPerm(Node* n, std::string cP, std::vector<std::string>* p) const {
         if (n->value != '\0') {
-            cP.push_back(nd->value);
+            cP.push_back(n->value);
         }
         if (n->children.empty()) {
             p->push_back(cP);
             return;
         }
         for (size_t i = 0; i < n->children.size(); ++i) {
-            gP(n->children[i], cP, p);
+            getPerm(n->children[i], cP, p);
         }
     }
 };
