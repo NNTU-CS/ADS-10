@@ -35,7 +35,6 @@ void Tree::castTree(Node* radix, const std::vector<char>& order) {
                 new_order.push_back(ch);
             }
         }
-
         castTree(temp, new_order);
     }
 }
