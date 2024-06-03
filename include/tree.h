@@ -41,11 +41,12 @@ void Tree::castTree(Node* radix, const std::vector<char>& order) {
 
 
 void Tree::castPermutations(Node* radix, std::vector<char> variation) {
-    if (radix != nullptr && radix->simp != '0')
+    if (radix != nullptr && radix->simp != '0') {
         variation.push_back(radix->simp);
-    if (radix->leaves.empty())
+    }
+    if (radix->leaves.empty()) {
         permutations.push_back(variation);
-    else {
+    }else {
         for (Node* child : radix->leaves) {
             castPermutations(child, variation);
         }
