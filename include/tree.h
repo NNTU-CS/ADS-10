@@ -42,20 +42,18 @@ class Tree {
     }
     std::vector<std::string> getPermutations(NodeTree* nod,
 std::string currentString) const {
-        std::vector<std::string> result;
-        if (nod->kids.empty()) {
-            result.push_back(currentString + nod->val);
-            return result;
-        }
-        int i = 0;
-        while (i < nod->kids.size()) {
-            std::vector<std::string> childPermutations = getPermutations(nod->kids[i],
-         currentString + nod->val);
-            result.insert(result.end(), childPermutations.begin(),
-             childPermutations.end());
-            i++;
-        }
+    std::vector<std::string> result;
+    if (nod->kids.empty()) {
+        result.push_back(currentString + nod->val);
         return result;
+    }
+    for (NodeTree* child : nod->kids) {
+        std::vector<std::string> childPermutations = getPermutations(child,
+     currentString + nod->val);
+        result.insert(result.end(), childPermutations.begin(),
+         childPermutations.end());
+    }
+    return result;
     }
     std::string getPermutation(NodeTree* nod, int ord) const {
         std::vector<std::string> allPermutations = getPermutations(nod, "");
