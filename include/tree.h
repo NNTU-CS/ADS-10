@@ -10,8 +10,7 @@ class Tree {
 	};
 	Node* root;
 	std::vector<std::vector<char>> constant;
-
-  public:
+public:
 	explicit Tree(std::vector<char> entry) {
 		std::vector<char> vec;
 		root = new Node;
