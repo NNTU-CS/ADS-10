@@ -5,7 +5,7 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> gP(const Tree& tree, int index) {
+std::vector<char> getPerm(const Tree& tree, int index) {
     std::vector<std::string> allPermutations = tree.getAllPermutations();
     if (index > 0 && index <= allPermutations.size()) {
         std::string perm = allPermutations[index - 1];
