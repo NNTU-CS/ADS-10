@@ -4,7 +4,7 @@
 #include <vector>
 
 class Tree {
-   private:
+ private:
   struct Node {
     std::vector<Node*> child;
     char value;
@@ -12,7 +12,7 @@ class Tree {
   Node* root;
   std::vector<std::vector<char>> constant;
 
-   public:
+ public:
   explicit Tree(std::vector<char> entry) {
     std::vector<char> vec;
     root = new Node;
@@ -51,4 +51,5 @@ class Tree {
     }
     return constant[i];
   }
+};
 #endif  // INCLUDE_TREE_H_
