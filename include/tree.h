@@ -15,23 +15,6 @@ class NodeTree {
 };
 
 class Tree {
- private:
-    NodeTree* root;
-    void buildTree(NodeTree* nod, std::vector<char> characters) {
-        if (nod == nullptr || characters.empty()) {
-            return;
-        }
-        for (char character : characters) {
-            NodeTree* child = new NodeTree(character);
-            nod->kids.push_back(child);
-            std::vector<char> remainingCharacters = characters;
-            remainingCharacters.erase(std::remove(remainingCharacters.begin(),
-                remainingCharacters.end(), character),
-             remainingCharacters.end());
-            buildTree(child, remainingCharacters);
-        }
-    }
-
  public:
 explicit Tree(std::vector<char> characters) {
         root = new NodeTree('\0');
@@ -75,6 +58,23 @@ const std::string& currentString) const {
         return root;
     }
     ~Tree() = default;
+
+ private:
+    NodeTree* root;
+    void buildTree(NodeTree* nod, std::vector<char> characters) {
+        if (nod == nullptr || characters.empty()) {
+            return;
+        }
+        for (char character : characters) {
+            NodeTree* child = new NodeTree(character);
+            nod->kids.push_back(child);
+            std::vector<char> remainingCharacters = characters;
+            remainingCharacters.erase(std::remove(remainingCharacters.begin(),
+                remainingCharacters.end(), character),
+             remainingCharacters.end());
+            buildTree(child, remainingCharacters);
+        }
+    }
 };
 
 #endif  // INCLUDE_TREE_H_
