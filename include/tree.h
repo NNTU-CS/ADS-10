@@ -6,8 +6,8 @@
 #include <string>
 #include <vector>
 
-class Tree {
-private:
+ class Tree {
+ private:
     struct Node;
     std::vector<std::string> repl;
     Node* senior;
