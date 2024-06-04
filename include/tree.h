@@ -6,30 +6,30 @@
 class Tree {
  private:
     struct Node {
-        vector<Node*> ch;
+        std::vector<Node*> ch;
         char value;
     };
     Node* root;
-    vector<vector<char>> constant;
+    std::vector<std::vector<char>> constant;
 
  public:
-    explicit Tree(vector<char> entr) {
-        vector<char> vec;
+    explicit Tree(std::vector<char> entr) {
+        std::vector<char> vec;
         root = new Node;
         buildTree(root, entr);
         constan(root, vec);
     }
-    void buildTree(Node* root, vector<char> entr);
-    void constan(Node* root, const vector<char> vect);
-    vector<char> getConst(int i)const;
+    void buildTree(Node* root, std::vector<char> entr);
+    void constan(Node* root, const std::vector<char> vect);
+    std::vector<char> getConst(int i)const;
 };
 
-void Tree::buildTree(Node* root, vector<char> entr) {
+void Tree::buildTree(Node* root, std::vector<char> entr) {
     if (entr.size() == 0) {//если вектор пустой?
         return;
     } else {
         for (int i = 0; i < entr.size(); i++) {
-            vector<char> temp = entr;
+            std::vector<char> temp = entr;
             Node* nextU = new Node;
             nextU->value = entr[i];
             root->ch.push_back(nextU);
@@ -38,8 +38,8 @@ void Tree::buildTree(Node* root, vector<char> entr) {
         }
     }
 }
-void Tree::constan(Node* root, const vector<char> vect) {
-    vector<char> temp1 = vect;
+void Tree::constan(Node* root, const std::vector<char> vect) {
+    std::vector<char> temp1 = vect;
     for (int i = 0; i < root->ch.size(); i++) {
         temp1.push_back(root->ch[i]->value);
         if (root->ch[i]->ch.size() == 0) {
@@ -49,9 +49,9 @@ void Tree::constan(Node* root, const vector<char> vect) {
         temp1.pop_back();
     }
 }
-vector<char> Tree::getConst(int i)const {
+std::vector<char> Tree::getConst(int i)const {
     if (i > constant.size() - 1) {
-        vector<char> null;
+        std::vector<char> null;
         return null;
     }
     return constant[i];
