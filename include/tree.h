@@ -14,18 +14,17 @@ class Tree {
     vector<vector<char>> constant;
 
  public:
-    Tree(vector<char> entr);
+    Tree(vector<char> entr) {
+        vector<char> vec;
+        root = new Node;
+        buildTree(root, entr);
+        constan(root, vec);
+    }
     void buildTree(Node* root, vector<char> entr);
     void constan(Node* root, const vector<char> vect);
     vector<char> getConst(int i)const;
 };
 
-Tree::Tree(vector<char> entr) {
-    vector<char> vec;
-    root = new Node;
-    buildTree(root, entr);
-    constan(root, vec);
-}
 void Tree::buildTree(Node* root, vector<char> entr) {
     if (entr.size() == 0) {//если вектор пустой?
         return;
