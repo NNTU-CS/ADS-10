@@ -12,7 +12,7 @@ struct Node {
 };
 
 class Tree {
-private:
+ private:
     Node* root;
     std::vector<std::vector<char> > perms;
 
@@ -34,7 +34,7 @@ private:
         for (Node* child : root->pointersPerem) findPerms(child, vec);
     }
 
-public:
+ public:
     explicit Tree(const std::vector<char>& vec) {
         root = new Node;
         root->isRootPerem = true;
