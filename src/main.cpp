@@ -1,19 +1,21 @@
 // Copyright 2022 NNTU-CS
+#include  <vector>
 #include "tree.h"
+using namespace std;
 
-std::vector<char> getPerm(const Tree& tree, int n);
+std::vector<char> getPerm(const tree& tr, int n);
 
 int main() {
-  // определяем входной вектор для дерева
-  std::vector<char> in = {'1', '2', '3'};
-
-  // создаем дерево
-  Tree tree(in);
-
-  // запрашиваем первую перестановку
-  std::vector<char> result1 = getPerm(tree, 1);  //  123
-
-  // запрашиваем вторую перестановку
-  std::vector<char> result2 = getPerm(tree, 2);  //  132
-  return 0;
+    vector<char> symbols = { 'A', 'B', 'C' };
+    tree tr(symbols);
+    vector<char> perm1 = getPerm(tr, 1); //первая
+    vector<char> perm2 = getPerm(tr, 3); //третья
+    for (char c : perm1) {
+        cout << c << " ";
+    }
+    cout << endl;
+    for (char c : perm2) {
+        cout << c << " ";
+    }
+    cout << std::endl;
 }
