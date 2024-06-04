@@ -2,52 +2,53 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
-#include <iostream>
-#include <algorithm>
-struct Node {
-    char valuePerem;
-    std::vector<Node *> pointersPerem;
-    bool isRootPerem = false;
-};
-
 class Tree {
-private:
-    std::vector<std::vector<char> > perms;
-    Node *root;
-
-    void insert(Node *root, const std::vector<char> &vec) {
-        for (char c : vec) {
-            Node *temp = new Node;
-            temp->valuePerem = c;
-            root->pointersPerem.push_back(temp);
-            std::vector<char> remainingChars(vec);
-            remainingChars.erase(std::find(remainingChars.begin(),
-                                           remainingChars.end(), c));
-            insert(temp, remainingChars);
-        }
-    }
-
-    void findPerms(Node *root, std::vector<char> vec) {
-        if (!root->isRootPerem) vec.push_back(root->valuePerem);
-        if (root->pointersPerem.empty()) perms.push_back(vec);
-        for (Node *child : root->pointersPerem) findPerms(child, vec);
-    }
+ private:
+  struct Node {
+    std::vector<Node*> child;
+    char value;
+  };
+  Node* root;
+  std::vector<std::vector<char>> constant;
 
  public:
-    explicit Tree(const std::vector<char> &vec) {
-        root = new Node;
-        root->isRootPerem = true;
-        insert(root, vec);
-        std::vector<char> current;
-        findPerms(root, current);
+  explicit Tree(std::vector<char> entry) {
+    std::vector<char> vec;
+    root = new Node;
+    BuildTree(root, entry);
+    Constant(root, vec);
+  }
+  void BuildTree(Node* root, std::vector<char> entry) {
+    if (entry.size() != 0) {
+      for (int i = 0; i < entry.size(); i++) {
+        std::vector<char> tempVec = entry;
+        Node* next = new Node;
+        next->value = entry[i];
+        root->child.push_back(next);
+        tempVec.erase(tempVec.begin() + i);
+        BuildTree(root->child.back(), tempVec);
+      }
+    } else {
+      return;
     }
-
-    std::vector<std::vector<char> > getPermutations() const {
-        return perms;
+  }
+  void Constant(Node* root, const std::vector<char> vec) {
+    std::vector<char> tempVec = vec;
+    for (int i = 0; i < root->child.size(); i++) {
+      tempVec.push_back(root->child[i]->value);
+      if (root->child[i]->child.size() == 0) {
+        constant.push_back(tempVec);
+      }
+      Constant(root->child[i], tempVec);
+      tempVec.pop_back();
     }
+  }
+  std::vector<char> getConst(int i) const {
+    if (i > constant.size() - 1) {
+      std::vector<char> null;
+      return null;
+    }
+    return constant[i];
+  }
 };
-
-std::vector<char> getPerm(const Tree&, int);
-
-
 #endif  // INCLUDE_TREE_H_	#endif  // INCLUDE_TREE_H_
