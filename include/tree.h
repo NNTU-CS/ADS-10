@@ -16,7 +16,7 @@ class Tree {
 
     void perms(Node* senior, std::string symb);
 
-public:
+ public:
     explicit Tree(const std::vector<char>);
 
     std::string operator[] (unsigned int i) const;
