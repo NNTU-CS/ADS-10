@@ -1,7 +1,6 @@
 // Copyright 2022 NNTU-CS
 #include  <vector>
 #include "tree.h"
-using namespace std;
 
 std::vector<char> getPerm(const tree& tr, int n);
 
@@ -11,11 +10,11 @@ int main() {
     vector<char> perm1 = getPerm(tr, 1); //первая
     vector<char> perm2 = getPerm(tr, 3); //третья
     for (char c : perm1) {
-        cout << c << " ";
+        std::cout << c << " ";
     }
-    cout << endl;
+    std::cout << endl;
     for (char c : perm2) {
-        cout << c << " ";
+        std::cout << c << " ";
     }
-    cout << std::endl;
+   std::cout << std::endl;
 }
