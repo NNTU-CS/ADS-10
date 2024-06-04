@@ -6,6 +6,6 @@
 #include  "tree.h"
 using namespace std;
 
-vector<char> getPerm(const tree& tr, int n) {
-    return tr.getConst(n - 1);
+vector<char> getPerm(const Tree& tree, int n) {
+    return tree.getConst(n - 1);
 }
