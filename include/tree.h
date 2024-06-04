@@ -21,7 +21,7 @@ class Tree {
       node->descendant.push_back(child);
       std::vector<char> remaining = elements;
       remaining.erase(std::remove(remaining.begin(), remaining.end(), element),
-                                                                   remaining.end());
+                                                          remaining.end());
       CreatePermTree(remaining, child);
     }
   }
