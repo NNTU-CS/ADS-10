@@ -4,7 +4,6 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-
 struct Node {
     char valuePerem;
     std::vector<Node *> pointersPerem;
