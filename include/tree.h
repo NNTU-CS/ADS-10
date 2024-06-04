@@ -2,8 +2,8 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include  <vector>
-using namespace std;
-
+//using namespace std;
+using std::;
 class Tree {
  private:
     struct Node {
