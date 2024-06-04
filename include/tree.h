@@ -14,7 +14,7 @@ class Tree {
     vector<vector<char>> constant;
 
  public:
-    Tree(vector<char> entr) {
+    explicit Tree(vector<char> entr) {
         vector<char> vec;
         root = new Node;
         buildTree(root, entr);
