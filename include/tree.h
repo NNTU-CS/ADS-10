@@ -51,4 +51,4 @@ class Tree {
     return constant[i];
   }
 };
-#endif  // INCLUDE_TREE_H_	#endif  // INCLUDE_TREE_H_
+#endif  // INCLUDE_TREE_H_	
