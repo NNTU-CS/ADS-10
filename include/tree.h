@@ -3,8 +3,9 @@
 #define INCLUDE_TREE_H_
 #include  <vector>
 using namespace std;
+
 class Tree {
-private:
+ private:
     struct Node {
         vector<Node*> ch;
         char value;
@@ -12,7 +13,7 @@ private:
     Node* root;
     vector<vector<char>> constant;
 
-public:
+ public:
     Tree(vector<char> entr);
     void buildTree(Node* root, vector<char> entr);
     void constan(Node* root, const vector<char> vect);
@@ -28,8 +29,7 @@ Tree::Tree(vector<char> entr) {
 void Tree::buildTree(Node* root, vector<char> entr) {
     if (entr.size() == 0) {//если вектор пустой?
         return;
-    }
-    else {
+    } else {
         for (int i = 0; i < entr.size(); i++) {
             vector<char> temp = entr;
             Node* nextU = new Node;
