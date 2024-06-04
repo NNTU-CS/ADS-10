@@ -13,19 +13,18 @@ private:
     vector<vector<char>> constant;
 
 public:
-    tree(vector<char> entr);
+    Tree(vector<char> entr);
     void buildTree(Node* root, vector<char> entr);
     void constan(Node* root, const vector<char> vect);
     vector<char> getConst(int i)const;
 };
 
-Tree::tree(vector<char> entr) {
+Tree::Tree(vector<char> entr) {
     vector<char> vec;
     root = new Node;
     buildTree(root, entr);
     constan(root, vec);
 }
-
 void Tree::buildTree(Node* root, vector<char> entr) {
     if (entr.size() == 0) {//если вектор пустой?
         return;
@@ -41,7 +40,6 @@ void Tree::buildTree(Node* root, vector<char> entr) {
         }
     }
 }
-
 void Tree::constan(Node* root, const vector<char> vect) {
     vector<char> temp1 = vect;
     for (int i = 0; i < root->ch.size(); i++) {
@@ -53,7 +51,6 @@ void Tree::constan(Node* root, const vector<char> vect) {
         temp1.pop_back();
     }
 }
-
 vector<char> Tree::getConst(int i)const {
     if (i > constant.size() - 1) {
         vector<char> null;
