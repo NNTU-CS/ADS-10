@@ -13,7 +13,7 @@ int main() {
     for (char c : perm1) {
         std::cout << c << " ";
     }
-    std::cout << endl;
+    std::cout << std::endl;
     for (char c : perm2) {
         std::cout << c << " ";
     }
