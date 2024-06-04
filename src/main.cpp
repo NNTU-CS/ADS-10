@@ -17,5 +17,4 @@ int main() {
     for (char c : perm2) {
         cout << c << " ";
     }
-   cout << std::endl;
 }
