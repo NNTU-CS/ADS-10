@@ -6,49 +6,45 @@
 #include <algorithm>
 
 struct Node {
-    char value;
-    std::vector<Node*> Leaves;
+    char valuePerem;
+    std::vector<Node *> pointersPerem;
+    bool isRootPerem = false;
 };
 
 class Tree {
+private:
+    std::vector<std::vector<char> > perms;
+    Node *root;
+
+    void insert(Node *root, const std::vector<char> &vec) {
+        for (char c : vec) {
+            Node *temp = new Node;
+            temp->valuePerem = c;
+            root->pointersPerem.push_back(temp);
+            std::vector<char> remainingChars(vec);
+            remainingChars.erase(std::find(remainingChars.begin(),
+                                           remainingChars.end(), c));
+            insert(temp, remainingChars);
+        }
+    }
+
+    void findPerms(Node *root, std::vector<char> vec) {
+        if (!root->isRootPerem) vec.push_back(root->valuePerem);
+        if (root->pointersPerem.empty()) perms.push_back(vec);
+        for (Node *child : root->pointersPerem) findPerms(child, vec);
+    }
+
  public:
-    Node* root;
-    explicit Tree(std::vector<char> v) {
+    explicit Tree(const std::vector<char> &vec) {
         root = new Node;
-        for (int i = 0; i < v.size(); i++) {
-            root->Leaves.push_back(new Node);
-        }
-        for (int i = 0; i < v.size(); i++) {
-            root->Leaves[i] = addNodes(v, root->Leaves[i], v[i]);
-        }
+        root->isRootPerem = true;
+        insert(root, vec);
+        std::vector<char> current;
+        findPerms(root, current);
     }
 
-    Node* addNodes(std::vector<char> v, Node* node, int n) {
-            node->value = n;
-            for (int i = 0; i < v.size() - 1; i++) {
-                Node* tmp = new Node;
-                node->Leaves.push_back(tmp);
-                std::vector<char> c;
-                c = v;
-                c.erase(std::find(c.begin(), c.end(), n));
-                node->Leaves[i] = addNodes(c, node->Leaves[i], c[i]);
-            }
-        return node;
-    }
-
-    int depthTree() {
-        int count = 0;
-        if (root) {
-            count++;
-            Node* tmp = root->Leaves[0];
-            while (tmp->Leaves.size() != 0) {
-                count++;
-                tmp = tmp->Leaves[0];
-            }
-            return count;
-        } else {
-            return 0;
-        }
+    std::vector<std::vector<char> > getPermutations() const {
+        return perms;
     }
 };
 
