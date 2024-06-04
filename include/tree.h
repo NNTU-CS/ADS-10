@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
- class Tree {
+class Tree {
  private:
     struct Node;
     std::vector<std::string> repl;
