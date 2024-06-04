@@ -2,53 +2,63 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+#include <algorithm>
 class Tree {
  private:
-  struct Node {
-    std::vector<Node*> child;
-    char value;
-  };
-  Node* root;
-  std::vector<std::vector<char>> constant;
+    struct Node {
+        char value;
+        std::vector<Node *> children;
+
+        explicit Node(char val) : value(val) {}
+
+        ~Node() {
+            for (auto child : children) {
+                delete child;
+            }
+        }
+    };
+
+    Node *root;
+    std::vector<std::vector<char>> permutations;
+
+    void fillNode(Node *node, std::vector<char> values) {
+        values.erase(std::remove(values.begin(),
+                                 values.end(), node->value), values.end());
+        for (auto value : values) {
+            node->children.push_back(new Node(value));
+        }
+        for (auto child : node->children) {
+            fillNode(child, values);
+        }
+    }
+
+    void generatePermutations(Node* node, std::vector<char> permutation) {
+        permutation.push_back(node->value);
+        if (node->children.empty()) {
+            permutations.push_back(permutation);
+        } else {
+            for (auto child : node->children) {
+                generatePermutations(child, permutation);
+            }
+        }
+        permutation.pop_back();
+    }
 
  public:
-  explicit Tree(std::vector<char> entry) {
-    std::vector<char> vec;
-    root = new Node;
-    BuildTree(root, entry);
-    Constant(root, vec);
-  }
-  void BuildTree(Node* root, std::vector<char> entry) {
-    if (entry.size() != 0) {
-      for (int i = 0; i < entry.size(); i++) {
-        std::vector<char> tempVec = entry;
-        Node* next = new Node;
-        next->value = entry[i];
-        root->child.push_back(next);
-        tempVec.erase(tempVec.begin() + i);
-        BuildTree(root->child.back(), tempVec);
-      }
-    } else {
-      return;
+    explicit Tree(const std::vector<char> &input) : root(new Node(' ')) {
+        for (auto value : input) {
+            Node *child = new Node(value);
+            root->children.push_back(child);
+            fillNode(child, input);
+            std::vector<char> permutation;
+            generatePermutations(child, permutation);
+        }
     }
-  }
-  void Constant(Node* root, const std::vector<char> vec) {
-    std::vector<char> tempVec = vec;
-    for (int i = 0; i < root->child.size(); i++) {
-      tempVec.push_back(root->child[i]->value);
-      if (root->child[i]->child.size() == 0) {
-        constant.push_back(tempVec);
-      }
-      Constant(root->child[i], tempVec);
-      tempVec.pop_back();
+
+    ~Tree() {
+        delete root;
     }
-  }
-  std::vector<char> getConst(int i) const {
-    if (i > constant.size() - 1) {
-      std::vector<char> null;
-      return null;
-    }
-    return constant[i];
-  }
+
+    friend std::vector<char> getPerm(const Tree &tree, int n);
 };
-#endif  // INCLUDE_TREE_H_	
+#endif  // INCLUDE_TREE_H_
