@@ -27,7 +27,7 @@ class Tree {
     ~Tree() {
         delete root;
     }
-    std::vector<std::vector<char>> getPermutations() {
+    std::vector<std::vector<char>> getPermutations() const {
         return permutations;
     }
 
