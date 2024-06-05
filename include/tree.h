@@ -17,8 +17,9 @@ class Tree {
             }
         }
     };
+
  public:
-    explicit Tree(std::vector<char>& sequence) {
+    explicit Tree(const std::vector<char>& sequence) {
         root = new Node(-1);
         buildTree(root, sequence);
         createPermutations(root, {});
@@ -29,8 +30,9 @@ class Tree {
     std::vector<std::vector<char>> getPermutations() {
         return permutations;
     }
+
  private:
-    void buildTree(Node* node, std::vector<char>& sequence) {
+    void buildTree(Node* node, const std::vector<char>& sequence) {
         if (sequence.empty()) {
             return;
         }
@@ -55,6 +57,7 @@ class Tree {
             }
         }
     }
+
  private:
     Node* root;
     std::vector<std::vector<char>> permutations;
