@@ -6,7 +6,6 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
     std::string perm_string = tree[n - 1];
     std::vector<char> permisdone;
     for (int i = 0; i < perm_string.length(); i++) {
