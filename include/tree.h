@@ -6,7 +6,7 @@
 #include <vector>
 
 class Tree {
-private:
+ private:
     struct Node {
         char value;
         std::vector<Node*> children;
@@ -21,7 +21,8 @@ private:
             child->value = element;
             node->children.push_back(child);
             std::vector<char> remaining = elements;
-            remaining.erase(std::remove(remaining.begin(), remaining.end(), element), remaining.end());
+            remaining.erase(std::remove(remaining.begin(), 
+                                        remaining.end(), element), remaining.end());
             buildPermutationTree(remaining, child);
         }
     }
@@ -40,7 +41,7 @@ private:
         }
     }
 
-public:
+ public:
     std::vector<std::vector<char>> permutations;
     explicit Tree(std::vector<char> elements) {
         root = new Node;
