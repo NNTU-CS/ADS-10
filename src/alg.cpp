@@ -1,10 +1,71 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+    std::string perm_string = tree[n - 1];
+    std::vector<char> permisdone;
+    for (int i = 0; i < perm_string.length(); i++) {
+        permisdone.push_back(perm_string[i]);
+    }
+    return permisdone;
+}
+
+struct Tree::Node {
+    char nvalue;
+    std::vector<Node*> newN;
+};
+
+void Tree::createTree(Node* senior, std::vector<char> trail) {
+    if (!trail.size()) {
+        return;
+    }
+    if (senior->nvalue != '*') {
+        for (auto i = trail.begin(); i < trail.end(); i++) {
+            if (*i == senior->nvalue) {
+                trail.erase(i);
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < trail.size(); i++) {
+        senior->newN.push_back(new Node);
+    }
+    for (int i = 0; i < senior->newN.size(); i++) {
+        senior->newN[i]->nvalue = trail[i];
+    }
+    for (int i = 0; i < senior->newN.size(); i++) {
+        createTree(senior->newN[i], trail);
+    }
+}
+
+void Tree::perms(Node* prnt, std::string symb = "") {
+    if (!prnt->newN.size()) {
+        symb += prnt->nvalue;
+        repl.push_back(symb);
+    }
+    if (prnt->nvalue != '*') {
+        symb += prnt->nvalue;
+    }
+    for (int i = 0; i < prnt->newN.size(); i++) {
+        perms(prnt->newN[i], symb);
+    }
+}
+
+Tree::Tree(const std::vector<char> val) {
+    senior = new Node();
+    senior->nvalue = '*';
+    createTree(senior, val);
+    perms(senior);
+}
+
+std::string Tree::operator[] (unsigned int i) const {
+    if (i >= repl.size()) {
+        return "";
+    }
+    if (i < 0) {
+        throw std::string("Wrong index!!!");
+    }
+    return repl[i];
 }
