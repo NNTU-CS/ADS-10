@@ -8,8 +8,8 @@
 class Tree {
  private:
     struct Node;
- std::vector<std::string> repl;
- Node* senior;
+    std::vector<std::string> repl;
+    Node* senior;
 
     void createTree(Node* senior, std::vector<char> trail);
 
@@ -18,6 +18,6 @@ class Tree {
  public:
     explicit Tree(const std::vector<char>);
 
- std::string operator[] (unsigned int i) const;
+    std::string operator[] (unsigned int i) const;
 };
 #endif  // INCLUDE_TREE_H_
