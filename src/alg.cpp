@@ -6,5 +6,15 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+    std::vector<char> result;
+    if (tree.permutations.size() < n) {
+        result.push_back('1');
+        result.clear();
+    } else {
+        result = tree.permutations[n - 1];
+        std::reverse(result.begin(), result.end());
+        result.pop_back();
+        std::reverse(result.begin(), result.end());
+    }
+    return result;
 }
