@@ -43,7 +43,7 @@ void Tree::createTree(Node* s, std::vector<char> tr) {
 void Tree::perems(Node* parent, std::string symb = "") {
     if (!parent->ne1.size()) {
         symb += parent->value1;
-        repl.push_back(symb);
+        p.push_back(symb);
     }
     if (parent->value1 != '*') {
         symb += parent->value1;
