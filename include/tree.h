@@ -22,7 +22,7 @@ class Tree {
             node->children.push_back(child);
             std::vector<char> remaining = elements;
             remaining.erase(std::remove(remaining.begin(),
-                                        remaining.end(), element), remaining.end());
+                            remaining.end(), element), remaining.end());
             buildPermutationTree(remaining, child);
         }
     }
