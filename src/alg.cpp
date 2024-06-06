@@ -12,7 +12,7 @@ int fact(int i) {
 
 std::vector<char> getPerm(const Tree &tree, int n) {
     std::vector<char> vector;
-    if (n < fact(tree.root->vecChild.size())) {
+    if (n <= fact(tree.root->vecChild.size())) {
         auto root = tree.root;
         int i = fact(root->vecChild.size()) / root->vecChild.size();
         for (int j = 0; j < root->vecChild.size(); j++) {

@@ -19,7 +19,7 @@ class Tree {
 
     void addNode(std::vector<char>, Node *);
 
-    Tree(std::vector<char>);
+    explicit Tree(std::vector<char>);
 };
 
 inline Tree::Tree(std::vector<char> vecBegin) {
