@@ -7,17 +7,19 @@
 #include <vector>
 
 class Tree {
-private:
-struct Node;
-std::vectorstd::string perm;
-Node* rootNode;
+ private:
+    struct Node;
+    std::vector<std::string> p;
+    Node* s;
 
-void constructTree(Node* parent, std::vector<char> trail);
-void generatePerm(Node* parent, std::string currentPerm = "");
-public:
-explicit Tree(const std::vector<char>);
+    void createTree(Node* s, std::vector<char> tr);
 
-std::string getPerm(unsigned int index) const;
+    void perems(Node* s, std::string symb);
+
+ public:
+    explicit Tree(const std::vector<char>);
+
+    std::string operator[] (unsigned int i) const;
 };
 
 #endif  // INCLUDE_TREE_H_

@@ -4,64 +4,68 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-std::string permString = tree.getPerm(n - 1);
-std::vector<char> perm;
-for (int i = 0; i < permString.length(); i++) {
-perm.push_back(permString[i]);
-}
-return perm;
+    std::string permStr = tree[n - 1];
+    std::vector<char> perm1;
+    for (int i = 0; i < permStr.length(); i++) {
+        perm1.push_back(permStr[i]);
+    }
+    return perm1;
 }
 
 struct Tree::Node {
-char value;
-std::vector<Node*> children;
+    char value1;
+    std::vector<Node*> ne1;
 };
 
-void Tree::constructTree(Node* parent, std::vector<char> trail) {
-if (trail.empty()) {
-return;
-}
-if (parent->value != '*') {
-for (auto it = trail.begin(); it != trail.end(); it++) {
-if (it == parent->value) {
-trail.erase(it);
-break;
-}
-}
-}
-for (char c : trail) {
-parent->children.push_back(new Node{c});
-}
-for (Node child : parent->children) {
-constructTree(child, trail);
-}
-}
-
-void Tree::generatePerm(Node* parent, std::string currentPerm) {
-if (parent->children.empty()) {
-currentPerm += parent->value;
-perm.push_back(currentPerm);
-}
-if (parent->value != '') {
-currentPerm += parent->value;
-}
-for (Node child : parent->children) {
-generatePerm(child, currentPerm);
-}
+void Tree::createTree(Node* s, std::vector<char> tr) {
+    if (!tr.size()) {
+        return;
+    }
+    if (s->value1 != '*') {
+        for (auto i = tr.begin(); i < tr.end(); i++) {
+            if (*i == s->value1) {
+                tr.erase(i);
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < tr.size(); i++) {
+        s->ne1.push_back(new Node);
+    }
+    for (int i = 0; i < s->ne1.size(); i++) {
+        s->ne1[i]->value1 = tr[i];
+    }
+    for (int i = 0; i < s->ne1.size(); i++) {
+        createTree(s->ne1[i], tr);
+    }
 }
 
-Tree::Tree(const std::vector<char> values) {
-rootNode = new Node{'*'};
-constructTree(rootNode, values);
-generatePerm(rootNode);
+void Tree::perems(Node* parent, std::string symb = "") {
+    if (!parent->ne1.size()) {
+        symb += parent->value1;
+        repl.push_back(symb);
+    }
+    if (parent->value1 != '*') {
+        symb += parent->value1;
+    }
+    for (int i = 0; i < parent->ne1.size(); i++) {
+        perems(parent->ne1[i], symb);
+    }
 }
 
-std::string Tree::getPerm(unsigned int index) const {
-if (index >= perm.size()) {
-return "";
+Tree::Tree(const std::vector<char> val) {
+    s = new Node();
+    s->value1 = '*';
+    createTree(s, val);
+    perems(s);
 }
-if (index < 0) {
-throw std::string("Неправильный индекс");
-}
-return perm[index];
+
+std::string Tree::operator[] (unsigned int i) const {
+    if (i >= p.size()) {
+        return "";
+    }
+    if (i < 0) {
+        throw std::string("Неправильный индекс");
+    }
+    return p[i];
 }
