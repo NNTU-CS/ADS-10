@@ -27,8 +27,7 @@ std::vector<char> getPerm(const Tree& tree, int n) {
         if (n % 2 == 1) {
             root = root->vecChilds[0];
             vector.push_back(root->val);
-        }
-        else {
+        } else {
             root = root->vecChilds[1];
             vector.push_back(root->val);
         }
