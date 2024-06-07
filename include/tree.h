@@ -22,6 +22,7 @@ class Tree {
     std::vector<std::vector<char>> getPerem() const {
         return permutations;
     }
+
  private:
     Node* root;
     std::vector<std::vector<char>> permutations;
