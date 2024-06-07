@@ -2,16 +2,14 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
-#include <algorithm>
-#include <vector>
 
 std::vector<char> getPerm(const Tree& tree, int n) {
     std::string perm_string = tree[n - 1];
-    std::vector<char> perm;
-    for (char c : perm_string) {
-        perm.push_back(c);
+    std::vector<char> permisdone;
+    for (int i = 0; i < perm_string.length(); i++) {
+        permisdone.push_back(perm_string[i]);
     }
-    return perm;
+    return permisdone;
 }
 
 struct Tree::Node {
@@ -41,15 +39,13 @@ void Tree::buildTree(Node* node, std::vector<char> elements) {
         }
     }
 
-    if (!remaining.empty()) {
-        for (char c : remaining) {
-            node->children.push_back(new Node);
-        }
+    for (char c : remaining) {
+        node->children.push_back(new Node);
+    }
 
-        for (int i = 0; i < node->children.size(); i++) {
-            node->children[i]->value = remaining[i];
-            buildTree(node->children[i], remaining);
-        }
+    for (int i = 0; i < node->children.size(); i++) {
+        node->children[i]->value = remaining[i];
+        buildTree(node->children[i], remaining);
     }
 }
 
