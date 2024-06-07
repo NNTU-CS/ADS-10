@@ -1,6 +1,7 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
+#include <cstddef>
 
 class Tree {
  private:
