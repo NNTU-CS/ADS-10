@@ -5,6 +5,14 @@
 #include  <cstdlib>
 #include  "tree.h"
 
+int fact(int i) {
+    int res = 1;
+    for (int j = 1; j <= i; j++) {
+        res *= j;
+    }
+    return res;
+}
+
 std::vector<char> getPerm(const Tree& tree, int n) {
     std::vector<char> vector;
     if (n <= fact(tree.root->vecChilds.size())) {
