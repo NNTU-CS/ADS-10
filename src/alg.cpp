@@ -31,7 +31,9 @@ void Tree::buildTree(Node* node, std::vector<char> elements) {
         return;
     }
 
-    node->value = *std::min_element(elements.begin(), elements.end());
+    node->value = *std::min_element(elements.begin(), elements.end(), [](char a, char b) {
+        return a < b;
+    });
     std::vector<char> remaining;
     for (char c : elements) {
         if (c != node->value) {
