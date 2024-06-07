@@ -12,11 +12,11 @@ struct Node {
 };
 
 class Tree {
-private:
+ private:
     Node* root;
     std::vector<std::vector<char> > p;
 
-    void append(Node* root, const std::vector<char>& Vector) { // рекурсивно строит дерево перестановок
+    void append(Node* root, const std::vector<char>& Vector) { 
         for (char c : Vector) {
             Node* temp = new Node;
             temp->value = c;
@@ -25,16 +25,18 @@ private:
             remainingChars.erase(std::find(remainingChars.begin(),
                 remainingChars.end(), c));
             append(temp, remainingChars);
+            // рекурсивно строит дерево перестановок
         }
     }
 
-    void findP(Node* root, std::vector<char> Vector) { // рекурсивно обходит дерево
+    void findP(Node* root, std::vector<char> Vector) { 
         if (!root->Root) Vector.push_back(root->value);
         if (root->Permut.empty()) p.push_back(Vector);
         for (Node* child : root->Permut) findP(child, Vector);
     }
+    // рекурсивно обходит дерев
 
-public:
+ public:
     explicit Tree(const std::vector<char>& Vector) {
         root = new Node;
         root->Root = true;
@@ -43,9 +45,11 @@ public:
         findP(root, current);
     }
 
-    std::vector<std::vector<char> > getPermutations() const { // возвращает вектор векторов символов, представляющих все найденные перестановки.
+    std::vector<std::vector<char> > getPermutations() const { 
         return p;
     }
+    // возвращает вектор векторов символов, представляющих все найденные перестановки.
 };
+
 
 #endif  // INCLUDE_TREE_H_
