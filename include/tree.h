@@ -10,7 +10,7 @@ class Tree {
     char val;
   };
   Node* root;
-  std::vector<std::vector<char>> permanent;
+  std::vector<std::vector<char>> direct;
 
  public:
   explicit Tree(std::vector<char> in) {
@@ -40,7 +40,7 @@ class Tree {
     for (int i = 0; i < root->descendant.size(); i++) {
       copy.push_back(root->descendant[i]->val);
         if (root->descendant[i]->descendant.empty()) {
-          permanent.push_back(copy);
+          direct.push_back(copy);
         }
       post(root->descendant[i], copy);
       copy.pop_back();
@@ -48,11 +48,11 @@ class Tree {
   }
 
   std::vector<char> Getpost(int i) const {
-    if (i > permanent.size() - 1) {
+    if (i > direct.size() - 1) {
       std::vector<char> null;
       return null;
     }
-    return permanent[i];
+    return direct[i];
   }
 };
 #endif  // INCLUDE_TREE_H_
