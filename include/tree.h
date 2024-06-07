@@ -26,7 +26,7 @@ class Tree {
         clearTree(root);
     }
 
-    void clearTree(Node* node) {e
+    void clearTree(Node* node) {
         for (Node* child : node->child) {
             clearTree(child);
         }
