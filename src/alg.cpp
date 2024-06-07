@@ -41,13 +41,15 @@ void Tree::buildTree(Node* node, std::vector<char> elements) {
         }
     }
 
-    for (char c : remaining) {
-        node->children.push_back(new Node);
-    }
+    if (!remaining.empty()) {
+        for (char c : remaining) {
+            node->children.push_back(new Node);
+        }
 
-    for (int i = 0; i < node->children.size(); i++) {
-        node->children[i]->value = remaining[i];
-        buildTree(node->children[i], remaining);
+        for (int i = 0; i < node->children.size(); i++) {
+            node->children[i]->value = remaining[i];
+            buildTree(node->children[i], remaining);
+        }
     }
 }
 
