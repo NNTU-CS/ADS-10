@@ -10,14 +10,11 @@ class Tree {
     struct Node;
     std::vector<std::string> permutations;
     Node* root;
-
     void buildTree(Node* node, std::vector<char> elements);
-
     void generatePermutations(Node* node, std::string current);
-
  public:
-    explicit Tree(const std::vector<char>& elements);
-
+    Tree();
+    Tree(const std::vector<char>& elements);
     std::string operator[](unsigned int index) const;
 };
 #endif  // INCLUDE_TREE_H_
