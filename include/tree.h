@@ -28,7 +28,8 @@ class Tree {
         }
     }
 
-    void findP(Node* root, std::vector<char> Vector) {if (!root->Root) Vector.push_back(root->value);
+    void findP(Node* root, std::vector<char> Vector) {
+        if (!root->Root) Vector.push_back(root->value);
         if (root->Permut.empty()) p.push_back(Vector);
         for (Node* child : root->Permut) findP(child, Vector);
     }
