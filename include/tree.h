@@ -23,8 +23,7 @@ class Tree {
             s->vpx = c;
             cor->point.push_back(s);
             std::vector<char> remainingChars(vec);
-            remainingChars.erase(std::find(remainingChars.begin(),
-                remainingChars.end(), c));
+            remainingChars.erase(std::find(remainingChars.begin(), remainingChars.end(), c));
             insertRecursive(s, remainingChars);
         }
     }
@@ -41,17 +40,17 @@ class Tree {
         insertRecursive(s, vec);
     }
 
-    void generatePerms(Node* cor, std::vector<char> vec) {
-    if (!cor->isp) vec.push_back(cor->vpx);
-    if (cor->point.empty()) {
-        p.push_back(vec);
-    } else {
-        for (Node* child : cor->point) {
-            std::vector<char> newVec = vec;
-            generatePerms(child, newVec);
+    void generatePerms(Node* cor, std::vector<char>& vec) {
+        if (!cor->isp) vec.push_back(cor->vpx);
+        if (cor->point.empty()) {
+            p.push_back(vec);
+        } else {
+            for (Node* child : cor->point) {
+                std::vector<char> newVec = vec;
+                generatePerms(child, newVec);
+            }
         }
     }
-}
 
  public:
     explicit Tree(const std::vector<char>& vec) {
@@ -62,8 +61,9 @@ class Tree {
         generatePerms(cor, temp);
     }
 
-    std::vector<std::vector<char> > getP() const {
+    std::vector<std::vector<char>> getP() const {
         return p;
     }
 };
+
 #endif  // INCLUDE_TREE_H_
