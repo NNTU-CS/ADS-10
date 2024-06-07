@@ -9,5 +9,5 @@ std::vector<char> getPerm(const Tree& tree, int n) {
     if (n <= p.size()) {
         return p[n - 1];
     } 
-    return {};
-}
+    return {}; 
+} 
