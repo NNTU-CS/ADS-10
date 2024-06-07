@@ -1,9 +1,9 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "tree.h"
+#include <iostream>
+#include <fstream>
+#include <locale>
+#include <cstdlib>
+#include "tree.h"
 
 Tree::Tree(const std::vector<char>& elements) {
     root = new Node(0);
@@ -22,6 +22,7 @@ void Tree::buildTree(Node* current, const std::vector<char>& elements) {
     for (size_t i = 0; i < elements.size(); ++i) {
         std::vector<char> nextElems(elements.begin(), elements.end());
         nextElems.erase(nextElems.begin() + i);
+
         Node* child = new Node(elements[i]);
         current->children.push_back(child);
 
@@ -29,17 +30,16 @@ void Tree::buildTree(Node* current, const std::vector<char>& elements) {
     }
 }
 
-void Tree::traverseTree(Node* current, std::vector<char>& permutation) {
+void Tree::traverseTree(Node* current, const std::vector<char>& permutation) {
     if (current->children.empty()) {
         permutations.push_back(permutation);
         return;
     }
 
     for (Node* child : current->children) {
-        permutation.push_back(child->value);
-        traverseTree(child, permutation);
-
-        permutation.pop_back();
+        std::vector<char> newPermutation = permutation;
+        newPermutation.push_back(child->value);
+        traverseTree(child, newPermutation);
     }
 }
 
