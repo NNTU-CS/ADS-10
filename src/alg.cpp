@@ -2,6 +2,7 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
+#include <algorithm>
 
 std::vector<char> getPerm(const Tree& tree, int n) {
     std::string perm_string = tree[n - 1];
