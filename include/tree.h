@@ -5,7 +5,7 @@
 #include <algorithm>
 
 struct Node {
-    bool isRoot = true;
+    bool isRoot = false;
     char vall;
     std::vector<Node*> nodevec;
     explicit Node(char sym = '\0') :vall(sym) {}
