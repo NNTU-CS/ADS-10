@@ -6,6 +6,6 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  return tree.GetPerm(n - 1);
+  return tree.Getpost(n - 1);
   // напишите реализацию
 }
