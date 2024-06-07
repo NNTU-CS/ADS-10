@@ -4,10 +4,27 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  struct Tree::Node {
+    std::string perm_string = tree[n - 1];
+    std::vector<char> perm;
+    for (char c : perm_string) {
+        perm.push_back(c);
+    }
+    return perm;
+}
+
+struct Tree::Node {
     char value;
     std::vector<Node*> children;
 };
+
+Tree::Tree() {
+    root = new Node();
+}
+
+Tree::Tree(const std::vector<char>& elements) {
+    buildTree(root, elements);
+    generatePermutations(root, "");
+}
 
 void Tree::buildTree(Node* node, std::vector<char> elements) {
     if (elements.empty()) {
@@ -42,12 +59,6 @@ void Tree::generatePermutations(Node* node, std::string current) {
     }
 }
 
-Tree::Tree(const std::vector<char>& elements) {
-    root = new Node();
-    buildTree(root, elements);
-    generatePermutations(root, "");
-}
-
 std::string Tree::operator[](unsigned int index) const {
     if (index >= permutations.size()) {
         return "";
@@ -57,4 +68,3 @@ std::string Tree::operator[](unsigned int index) const {
     }
     return permutations[index];
 }
-
