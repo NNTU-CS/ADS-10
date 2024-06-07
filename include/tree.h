@@ -9,7 +9,8 @@
 struct Node {
     char value;
     std::vector<Node*> children;
-    Node(char val) : value(val) {}
+
+    explicit Node(char val) : value(val) {}
     ~Node() {
         for (auto child : children) {
             delete child;
@@ -21,8 +22,9 @@ class Tree {
  private:
     Node* root;
     std::vector<std::vector<char>> permutations;
+
     void buildTree(Node* current, const std::vector<char>& elements);
-    void traverseTree(Node* current, std::vector<char>& permutation);
+    void traverseTree(Node* current, const std::vector<char>& permutation);
 
  public:
     explicit Tree(const std::vector<char>& elements);
