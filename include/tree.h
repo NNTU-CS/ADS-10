@@ -1,3 +1,4 @@
+// Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 
@@ -10,10 +11,10 @@ struct Node {
 };
 
 class Tree {
-private:
+ private:
     int size;
 
-public:
+ public:
     Node* root;
 
     void addNode(std::vector<char>, Node*);
