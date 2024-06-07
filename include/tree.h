@@ -11,7 +11,7 @@ struct Node {
     explicit Node(char sym = '\0') :vall(sym) {}
 };
 class Tree {
-public:
+ public:
     explicit Tree(const std::vector<char>& vect) {
         root = new Node;
         root->isRoot = true;
@@ -22,7 +22,7 @@ public:
     std::vector<std::vector<char>> getPerem() const {
         return permutations;
     }
-private:
+ private:
     Node* root;
     std::vector<std::vector<char>> permutations;
     void adding(Node* newroot1, std::vector<char> symbol) {
