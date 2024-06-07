@@ -1,3 +1,4 @@
+// Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
@@ -8,7 +9,7 @@ class Tree {
     struct Node {
         std::vector<Node*> child;
         char value;
-        Node(char val) : value(val) {}
+        explicit Node(char val) : value(val) {}
     };
     Node* root;
     std::vector<std::vector<char>> consta;
@@ -25,7 +26,7 @@ class Tree {
         clearTree(root);
     }
 
-    void clearTree(Node* node) {
+    void clearTree(Node* node) {e
         for (Node* child : node->child) {
             clearTree(child);
         }
