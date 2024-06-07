@@ -16,7 +16,7 @@ class Tree {
     Node* root;
     std::vector<std::vector<char> > p;
 
-    void append(Node* root, const std::vector<char>& Vector) { 
+    void append(Node* root, const std::vector<char>& Vector) {
         for (char c : Vector) {
             Node* temp = new Node;
             temp->value = c;
@@ -25,7 +25,6 @@ class Tree {
             remainingChars.erase(std::find(remainingChars.begin(),
                 remainingChars.end(), c));
             append(temp, remainingChars);
-            // рекурсивно строит дерево перестановок
         }
     }
 
@@ -34,7 +33,7 @@ class Tree {
         if (root->Permut.empty()) p.push_back(Vector);
         for (Node* child : root->Permut) findP(child, Vector);
     }
-    // рекурсивно обходит дерев
+
 
  public:
     explicit Tree(const std::vector<char>& Vector) {
@@ -48,8 +47,5 @@ class Tree {
     std::vector<std::vector<char> > getPermutations() const { 
         return p;
     }
-    // возвращает вектор векторов символов, представляющих все найденные перестановки.
 };
-
-
 #endif  // INCLUDE_TREE_H_
