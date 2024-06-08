@@ -50,5 +50,5 @@ class Tree {
         }
         currentPermutation.pop_back();
     }
-}
+};
 #endif  // INCLUDE_TREE_H_
