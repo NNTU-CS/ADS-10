@@ -1,25 +1,31 @@
 // Copyright 2022 NNTU-CS
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <locale>
+#ifndef INCLUDE_TREE_H_
+#define INCLUDE_TREE_H_
 
-#include "tree.h"
+#endif  // INCLUDE_TREE_H_
 
-std::vector<char> getPerm(const Tree& tree, int n) {
-    std::vector<char> res;
-    if (n == 1) {
-        res.push_back('1');
-        res.push_back('2');
-        res.push_back('3');
-    } else if (n == 2) {
-        res.push_back('1');
-        res.push_back('3');
-        res.push_back('2');
-    } else if (n == 6) {
-        res.push_back('3');
-        res.push_back('2');
-        res.push_back('1');
+#include <vector>
+
+class Tree {
+ private:
+    std::vector<char> vec;
+    int length = 0, perm = 0;
+
+ public:
+    explicit Tree(const std::vector<char> vector) : vec{vector} {
+        vec = vector;
+        for (int i = 0; i < vec.size(); i++) {
+            length++;
+        }
+        if (length) {
+            perm = 1;
+        }
+        for (int i = 2; i <= length; i++) {
+            perm *= i;
+        }
     }
-    return res;
-}
+
+    int get_length() const { return length; }
+
+    int get_perm() const { return perm; }
+};
