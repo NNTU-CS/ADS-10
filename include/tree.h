@@ -49,7 +49,7 @@ class Tree {
     std::vector<std::vector<char>> getPerms(int k) const {
         std::vector<std::vector<char>> ps;
         std::vector<char> p;
-        getPsRecursive(root, k, pe, ps);
+        getPsRecursive(root, k, p, ps);
         return ps;
     }
     void getPsRecursive(Node* node, int remaining,
@@ -62,7 +62,7 @@ std::vector<char> p, const std::vector<std::vector<char>>& ps) const {
         }
         for (Node* child : node->childs) {
             std::vector<char> newP = p;
-            newP.push_back(child->data);
+            newP.push_back(child->d);
             getPsRecursive(child, remaining - 1, newP, ps);
         }
 }
