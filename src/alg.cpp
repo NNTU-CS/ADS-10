@@ -2,72 +2,70 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
-#include <algorithm>
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-    std::string perm_string = tree[n - 1];
-    std::vector<char> permisdone;
-    for (int i = 0; i < perm_string.length(); i++) {
-        permisdone.push_back(perm_string[i]);
+    std::string Permutations_string = tree[n - 1];
+    std::vector<char> Permutationsdone;
+    for (int i = 0; i < Permutations_string.length(); i++) {
+        Permutationsdone.push_back(Permutations_string[i]);
     }
-    return permisdone;
+    return Permutationsdone;
 }
 
 struct Tree::Node {
-    char value;
-    std::vector<Node*> children;
+    char nvalues;
+    std::vector<Node*> newNNN;
 };
 
-Tree::Tree() {
-    root = new Node();
-}
-
-Tree::Tree(const std::vector<char>& elements) {
-    buildTree(root, elements);
-    generatePermutations(root, "");
-}
-
-void Tree::buildTree(Node* node, std::vector<char> elements) {
-    if (elements.empty()) {
+void Tree::buildTree(Node* root, std::vector<char> trail) {
+    if (!trail.size()) {
         return;
     }
-
-    node->value = *std::min_element(elements.begin(), elements.end(), [](char a, char b) {
-        return a < b;
-    });
-    std::vector<char> remaining;
-    for (char c : elements) {
-        if (c != node->value) {
-            remaining.push_back(c);
+    if (root->nvalue != '*') {
+        for (auto i = trail.begin(); i < trail.end(); i++) {
+            if (*i == root->nvalues) {
+                trail.erase(i);
+                break;
+            }
         }
     }
-
-    for (char c : remaining) {
-        node->children.push_back(new Node);
+    for (int i = 0; i < trail.size(); i++) {
+        root->newNNN.push_back(new Node);
     }
-
-    for (int i = 0; i < node->children.size(); i++) {
-        node->children[i]->value = remaining[i];
-        buildTree(node->children[i], remaining);
+    for (int i = 0; i < root->newNNN.size(); i++) {
+        root->newNNN[i]->nvalues = trail[i];
+    }
+    for (int i = 0; i < root->newNNN.size(); i++) {
+        buildTree(root->newNNN[i], trail);
     }
 }
 
-void Tree::generatePermutations(Node* node, std::string current) {
-    if (node->children.empty()) {
-        permutations.push_back(current + node->value);
-    } else {
-        for (Node* child : node->children) {
-            generatePermutations(child, current + node->value);
-        }
+void Tree::generatePermutations(Node* parent, std::string symbol = "") {
+    if (!parent->newNNN.size()) {
+        symbol += parent->nvalues;
+        permutations.push_back(symbol);
+    }
+    if (parent->nvalues != '*') {
+        symbol += parent->nvalues;
+    }
+    for (int i = 0; i < parent->newNNN.size(); i++) {
+        generatePermutations(parent->newNNN[i], symbol);
     }
 }
 
-std::string Tree::operator[](unsigned int index) const {
-    if (index >= permutations.size()) {
+Tree::Tree(const std::vector<char> value) {
+    root = new Node();
+    root->nvalues = '*';
+    buildTree(root, value);
+    generatePermutations(root);
+}
+
+std::string Tree::operator[] (unsigned int i) const {
+    if (i >= permutations.size()) {
         return "";
     }
-    if (index < 0) {
-        throw std::string("Wrong index!!!");
+    if (i < 0) {
+        throw std::string("wrong index lol");
     }
-    return permutations[index];
+    return permutations[i];
 }
