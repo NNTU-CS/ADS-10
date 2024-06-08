@@ -7,16 +7,16 @@
 std::vector<char> DeleteNoneNeed(std::vector<char> numbers, int index);
 
 class ArrayElement {
-    public:
+     public:
     char data;
     std::vector<ArrayElement*> childs;
 };
 
 class Tree {
-private:
+ private:
     int size;
 
-public:
+ public:
     ArrayElement* rootArray;
     explicit Tree(std::vector<char> inData) {
         size = 0;
@@ -48,7 +48,7 @@ public:
             CrearNextChilds(NoneNeedElement, newArrayElement);
         }
     }
-   std::vector<std::vector<char>> getPerms(int k) const {
+     std::vector<std::vector<char>> getPerms(int k) const {
         std::vector<std::vector<char>> ps;
         std::vector<char> p;
         getPsRecursive(rootArray, k, p, ps);
