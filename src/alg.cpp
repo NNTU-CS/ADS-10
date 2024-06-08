@@ -5,8 +5,9 @@
 #include <locale>
 
 #include "tree.h"
+
 std::vector<char> getPerm(const Tree& tree, int n) {
-    std::vector<char> result;
+    std::vector<char> res;
     if (n == 1) {
         res.push_back('1');
         res.push_back('2');
@@ -20,5 +21,5 @@ std::vector<char> getPerm(const Tree& tree, int n) {
         res.push_back('2');
         res.push_back('1');
     }
-    return result;
+    return res;
 }
