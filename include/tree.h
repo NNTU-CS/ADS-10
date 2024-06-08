@@ -22,7 +22,7 @@ class Tree {
     std::vector<std::vector<char>> getPermut() const {
         std::vector<std::vector<char>> permutations;
         std::vector<char> current;
-        generatePermut(root, current, &permutations);
+        generatePermut(root, &current, &permutations);
         return permutations;
     }
 
@@ -40,17 +40,17 @@ class Tree {
         }
     }
 
-    void generatePermut(node* current, std::vector<char>& currentPermutation, 
+    void generatePermut(node* current, std::vector<char>* currentPermutation,
 std::vector<std::vector<char>>* permutations) const {
-        currentPermutation.push_back(current->a);
+        currentPermutation->push_back(current->a);
         if (current->child.empty()) {
-            permutations->push_back(currentPermutation);
+            permutations->push_back(*currentPermutation);
         } else {
             for (node* child : current->child) {
                 generatePermut(child, currentPermutation, permutations);
             }
         }
-        currentPermutation.pop_back();
+        currentPermutation->pop_back();
     }
 };
 #endif  // INCLUDE_TREE_H_
