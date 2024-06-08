@@ -21,14 +21,15 @@ class Tree {
             Node* child = new Node();
             child->value = remainingChars[i];
             node->children.push_back(child);
-            std::vector<char> newRemainingChars(remainingChars.begin(), 
+            std::vector<char> newRemainingChars(remainingChars.begin(),
                                                 remainingChars.begin() + i);
-            newRemainingChars.insert(newRemainingChars.end(), 
-                                     remainingChars.begin() + i + 1, remainingChars.end());
+            newRemainingChars.insert(newRemainingChars.end(),
+                                     remainingChars.begin() + i + 1,
+                                     remainingChars.end());
             createTree(child, newRemainingChars);
         }
     }
-    std::vector<std::string> generatePermutations(Node* node, 
+    std::vector<std::string> generatePermutations(Node* node,
                                                   std::string current) const {
         std::vector<std::string> result;
         if (node->children.empty()) {
