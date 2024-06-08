@@ -39,16 +39,16 @@ class Tree {
             buildTree(remainingChars, child);
         }
     }
-    const void generatePermut(node* current, std::vector<char>& currentPermutation, std::vector<std::vector<char>>* permutations) {
+    const void generatePermut(node* current, std::vector<char>* currentPermutation, std::vector<std::vector<char>>* permutations) {
         currentPermutation.push_back(current->a);
         if (current->child.empty()) {
-            permutations->push_back(currentPermutation);
+            permutations->push_back(*currentPermutation);
         } else {
             for (node* child : current->child) {
                 generatePermut(child, currentPermutation, permutations);
             }
         }
-        currentPermutation.pop_back();
+        currentPermutation->pop_back();
     }
 }
 #endif  // INCLUDE_TREE_H_
