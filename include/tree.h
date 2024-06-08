@@ -52,5 +52,5 @@ std::vector<std::vector<char>>* permutations) const {
         }
         currentPermutation.pop_back();
     }
-};
+}
 #endif  // INCLUDE_TREE_H_
