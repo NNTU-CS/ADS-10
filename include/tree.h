@@ -39,7 +39,9 @@ class Tree {
             buildTree(remainingChars, child);
         }
     }
-    void generatePermut(node* current, std::vector<char>& currentPermutation, std::vector<std::vector<char>>* permutations) const {
+    void generatePermut(node* current,
+std::vector<char>& currentPermutation,
+std::vector<std::vector<char>>* permutations) const {
         currentPermutation.push_back(current->a);
         if (current->child.empty()) {
             permutations->push_back(currentPermutation);
