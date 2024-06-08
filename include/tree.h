@@ -13,7 +13,7 @@ class Tree {
         for (int i = 0; i < vec.size(); i++) {
             length++;
         }
-        if (length > 0) {
+        if (length) {
             perm = 1;
         }
 
