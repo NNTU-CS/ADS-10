@@ -3,58 +3,44 @@
 #define INCLUDE_TREE_H_
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
-class Tree {
-public:
+struct Node {
     char data;
-    std::vector<Tree*> children;
+    std::vector<Node*> children;
 
-    Tree(char value) {
-        data = value;
+    Node(char c) {
+        data = c;
     }
 
-    ~Tree() {
-        for(Tree* child : children) {
-            delete child;
-        }
+    void addChild(Node* child) {
+        children.push_back(child);
     }
 };
 
-void buildTree(Tree* root, std::vector<char> elements) {
-    for (char element : elements) {
-        Tree* child = new Tree(element);
-        root->children.push_back(child);
+void buildPermutationTree(std::vector<char>& symbols, Node* parent) {
+    for (char symbol : symbols) {
+        Node* child = new Node(symbol);
+        parent->addChild(child);
 
-        std::vector<char> remaining_elements = elements;
-        remaining_elements.erase(std::find(remaining_elements.begin(), remaining_elements.end(), element));
-
-        buildTree(child, remaining_elements);
+        std::vector<char> remaining_symbols = symbols;
+        remaining_symbols.erase(std::remove(remaining_symbols.begin(), remaining_symbols.end(), symbol), remaining_symbols.end());
+        
+        buildPermutationTree(remaining_symbols, child);
     }
 }
 
-void traverseTree(Tree* node, std::vector<char>& permutation, std::vector<std::string>& permutations) {
-    permutation.push_back(node->data);
+void generatePermutations(Node* node, std::string& current_permutation, std::vector<std::string>& permutations) {
+    current_permutation += node->data;
 
     if (node->children.empty()) {
-        std::string perm;
-        for (char c : permutation) {
-            perm += c;
-        }
-        permutations.push_back(perm);
-    } else {
-        for (Tree* child : node->children) {
-            traverseTree(child, permutation, permutations);
-        }
+        permutations.push_back(current_permutation);
+        return;
     }
 
-    permutation.pop_back();
-}
+    for (Node* child : node->children) {
+        generatePermutations(child, current_permutation, permutations);
+    }
 
-std::vector<std::string> generatePermutations(const Tree& tree) {
-    std::vector<std::string> permutations;
-    std::vector<char> permutation;
-    traverseTree(const_cast<Tree*>(&tree), permutation, permutations);
-    return permutations;
+    current_permutation.pop_back();
 }
 #endif  // INCLUDE_TREE_H_
