@@ -5,8 +5,8 @@
 #include <vector>
 
 struct Node {
-	std::vector<Node *> children;
-	char value;
+    std::vector<Node *> children;
+    char value;
 };
 
 class Tree {
@@ -52,7 +52,7 @@ class Tree {
         permute(root, temp);
     }
 
-    std::vector<char> getPermutation(int index) {
+    std::vector<char> getPermutation(int index) const {
         return result[index];
     }
 };
