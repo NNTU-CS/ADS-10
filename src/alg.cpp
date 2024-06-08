@@ -5,9 +5,9 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-unsigned long long factorial(unsigned long long i) {
-  unsigned long long result = 1;
-  for (unsigned long long j = 1; j <= i; j++) {
+int factorial(unsigned long long i) {
+  int result = 1;
+  for (int j = 1; j <= i; j++) {
     result *= j;
   }
   return result;
@@ -17,7 +17,7 @@ std::vector<char> getPerm(const Tree &tree, int num) {
   std::vector<char> result;
   if (num <= factorial(tree.root->nodes.size())) {
     Node *root = tree.root;
-    long long i = factorial(root->nodes.size()) / root->nodes.size();
+    int i = factorial(root->nodes.size()) / root->nodes.size();
     for (int j = 0; j < root->nodes.size(); j++) {
       if ((num <= i * (j + 1)) && (num > j * 2)) {
         root = root->nodes[j];
