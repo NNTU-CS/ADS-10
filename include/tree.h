@@ -4,40 +4,55 @@
 
 #include <vector>
 
+struct Node {
+	std::vector<Node *> children;
+	char value;
+};
+
 class Tree {
  private:
+    Node *root;
     std::vector<std::vector<char>> result;
 
-    std::vector<std::vector<char>> permute(std::vector<char>& values) {
-    if (values.size() == 1) {
-      std::vector<char> toAppend = {values.back()};
-      result.push_back(toAppend);
-      return result;
+    void initTree(Node *node, std::vector<char> values) {
+        if (values.empty()) {
+            return;
+        }
+
+        for (int i = 0; i < values.size(); i++) {
+            std::vector<char> restValues = values;
+            Node *child = new Node;
+            child->value = values[i];
+            node->children.push_back(child);
+            restValues.erase(restValues.begin() + i);
+            initTree(node->children.back(), restValues);
+        }
     }
 
-    for (int i = 0; i < values.size(); i++) {
-      char c = values.back();
-      values.pop_back();
+    void permute(Node* node, const std::vector<char>& temp) {
+        std::vector<char> updatedCurrent = temp;
 
-      std::vector<std::vector<char>> perms = permute(values);
+        for (int i = 0; i < node->children.size(); i++) {
+            updatedCurrent.push_back(node->children[i]->value);
 
-      for (auto& perm : perms) {
-        perm.push_back(c);
-        result.push_back(perm);
-      }
+            if (node->children[i]->children.empty()) {
+                result.push_back(updatedCurrent);
+            }
 
-      values.push_back(c);
-    }
-
-    return result;
+            permute(node->children[i], updatedCurrent);
+            updatedCurrent.pop_back();
+        }
     }
 
  public:
     explicit Tree(std::vector<char> values) {
-        result = permute(values);
+        root = new Node;
+        initTree(root, values);
+        std::vector<char> temp;
+        permute(root, temp);
     }
 
-    std::vector<char> getPermutation(int index) const {
+    std::vector<char> getPermutation(int index) {
         return result[index];
     }
 };
