@@ -14,7 +14,7 @@ struct Node {
 class Tree {
  private:
     Node* root;
-    std::vector<std::vector<char> > p;
+    std::vector<std::vector<char> > pr;
 
     void append(Node* root, const std::vector<char>& Vector) {
         for (char c : Vector) {
@@ -30,7 +30,7 @@ class Tree {
 
     void findP(Node* root, std::vector<char> Vector) {
         if (!root->Root) Vector.push_back(root->value);
-        if (root->Permut.empty()) p.push_back(Vector);
+        if (root->Permut.empty()) pr.push_back(Vector);
         for (Node* child : root->Permut) findP(child, Vector);
     }
 
@@ -45,7 +45,7 @@ class Tree {
     }
 
     std::vector<std::vector<char> > getPermutations() const {
-        return p;
+        return pr;
     }
 };
 #endif  // INCLUDE_TREE_H_
