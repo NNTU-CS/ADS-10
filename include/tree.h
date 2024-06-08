@@ -3,44 +3,49 @@
 #define INCLUDE_TREE_H_
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 struct Node {
-    char data;
-    std::vector<Node*> children;
-
-    Node(char c) {
-        data = c;
-    }
-
-    void addChild(Node* child) {
-        children.push_back(child);
-    }
+    bool Root = false;
+    char value;
+    std::vector<Node*> Permut;
 };
 
-void buildPermutationTree(std::vector<char>& symbols, Node* parent) {
-    for (char symbol : symbols) {
-        Node* child = new Node(symbol);
-        parent->addChild(child);
+class Tree {
+ private:
+    Node* root;
+    std::vector<std::vector<char> > pr;
 
-        std::vector<char> remaining_symbols = symbols;
-        remaining_symbols.erase(std::remove(remaining_symbols.begin(), remaining_symbols.end(), symbol), remaining_symbols.end());
-        
-        buildPermutationTree(remaining_symbols, child);
-    }
-}
-
-void generatePermutations(Node* node, std::string& current_permutation, std::vector<std::string>& permutations) {
-    current_permutation += node->data;
-
-    if (node->children.empty()) {
-        permutations.push_back(current_permutation);
-        return;
+    void append(Node* root, const std::vector<char>& Vector) {
+        for (char c : Vector) {
+            Node* temp = new Node;
+            temp->value = c;
+            root->Permut.push_back(temp);
+            std::vector<char> remainingChars(Vector);
+            remainingChars.erase(std::find(remainingChars.begin(),
+                remainingChars.end(), c));
+            append(temp, remainingChars);
+        }
     }
 
-    for (Node* child : node->children) {
-        generatePermutations(child, current_permutation, permutations);
+    void findP(Node* root, std::vector<char> Vector) {
+        if (!root->Root) Vector.push_back(root->value);
+        if (root->Permut.empty()) pr.push_back(Vector);
+        for (Node* child : root->Permut) findP(child, Vector);
     }
 
-    current_permutation.pop_back();
-}
+
+ public:
+    explicit Tree(const std::vector<char>& Vector) {
+        root = new Node;
+        root->Root = true;
+        append(root, Vector);
+        std::vector<char> current;
+        findP(root, current);
+    }
+
+    std::vector<std::vector<char> > getPermutations() const {
+        return pr;
+    }
+};
 #endif  // INCLUDE_TREE_H_
