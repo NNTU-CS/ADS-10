@@ -49,10 +49,10 @@ class Tree {
     std::vector<std::vector<char>> getPerms(int k) const {
         std::vector<std::vector<char>> ps;
         std::vector<char> p;
-        getPermsRecursive(root, k, pe, ps);
+        getPsRecursive(root, k, pe, ps);
         return ps;
     }
-    void getPermsRecursive(Node* node, int remaining,
+    void getPsRecursive(Node* node, int remaining,
 std::vector<char> p, const std::vector<std::vector<char>>& ps) const {
         if (remaining == 0) {
             std::vector<std::vector<char>>& nonConstPs =
