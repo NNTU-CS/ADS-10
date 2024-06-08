@@ -7,7 +7,7 @@
 std::vector<char> DeleteNoneNeed(std::vector<char> numbers, int index);
 
 class ArrayElement {
-     public:
+ public:
     char data;
     std::vector<ArrayElement*> childs;
 };
