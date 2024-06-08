@@ -12,7 +12,7 @@ std::vector<char> temp_delete(std::vector<char> numbers, int index_to_del) {
 }
 std::vector<char> getPerm(const Tree& tree, int d) {
     std::vector<std::vector<char>> ps = tree.getPs(3);
-    if (perms.size() < d)
+    if (ps.size() < d)
         return {};
     return ps[d - 1];
 }
