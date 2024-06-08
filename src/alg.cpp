@@ -5,7 +5,7 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-int factorial(unsigned long long i) {
+int factorial(int i) {
   int result = 1;
   for (int j = 1; j <= i; j++) {
     result *= j;
