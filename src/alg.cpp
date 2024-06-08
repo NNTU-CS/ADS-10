@@ -11,5 +11,6 @@ std::vector<char> getPerm(const Tree& tree, int n) {
   }
   std::string permStr = tree.getPermutations()[n - 1];
   std::vector<char> permVec(permStr.begin(), permStr.end());
+  permVec.erase(permVec.begin());
   return permVec;
 }
