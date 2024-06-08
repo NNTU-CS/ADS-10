@@ -21,7 +21,7 @@ void Tree::buildTree(Node* root, std::vector<char> trail) {
     if (!trail.size()) {
         return;
     }
-    if (root->nvalue != '*') {
+    if (root->nvalues != '*') {
         for (auto i = trail.begin(); i < trail.end(); i++) {
             if (*i == root->nvalues) {
                 trail.erase(i);
