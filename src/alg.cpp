@@ -5,8 +5,8 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int nut) {
+std::vector<char> getPerm(const Tree& tree, int r) {
     std::vector<std::vector<char> > p = tree.getPermutations();
-    if (p.size() >= nut) return p[nut - 1];
+    if (p.size() >= r) return p[r - 1];
     return {};
 }

@@ -12,7 +12,7 @@ struct Node {
 };
 
 class Tree {
-private:
+ private:
     Node* root;
     std::vector<std::vector<char> > p;
 
@@ -35,7 +35,7 @@ private:
     }
 
 
-public:
+ public:
     explicit Tree(const std::vector<char>& Vector) {
         root = new Node;
         root->Root = true;
