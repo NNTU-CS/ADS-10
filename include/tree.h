@@ -22,7 +22,7 @@ class Tree {
     std::vector<std::vector<char>> getPermut() const {
         std::vector<std::vector<char>> permutations;
         std::vector<char> current;
-        generatePermut(root, current, &permutations);
+        generatePermut(root, &current, &permutations);
         return permutations;
     }
 
