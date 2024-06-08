@@ -21,12 +21,15 @@ class Tree {
             Node* child = new Node();
             child->value = remainingChars[i];
             node->children.push_back(child);
-            std::vector<char> newRemainingChars(remainingChars.begin(), remainingChars.begin() + i);
-            newRemainingChars.insert(newRemainingChars.end(), remainingChars.begin() + i + 1, remainingChars.end());
+            std::vector<char> newRemainingChars(remainingChars.begin(), 
+                                                remainingChars.begin() + i);
+            newRemainingChars.insert(newRemainingChars.end(), 
+                                     remainingChars.begin() + i + 1, remainingChars.end());
             createTree(child, newRemainingChars);
         }
     }
-    std::vector<std::string> generatePermutations(Node* node, std::string current) const {
+    std::vector<std::string> generatePermutations(Node* node, 
+                                                  std::string current) const {
         std::vector<std::string> result;
         if (node->children.empty()) {
             result.push_back(current + node->value);
@@ -45,7 +48,7 @@ class Tree {
     explicit Tree(const std::vector<char>& chars) : chars(chars) {
       root = new Node();
       createTree(root, chars);
-    };
+    }
     std::vector<std::string> getPermutations() const {
       if (permutations.empty()) {
         permutations = generatePermutations(root, std::string());
