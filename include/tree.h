@@ -1,6 +1,10 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <math.h>
 struct node {
     char a;
     std::vector<node*> child;
