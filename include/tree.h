@@ -9,7 +9,7 @@
 struct node {
     char a;
     std::vector<node*> child;
-    explicit node(char c) : a(c) {}
+    explicit node(char c) : a(c) {};
 };
 
 class Tree {
@@ -34,11 +34,11 @@ class Tree {
             node* child = new node(c);
             parent->child.push_back(child);
             std::vector<char> remainingChars(characters);
-            remainingChars.erase(std::find(remainingChars.begin(),
-            remainingChars.end(), c));
+            remainingChars.erase(std::find(remainingChars.begin(), remainingChars.end(), c));
             buildTree(remainingChars, child);
         }
     }
+
     void generatePermut(node* current, std::vector<char>& currentPermutation, std::vector<std::vector<char>>* permutations) const {
         currentPermutation.push_back(current->a);
         if (current->child.empty()) {
