@@ -21,7 +21,8 @@ class Tree {
 };
 
 inline Tree::Tree(std::vector<char> vec1) {
-  addNode(vec1, new Node);
+  root = new Node;
+  addNode(vec1, root);
 }
 
 inline void Tree::addNode(std::vector<char> vec1, Node *root) {
