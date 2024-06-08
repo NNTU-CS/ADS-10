@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 
-class PermutationTree {
+class Tree {
  private:
   struct Node {
     char value;
@@ -41,7 +41,7 @@ class PermutationTree {
 
  public:
   std::vector<std::vector<char>> permutations;
-  explicit PermutationTree(std::vector<char> elements) {
+  explicit Tree(std::vector<char> elements) {
     root = new Node;
     root->value = 0;
     buildPermutationTree(elements, root);
