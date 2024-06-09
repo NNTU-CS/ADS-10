@@ -32,7 +32,7 @@ void Tree::constan(Node* root, const std::vector<char> vect) {
     for (int i = 0; i < root->children.size(); i++) {
         temp1.push_back(root->children[i]->value);
         if (root->children[i]->children.size() == 0) {
-            constant.push_back(temp1);
+            constan.push_back(temp1);
         }
         constan(root->children[i], temp1);
         temp1.pop_back();
@@ -58,10 +58,12 @@ void Tree::constan(Node* root, const std::vector<char> vect) {
         }
         return {};
     }
-std::vector<char> getperm(const Tree& tree, int n) {
-    std::vector<char> permutation;
-    return Tree::getperm(Tree::Node* constan&, int&,
-     std::vector<char>&) constan);
+std::vector<char> Tree::getConst(int i)const { 
+    if (i > constan.size() - 1) { 
+        std::vector<char> null; 
+        return null; 
+    } 
+    return constan[i]; 
 }
 };
 
