@@ -6,12 +6,12 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  std::string Perm_str = tree[n - 1];
-  std::vector<char> Perm_done;
-  for (int i = 0; i < Perm_str.length(); i++) {
-    Perm_done.push_back(Perm_str[i]);
+  std::string Perms_str = tree[n - 1];
+  std::vector<char> Perms_done;
+  for (int i = 0; i < Perms_str.length(); i++) {
+    Perms_done.push_back(Perms_str[i]);
   }
-  return Perm_done;
+  return Perms_done;
 }
 struct Tree::Node {
   char n_val;
@@ -41,16 +41,16 @@ void Tree::buildTree(Node* root, std::vector<char> trl) {
   }
 }
 
-void Tree::gen_perm(Node* parnt, std::string symb = "") {
+void Tree::gen_perms(Node* parnt, std::string symb = "") {
   if (!parnt->new_nnn.size()) {
     symb += parnt->n_val;
-    perm.push_back(symb);
+    perms.push_back(symb);
   }
   if (parnt->n_val != '*') {
     symb += parnt->n_val;
   }
   for (int i = 0; i < parnt->new_nnn.size(); i++) {
-    gen_perm(parnt->new_nnn[i], symb);
+    gen_perms(parnt->new_nnn[i], symb);
   }
 }
 
@@ -58,7 +58,7 @@ Tree::Tree(const std::vector<char> val) {
   root = new Node();
   root->n_val = '*';
   buildTree(root, val);
-  gen_perm(root);
+  gen_perms(root);
 }
 
 std::string Tree::opertr[] (unsigned int i) const {
@@ -68,5 +68,5 @@ std::string Tree::opertr[] (unsigned int i) const {
   if (i < 0) {
     throw std::string("index wrng");
   }
-  return perm[i];
+  return perms[i];
 }
