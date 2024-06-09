@@ -6,7 +6,7 @@
 #include <cstddef>
 
 class Tree {
-private:
+ private:
     struct Node {
         char value;
         std::vector<Node*> children;
@@ -26,7 +26,7 @@ private:
     void buildTreeRecursive(Node* node, const std::vector<char>& values);
     void generatePermutationsRecursive(Node* node, std::vector<char> current);
 
-public:
+ public:
     explicit Tree(const std::vector<char>& values);
     ~Tree();
 
