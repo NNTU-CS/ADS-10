@@ -1,9 +1,10 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
+#include <vector>
 
 class Node {
-public:
+ public:
     char data;
     std::vector<Node*> children;
     Node(char value) {
@@ -11,7 +12,7 @@ public:
     }
 };
 class Tree {
-public:
+ public:
     Node* root;
     Tree(std::vector<char>& input) {
         root = new Node('\0');
@@ -20,7 +21,7 @@ public:
             root->children.push_back(child);
         }
     }
-    std::vector<char> getperm(Node* node, int& n, std::vector<char>& permutation) {
+    std::vector<char> getPerm(const Tree& tree, int n) {
         if (n == 0) {
             return permutation;
         }
