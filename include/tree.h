@@ -10,8 +10,8 @@ struct Node {
         char value;
     };
     Node* root;
-
- public:
+std::vector<std::vector<char>> const;
+ public: 
     explicit Tree(std::vector<char> entr) {
         std::vector<char> vec;
         root = new Node;
@@ -32,10 +32,10 @@ struct Node {
         }
         return {};
     }
-};
 std::vector<char> getperm(const Tree& tree, int n) {
     std::vector<char> permutation;
     return tree.getperm(tree.root, n, permutation);
 }
+};
 
 #endif  // INCLUDE_TREE_H_
