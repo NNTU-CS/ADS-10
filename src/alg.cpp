@@ -3,8 +3,8 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Drevo& drevo, int p) {
-    std::string Permut_string = drevo[p - 1];
+std::vector<char> getPerm(const Tree& tree, int p) {
+    std::string Permut_string = tree[p - 1];
     std::vector<char> PermutDone;
     for (int y = 0; y < Permut_string.length(); y++) {
         PermutDone.push_back(Permut_string[y]);
@@ -12,12 +12,12 @@ std::vector<char> getPerm(const Drevo& drevo, int p) {
     return PermutDone;
 }
 
-struct Drevo::Nd {
+struct Tree::Nd {
     char NVal;
     std::vector<Nd*> NewN;
 };
 
-void Drevo::buildDrevo(Nd* prava, std::vector<char> sled) {
+void Tree::buildDrevo(Nd* prava, std::vector<char> sled) {
     if (!sled.size()) {
         return;
     }
@@ -36,11 +36,11 @@ void Drevo::buildDrevo(Nd* prava, std::vector<char> sled) {
         prava->NewN[y]->NVal = sled[y];
     }
     for (int y = 0; y < prava->NewN.size(); y++) {
-        buildDrevo(prava->NewN[y], sled);
+        buildTree(prava->NewN[y], sled);
     }
 }
 
-void Drevo::generatePermut(Nd* roditel, std::string symvol = "") {
+void Tree::generatePermut(Nd* roditel, std::string symvol = "") {
     if (!roditel->NewN.size()) {
         symvol += roditel->NVal;
         Premut.push_back(symvol);
@@ -53,14 +53,14 @@ void Drevo::generatePermut(Nd* roditel, std::string symvol = "") {
     }
 }
 
-Drevo::Drevo(const std::vector<char> Val) {
+Tree::Tree(const std::vector<char> Val) {
     prava = new Nd();
     prava->NVal = '*';
-    buildDrevo(prava, Val);
+    buildTree(prava, Val);
     generatePermut(prava);
 }
 
-std::string Drevo::operator[] (unsigned int y) const {
+std::string Tree::operator[] (unsigned int y) const {
     if (y >= Premut.size()) {
         return "";
     }
