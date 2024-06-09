@@ -5,38 +5,33 @@
 #include <cmath>
 
 class Tree {
-    struct Node {
-        char value;
-        std::vector<Node*> down;
-    };
-
-    int perm_count;
-    Node* root;
-    Node* addNode(Node* root, char value, int size);
-    void makeTree(Node* root, std::vector<char>& in);
-    int calculateperm(int k);
-    void perm(int num, std::vector<char>* vector, Node* root) const;
-    void delTree(Node* root);
-
-public:
-    explicit Tree(std::vector<char>& in);
-    void perm(int num, std::vector<char>* vector) const;
-    int GetPermCount() const;
-    ~Tree();
+ struct Node {
+ char value;
+ std::vector<Node*> down;
 };
-
+ int perm_count;
+ Node* root;
+ Node* addNode(Node* root, char value, int size);
+ void makeTree(Node* root, std::vector<char>& in);
+ int calculateperm(int k);
+ void perm(int num, std::vector<char>* vector, Node* root) const;
+ void delTree(Node* root);
+public:
+ explicit Tree(std::vector<char>& in);
+ void perm(int num, std::vector<char>* vector) const;
+ int GetPermCount() const;
+ ~Tree();
+};
 int Tree::calculateperm(int k) {
     if (k == 1) return 1;
     else return calculateperm(k - 1) * k;
 }
-
 Tree::Tree(std::vector<char>& in) {
     perm_count = calculateperm(in.size());
     root = nullptr;
     root = addNode(root, '\0', in.size());
     makeTree(root, in);
 }
-
 Tree::Node* Tree::addNode(Node* root, char value, int size) {
     if (root == nullptr) {
         root = new Node;
@@ -46,7 +41,6 @@ Tree::Node* Tree::addNode(Node* root, char value, int size) {
     }
     return root;
 }
-
 void Tree::makeTree(Node* root, std::vector<char>& in) {
     for (int i = 0; i < in.size(); ++i) {
         root->down[i] = addNode(root->down[i], in[i], in.size() - 1);
@@ -55,7 +49,6 @@ void Tree::makeTree(Node* root, std::vector<char>& in) {
         makeTree(root->down[i], temp);
     }
 }
-
 void Tree::delTree(Node* root) {
     if (root == nullptr)
         return;
@@ -63,7 +56,6 @@ void Tree::delTree(Node* root) {
         delTree(root->down[i]);
     delete root;
 }
-
 void Tree::perm(int num, std::vector<char>* vector, Node* root) const {
     float next;
     if ((root->down).size() > 1) {
@@ -76,7 +68,6 @@ void Tree::perm(int num, std::vector<char>* vector, Node* root) const {
     vector->push_back((root->down[g - 1])->value);
     perm(num - next * (g - 1), vector, (root->down[g - 1]));
 }
-
 void Tree::perm(int num, std::vector<char>* vector) const {
     float next;
     if (root->down.size() > 1) {
@@ -89,11 +80,9 @@ void Tree::perm(int num, std::vector<char>* vector) const {
     (*vector).push_back((root->down[g - 1])->value);
     perm(num - next * (g - 1), vector, (root->down[g - 1]));
 }
-
 int Tree::GetPermCount() const {
-    return perm_count;
+    return perm_countl;
 }
-
 Tree::~Tree() {
     if (root) {
         delTree(root);
