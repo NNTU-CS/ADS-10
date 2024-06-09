@@ -4,7 +4,7 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "tree.h"
-std::vector<char> delete(std::vector<char> digit, int code) {
+std::vector<char> delete_del(std::vector<char> digit, int code) {
     if (code >= 0 && code < digit.size()) {
         digit.erase(digit.begin() + code);
     }
