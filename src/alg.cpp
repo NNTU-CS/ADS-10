@@ -3,8 +3,8 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int p) {
-    std::string Permut_string = tree[p - 1];
+std::vector<char> getPerm(const Tree& tree, int n) {
+    std::string Permut_string = tree[n - 1];
     std::vector<char> PermutDone;
     for (int y = 0; y < Permut_string.length(); y++) {
         PermutDone.push_back(Permut_string[y]);
