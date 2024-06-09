@@ -33,7 +33,7 @@ private:
 	}
 public:
 	explicit Tree(const std::vector<char>& counter) {
-		root = new Node(' ');
+		root = new Node('.');
 		newTree(counter, root);
 		Perestanovki(root, {});
 	}
