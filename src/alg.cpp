@@ -21,7 +21,7 @@ void Tree::buildTree(std::shared_ptr<TreeNode> node,
     for (size_t i = 0; i < elements.size(); ++i) {
         std::vector<char> remainingElements = elements;
         remainingElements.erase(remainingElements.begin() + i);
-        std::shared_ptr<TreeNode> childNode 
+        std::shared_ptr<TreeNode> childNode
         = std::make_shared<TreeNode>(elements[i]);
         node->children.push_back(childNode);
         buildTree(childNode, remainingElements);
@@ -37,8 +37,7 @@ void Tree::traverseTree(std::shared_ptr<TreeNode> node,
 
     if (node->children.empty()) {
         permutations->push_back(*currentPermutation);
-    }
-    else {
+    } else {
         for (auto& child : node->children) {
             traverseTree(child, currentPermutation, permutations);
             currentPermutation->pop_back();
