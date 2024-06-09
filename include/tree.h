@@ -19,7 +19,7 @@ std::vector<std::vector<char>> constan;
         buildTree(root, entr);
         constan(root, vec);
     }
-    std::vector<char> getPerm(constan Tree& tree, int n) {
+    std::vector<char> getPerm(const Tree& tree, int n) {
         if (n == 0) {
             return permutation;
         }
@@ -33,9 +33,10 @@ std::vector<std::vector<char>> constan;
         }
         return {};
     }
-std::vector<char> getperm(constan Tree& tree, int n) {
+std::vector<char> getperm(const Tree& tree, int n) {
     std::vector<char> permutation;
-    return Tree::getperm(Tree::Node* constan&, int&, std::vector<char>&) constan);
+    return Tree::getperm(Tree::Node* constan&, int&,
+     std::vector<char>&) constan);
 }
 };
 
