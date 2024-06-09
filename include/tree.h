@@ -58,7 +58,7 @@ class Tree {
         if (i >= allPer.size()) {
             return std::vector<char>();
         }
-        return allPer[i-1];
+        return allPer[i];
     }
 };
 
