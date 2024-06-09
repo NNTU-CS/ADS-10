@@ -51,7 +51,7 @@ class Tree {
  public:
     explicit Tree(std::vector<char> values): root(nullptr) {
         root = new Node;
-        Tree(root, values);
+        CreatTree(root, values);
         std::vector<char> vCur;
         genPer(root, vCur);
     }
