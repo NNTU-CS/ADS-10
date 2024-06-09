@@ -6,6 +6,22 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
+#include <string>
+#include <vector>
+#include <cstdint>
+
+class Tree {
+ private:
+    struct Node;
+    std::vector<std::string> perms;
+    Node* root;
+    void buildTree(Node* root, std::vector<char> trl);
+    void gen_perms(Node* root, std::string symb);
+ public:
+    explicit Tree(const std::vector<char>);
+    std::string operator[] (unsigned int i) const;
+};
+//это include tree
   std::string Perms_str = tree[n - 1];
   std::vector<char> Perms_done;
   for (int i = 0; i < Perms_str.length(); i++) {
