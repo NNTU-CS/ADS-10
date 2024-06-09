@@ -41,7 +41,7 @@ public:
             temp.pop_back();
         }
     }
-    std::vector<char> getPrem(int i) const {
+    std::vector<char> getPerm(int i) const {
         if (i > constant.size() - 1) {
             std::vector<char> null;
             return null;
