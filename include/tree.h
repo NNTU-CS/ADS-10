@@ -9,7 +9,7 @@ class Tree {
     struct Node {
         std::vector<Node *> children;
         char value;
-        Node(char val) : value(val) {}
+        explicit Node(char val) : value(val) {}
     };
     Node *root;
     std::vector<std::vector<char>> permutations;
@@ -27,7 +27,7 @@ class Tree {
         }
     }
 
-    void generatePermutations(Node* node, std::vector<char>& current) {
+    void generatePermutations(Node* node, std::vector<char>& current) const {
         current.push_back(node->value);
         if (node->children.empty()) {
             permutations.push_back(current);
