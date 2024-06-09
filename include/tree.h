@@ -37,7 +37,8 @@ class Tree {
         std::vector<std::string> permutations;
         genPerm(root, "", permutations);
 
-        std::cout << permutations << std::endl;
+        for( auto perm : permutations )
+        std::cout << perm << std::endl;
 
         return permutations;
     }
