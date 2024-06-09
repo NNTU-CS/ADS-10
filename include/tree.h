@@ -11,7 +11,7 @@ class Tree {
  private:
     struct Node {
         char chu;
-	Node() : chu('*') {}
+        Node() : chu('*') {}
         std::vector<Node*> vec;
     };
     Node* newNode = nullptr;
