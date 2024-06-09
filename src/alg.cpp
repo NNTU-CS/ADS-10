@@ -13,7 +13,7 @@ Tree::Tree(const std::vector<char>& elements) {
 }
 
 void Tree::buildTree(std::shared_ptr<TreeNode> node,
-std::vector<char> elements) {
+    std::vector<char> elements) {
     if (elements.empty()) {
         return;
     }
@@ -22,22 +22,23 @@ std::vector<char> elements) {
         std::vector<char> remainingElements = elements;
         remainingElements.erase(remainingElements.begin() + i);
         std::shared_ptr<TreeNode> childNode 
-            = std::make_shared<TreeNode>(elements[i]);
+        = std::make_shared<TreeNode>(elements[i]);
         node->children.push_back(childNode);
         buildTree(childNode, remainingElements);
     }
 }
 
 void Tree::traverseTree(std::shared_ptr<TreeNode> node,
-std::vector<char>* currentPermutation,
-std::vector<std::vector<char>>* permutations) const {
+    std::vector<char>* currentPermutation,
+    std::vector<std::vector<char>>* permutations) const {
     if (node->value != '\0') {
         currentPermutation->push_back(node->value);
     }
 
     if (node->children.empty()) {
         permutations->push_back(*currentPermutation);
-    } else {
+    }
+    else {
         for (auto& child : node->children) {
             traverseTree(child, currentPermutation, permutations);
             currentPermutation->pop_back();
@@ -49,14 +50,14 @@ std::vector<std::vector<char>> Tree::generateAllPermutations() const {
     std::vector<std::vector<char>> permutations;
     if (root) {
         std::vector<char> currentPermutation;
-        traverseTree(root, currentPermutation, permutations);
+        traverseTree(root, &currentPermutation, &permutations);
     }
     return permutations;
 }
 
 std::vector<char> getPerm(const Tree& tree, int n) {
     std::vector<std::vector<char>> permutations
-    = tree.generateAllPermutations();
+        = tree.generateAllPermutations();
 
     if (n < 1 || n > permutations.size()) {
         return {};
