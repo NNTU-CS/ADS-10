@@ -44,20 +44,6 @@ void Tree::constan(Node* root, const std::vector<char> vect) {
         buildTree(root, enter);
         constan(root, vec);
     }
-    std::vector<char> getPerm(const Tree& tree, int n) {
-        if (n == 0) {
-            return permutation;
-        }
-        for (Node* child : Node->children) {
-            permutation.push_back(child->data);
-            std::vector<char> result = getPerm(child, --n, permutation);
-            if (!result.empty()) {
-                return result;
-            }
-            permutation.pop_back();
-        }
-        return {};
-    }
 std::vector<char> Tree::getConst(int i)const {
     if (i > constan.size() - 1) {
         std::vector<char> null;
