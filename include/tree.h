@@ -39,7 +39,7 @@ class Tree {
         }
         for (int i = 0; i < in.size(); i++) {
             Done* newDone = new Done;
-            newDonee->data = in[i];
+            newDone->data = in[i];
             paren->children.push_back(newDone);
             std::vector<char> temp = in;
             temp = temp_delete(temp, i);
