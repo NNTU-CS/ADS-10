@@ -5,15 +5,15 @@
 #include <string>
 #include <vector>
 
-class Drevo {
+class Tree {
  private:
     struct Nd;
     std::vector<std::string> Premut;
     Nd* prava;
-    void buildDrevo(Nd* sir, std::vector<char> sled);
+    void buildTree(Nd* sir, std::vector<char> sled);
     void generatePermut(Nd* sir, std::string Sim);
  public:
-    explicit Drevo(const std::vector<char>);
+    explicit Tree(const std::vector<char>);
     std::string operator[] (unsigned int y) const;
 };
 #endif  // INCLUDE_TREE_H_
