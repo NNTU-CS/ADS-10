@@ -57,7 +57,7 @@ class Tree {
         genPer(root, vCur);
     }
     std::vector<char> getPermutation(int i) const {
-        if (n >= allPer.size()) {
+        if (i >= allPer.size()) {
             return std::vector<char>();
         }
         return allPer[i-1];
