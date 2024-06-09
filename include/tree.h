@@ -40,7 +40,7 @@ class Tree {
             return;
         }
         for (int i = 0; i < in.size(); i++) {
-            Arrayt* newArray = new Array;
+            Array* newArray = new Array;
             newArray->data = in[i];
             parent->childs.push_back(newArray);
             std::vector<char> NoneNeed = in;
