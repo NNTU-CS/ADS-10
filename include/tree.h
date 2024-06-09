@@ -15,6 +15,6 @@ class Tree {
     void gen_perms(Node* root, std::string symb);
  public:
     explicit Tree(const std::vector<char>);
-    std::string opertr[] (unsigned int i) const;
+    std::string operator[] (unsigned int i) const;
 };
 #endif  // INCLUDE_TREE_H_
