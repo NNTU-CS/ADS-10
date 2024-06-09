@@ -58,12 +58,12 @@ void Tree::constan(Node* root, const std::vector<char> vect) {
         }
         return {};
     }
-std::vector<char> Tree::getConst(int i)const { 
-    if (i > constan.size() - 1) { 
-        std::vector<char> null; 
-        return null; 
-    } 
-    return constan[i]; 
+std::vector<char> Tree::getConst(int i)const {
+    if (i > constan.size() - 1) {
+        std::vector<char> null;
+        return null;
+    }
+    return constan[i];
 }
 };
 
