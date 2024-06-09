@@ -6,7 +6,7 @@
 #define INCLUDE_TREE_H_
 
 class Tree {
-    private:
+ private:
     struct Node {
         char value;
         std::vector<Node*> child;
@@ -20,7 +20,8 @@ class Tree {
             child->value = element;
             node->child.push_back(child);
             std::vector<char> remaining = elements;
-            remaining.erase(std::remove(remaining.begin(), remaining.end(), element), remaining.end());
+            remaining.erase(std::remove(remaining.begin(),
+                remaining.end(), element), remaining.end());
             buildPermutationTree(remaining, child);
         }
     }
@@ -37,7 +38,7 @@ class Tree {
         }
     }
 
-    public:
+ public:
     std::vector<std::vector<char>> perms;
     explicit Tree(std::vector<char> elements) {
         root = new Node;
