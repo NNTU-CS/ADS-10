@@ -10,12 +10,13 @@ int F(int n) {
     return 1;
   return n * F(n - 1);
 }
+
 std::vector<char> getPerm(const Tree& tree, int n) {
   // напишите реализацию
   std::vector<char> res = {};
-  if (n < 0 || F(tree.Size()) < n)
-    return{};
-  res = tree.Got(n - 1);
+  if (n < 0 || F(tree.Razmer()) < n)
+    return {};
+  res = tree.GetPerm(n - 1);
   res.erase(res.begin());
   return res;
 }
