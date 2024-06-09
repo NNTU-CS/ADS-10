@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
 struct Node {
 bool Root = false;
 char value;
