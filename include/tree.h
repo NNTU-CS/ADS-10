@@ -11,7 +11,7 @@ class Tree {
         char value;
         std::vector<Node*> children;
 
-        Node(char val) : value(val) {}
+        explicit Node(char val) : value(val) {}
 
         ~Node() {
             for (auto child : children) {
@@ -48,14 +48,11 @@ void Tree::buildTreeRecursive(Node* node, const std::vector<char>& values) {
     if (values.empty()) {
         return;
     }
- 
     for (size_t i = 0; i < values.size(); ++i) {
         std::vector<char> nextElems(values.begin(), values.end());
         nextElems.erase(nextElems.begin() + i);
-     
         Node* child = new Node(values[i]);
         node->children.push_back(child);
-     
         buildTreeRecursive(child, nextElems);
     }
 }
