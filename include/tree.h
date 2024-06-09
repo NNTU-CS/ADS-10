@@ -6,9 +6,9 @@
 class Tree {
  private:
 struct Node {
-        std::vector<Node*> children;
-        char value;
-            };
+std::vector<Node*> children;
+char value;
+};
     Node* root;
 std::vector<std::vector<char>> const;
 
