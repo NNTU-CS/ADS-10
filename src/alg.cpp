@@ -6,9 +6,9 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-    if (n < 0) {
+    if ((n-1) < 0) {
         return std::vector<char>();
     } else {
-        return tree.getPermutation(n);
+        return tree.getPermutation(n-1);
     }
 }
