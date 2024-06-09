@@ -17,7 +17,7 @@ struct Tree::Nd {
     std::vector<Nd*> NewN;
 };
 
-void Tree::buildDrevo(Nd* prava, std::vector<char> sled) {
+void Tree::buildTree(Nd* prava, std::vector<char> sled) {
     if (!sled.size()) {
         return;
     }
