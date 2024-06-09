@@ -4,129 +4,57 @@
 #include <vector>
 #include <algorithm>
 
-class TreeNode {
+class Node {
+private:
+    char data;
+    std::vector<Node*> children;
 public:
-    char value;
-    std::vector<TreeNode*> children;
+    Node(char newData) : data(newData) {}
 
-    TreeNode(char val) : value(val) {}
+    char getData() const { return data; }
+    Node* getChild(int index) const { return children[index]; }
+    void addChild(Node* child) { children.push_back(child); }
+    int getChildrenCount() const { return children.size(); }
 };
 
 class Tree {
-public:
-    Tree(const std::vector<char>& input) {
-        buildTree(input);
-    }
-
-    std::vector<std::vector<char>> getAllPermutations() {
-        std::vector<std::vector<char>> result;
-        getPermutations(root, std::vector<char>(), result);
-        return result;
-    }
-
-    std::vector<char> getPermutation(int index) {
-        std::vector<std::vector<char>> allPermutations = getAllPermutations();
-        if (index < 1 || index > allPermutations.size()) {
-            return {}; // return empty vector if the index is out of range
-        }
-        return allPermutations[index - 1];
-    }
-
 private:
-    TreeNode* root;
+    Node* root;
+    std::vector<std::vector<char>> permutations;
 
-    void buildTree(const std::vector<char>& input) {
-        root = new TreeNode(input[0]);
-        buildTreeRecursive(root, input, 1);
-    }
+    void generatePermutations(Node* current, std::vector<char>& path) {
+        path.push_back(current->getData());
 
-    void buildTreeRecursive(TreeNode* node, const std::vector<char>& input, int start) {
-        if (start == input.size()) {
-            return;
-        }
-
-        for (int i = start; i < input.size(); i++) {
-            TreeNode* child = new TreeNode(input[i]);
-            node->children.push_back(child);
-            buildTreeRecursive(child, input, i + 1);
-        }
-    }
-
-    void getPermutations(TreeNode* node, std::vector<char>& currentPermutation, std::vector<std::vector<char>>& result) {
-        currentPermutation.push_back(node->value);
-
-        if (node->children.empty()) {
-            result.push_back(currentPermutation);
+        if (current->getChildrenCount() == 0) {
+            permutations.push_back(path);
         } else {
-            for (TreeNode* child : node->children) {
-                getPermutations(child, currentPermutation, result);
-                currentPermutation.pop_back();
+            for (int i = 0; i < current->getChildrenCount(); i++) {
+                generatePermutations(current->getChild(i), path);
             }
         }
-    }
-};
-#include <vector>
-#include <algorithm>
 
-class TreeNode {
+        path.pop_back();
+    }
+
 public:
-    char value;
-    std::vector<TreeNode*> children;
+    Tree(const std::vector<char>& elements) {
+        root = new Node('\0');
 
-    TreeNode(char val) : value(val) {}
-};
+        std::vector<char> sortedElements = elements;
+        std::sort(sortedElements.begin(), sortedElements.end());
 
-class Tree {
-public:
-    Tree(const std::vector<char>& input) {
-        buildTree(input);
-    }
-
-    std::vector<std::vector<char>> getAllPermutations() {
-        std::vector<std::vector<char>> result;
-        getPermutations(root, std::vector<char>(), result);
-        return result;
-    }
-
-    std::vector<char> getPermutation(int index) {
-        std::vector<std::vector<char>> allPermutations = getAllPermutations();
-        if (index < 1 || index > allPermutations.size()) {
-            return {}; // return empty vector if the index is out of range
-        }
-        return allPermutations[index - 1];
-    }
-
-private:
-    TreeNode* root;
-
-    void buildTree(const std::vector<char>& input) {
-        root = new TreeNode(input[0]);
-        buildTreeRecursive(root, input, 1);
-    }
-
-    void buildTreeRecursive(TreeNode* node, const std::vector<char>& input, int start) {
-        if (start == input.size()) {
-            return;
-        }
-
-        for (int i = start; i < input.size(); i++) {
-            TreeNode* child = new TreeNode(input[i]);
-            node->children.push_back(child);
-            buildTreeRecursive(child, input, i + 1);
+        for (char elem : sortedElements) {
+            root->addChild(new Node(elem));
         }
     }
 
-    void getPermutations(TreeNode* node, std::vector<char>& currentPermutation, std::vector<std::vector<char>>& result) {
-        currentPermutation.push_back(node->value);
+    Node* getRoot() const { return root; }
+    int getTotalPerms() const { return permutations.size(); }
+    std::vector<char> getPerm(int n) const { return permutations[n - 1]; }
 
-        if (node->children.empty()) {
-            result.push_back(currentPermutation);
-        } else {
-            for (TreeNode* child : node->children) {
-                getPermutations(child, currentPermutation, result);
-                currentPermutation.pop_back();
-            }
-        }
+    void generateAllPermutations() {
+        std::vector<char> path;
+        generatePermutations(root, path);
     }
 };
 
