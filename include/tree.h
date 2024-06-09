@@ -8,10 +8,11 @@ class Tree {
 struct Node {
         std::vector<Node*> children;
         char value;
-    };
+            };
     Node* root;
 std::vector<std::vector<char>> const;
- public: 
+
+ public:
     explicit Tree(std::vector<char> entr) {
         std::vector<char> vec;
         root = new Node;
