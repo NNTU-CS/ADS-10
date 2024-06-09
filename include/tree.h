@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 class Tree {
-private:
+ private:
   struct Node {
     char v;
     std::vector<Node*> nodes;
@@ -32,7 +32,7 @@ private:
     p.pop_back();
   }
 
-public:
+ public:
   explicit Tree(const std::vector<char>& counter) {
     root = new Node('^');
     newTreeee(counter, root);
