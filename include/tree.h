@@ -37,7 +37,6 @@ void constan(Node* root, const std::vector<char> vect) {
         constan(root->children[i], temp1);
         temp1.pop_back();
     }
-}
     explicit Tree(std::vector<char> enter) {
         std::vector<char> vec;
         root = new Node;
