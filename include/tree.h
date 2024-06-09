@@ -13,7 +13,7 @@ char value;
 std::vector<std::vector<char>> constan;
 
  public:
-void Tree::buildTree(Node* root, std::vector<char> enter) {
+void buildTree(Node* root, std::vector<char> enter) {
     if (enter.size() == 0) {
         return;
     } else {
@@ -27,7 +27,7 @@ void Tree::buildTree(Node* root, std::vector<char> enter) {
         }
     }
 }
-void Tree::constan(Node* root, const std::vector<char> vect) {
+void constan(Node* root, const std::vector<char> vect) {
     std::vector<char> temp1 = vect;
     for (int i = 0; i < root->children.size(); i++) {
         temp1.push_back(root->children[i]->value);
@@ -44,7 +44,7 @@ void Tree::constan(Node* root, const std::vector<char> vect) {
         buildTree(root, enter);
         constan(root, vec);
     }
-std::vector<char> Tree::getConst(int i)const {
+std::vector<char> getConst(int i)const {
     if (i > constan.size() - 1) {
         std::vector<char> null;
         return null;
