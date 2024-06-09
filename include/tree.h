@@ -6,24 +6,25 @@
 #include <memory>
 
 class TreeNode {
-public:
+public: 
     char value;
     std::vector<std::shared_ptr<TreeNode>> children;
 
-    TreeNode(char val) : value(val) {}
+    explicit TreeNode(char val) : value(val) {}
 };
 
 class Tree {
-public:
-    Tree(const std::vector<char>& elements);
+public: 
+    explicit Tree(const std::vector<char>& elements);
     std::vector<std::vector<char>> generateAllPermutations() const;
 
-private:
+private: 
     std::shared_ptr<TreeNode> root;
     void buildTree(std::shared_ptr<TreeNode> node, std::vector<char> elements);
-    void traverseTree(std::shared_ptr<TreeNode> node,
-        std::vector<char>& currentPermutation, 
-        std::vector<std::vector<char>>& permutations) const;
+        void traverseTree(std::shared_ptr<TreeNode> node,
+        std::vector<char>* currentPermutation,
+        std::vector<std::vector<char>>* permutations) const;
+};
 };
 
 std::vector<char> getPerm(const Tree& tree, int n);
