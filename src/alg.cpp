@@ -7,5 +7,5 @@
 
 std::vector<char> getPerm(const Tree& tree, int n) {
   // напишите реализацию
-  return tree.getPermutation(n);
+  return tree.getPerm(n);
 }
