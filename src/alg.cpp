@@ -26,7 +26,8 @@ void Tree::buildTree(std::shared_ptr<TreeNode> node, std::vector<char> elements)
     }
 }
 
-void Tree::traverseTree(std::shared_ptr<TreeNode> node, std::vector<char>& currentPermutation, std::vector<std::vector<char>>& permutations) const {
+void Tree::traverseTree(std::shared_ptr<TreeNode> node,std::vector<char>& currentPermutation,
+    std::vector<std::vector<char>>& permutations) const {
     if (node->value != '\0') {
         currentPermutation.push_back(node->value);
     }
