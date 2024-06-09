@@ -7,15 +7,15 @@
 
 class Tree {
  private:
-    struct Node {
-        char value;
-        std::vector<Node*> children;
+   struct Node {
+       char value;
+       std::vector<Node*> children;
 
-        Node(char val) : value(val) {}
+       Node(char val) : value(val) {}
 
-        ~Node() {
-            for (auto child : children) {
-                delete child;
+       ~Node() {
+           for (auto child : children) {
+               delete child;
             }
         }
     };
