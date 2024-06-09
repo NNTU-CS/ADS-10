@@ -7,14 +7,13 @@
 class Tree {
  private:
     struct Node {
-        std::vector<Node *> children; // Дети текущего узла
-        char value; // Значение текущего узла
-        explicit Node(char val) : value(val) {}
+        std::vector<Node *> children;
+        char value;
+        Node(char val) : value(val) {}
     };
-    Node *root; // Корневой узел дерева
-    std::vector<std::vector<char>> permutations; // Список всех перестановок
+    Node *root;
+    std::vector<std::vector<char>> permutations;
 
-    // Функция для построения дерева вариантов
     void buildTree(Node *node, std::vector<char> values) {
         if (values.empty()) {
             return;
@@ -28,8 +27,7 @@ class Tree {
         }
     }
 
-    // Функция для генерации всех перестановок
-    void generatePermutations(Node* node, std::vector<char>& current) const {
+    void generatePermutations(Node* node, std::vector<char>& current) {
         current.push_back(node->value);
         if (node->children.empty()) {
             permutations.push_back(current);
@@ -41,7 +39,6 @@ class Tree {
         current.pop_back();
     }
 
-    // Функция для удаления всех узлов дерева
     void deleteTree(Node* node) {
         if (node) {
             for (Node* child : node->children) {
@@ -52,9 +49,8 @@ class Tree {
     }
 
  public:
-    // Конструктор для создания дерева и генерации перестановок
     explicit Tree(const std::vector<char>& values) {
-        root = new Node('\0'); // Корневой узел с пустым значением
+        root = new Node('\0');
         buildTree(root, values);
         std::vector<char> current;
         for (Node* child : root->children) {
@@ -62,12 +58,10 @@ class Tree {
         }
     }
 
-    // Деструктор для освобождения памяти
     ~Tree() {
         deleteTree(root);
     }
 
-    // Функция для получения перестановки по индексу
     std::vector<char> getPermutation(int index) const {
         if (index < 0 || index >= permutations.size()) {
             return std::vector<char>();
