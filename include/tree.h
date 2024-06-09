@@ -3,23 +3,18 @@
 #define INCLUDE_TREE_H_
 #include <vector>
 
-class Node {
- public:
-    char data;
-    std::vector<Node*> children;
-    Node(char value) {
-        data = value;
-    }
-};
 class Tree {
- public:
+ private:
+struct Node {
+        std::vector<Node*> children;
+        char value;
+    };
     Node* root;
-    Tree(std::vector<char>& input) {
-        root = new Node('\0');
-        for (char value : input) {
-            Node* child = new Node(value);
-            root->children.push_back(child);
-        }
+    explicit Tree(std::vector<char> entr) {
+        std::vector<char> vec;
+        root = new Node;
+        buildTree(root, entr);
+        constan(root, vec);
     }
     std::vector<char> getPerm(const Tree& tree, int n) {
         if (n == 0) {
