@@ -14,7 +14,7 @@ class Tree {
     Node *root;
     std::vector<std::vector<char>> permutations;
 
-    void buildTree(Node *node, std::vector<char> values) {
+    void buildTree(Node *node, const std::vector<char>& values) {
         if (values.empty()) {
             return;
         }
@@ -27,16 +27,16 @@ class Tree {
         }
     }
 
-    void generatePermutations(Node* node, std::vector<char>& current) {
-        current.push_back(node->value);
+    void generatePermutations(Node* node, std::vector<char>* current) {
+        current->push_back(node->value);
         if (node->children.empty()) {
-            permutations.push_back(current);
+            permutations.push_back(*current);
         } else {
             for (Node* child : node->children) {
                 generatePermutations(child, current);
             }
         }
-        current.pop_back();
+        current->pop_back();
     }
 
     void deleteTree(Node* node) {
@@ -54,7 +54,7 @@ class Tree {
         buildTree(root, values);
         std::vector<char> current;
         for (Node* child : root->children) {
-            generatePermutations(child, current);
+            generatePermutations(child, &current);
         }
     }
 
