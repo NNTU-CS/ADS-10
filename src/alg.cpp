@@ -43,7 +43,7 @@ void Drevo::buildDrevo(Nd* prava, std::vector<char> sled) {
 void Drevo::generatePermut(Nd* roditel, std::string symvol = "") {
     if (!roditel->NewN.size()) {
         symvol += roditel->NVal;
-        Permut.push_back(symvol);
+        Premut.push_back(symvol);
     }
     if (roditel->NVal != '*') {
         symvol += roditel->NVal;
@@ -61,11 +61,11 @@ Drevo::Drevo(const std::vector<char> Val) {
 }
 
 std::string Drevo::operator[] (unsigned int y) const {
-    if (y >= Permut.size()) {
+    if (y >= Premut.size()) {
         return "";
     }
     if (y < 0) {
         throw std::string("ne prvilno");
     }
-    return Permut[y];
+    return Premut[y];
 }
