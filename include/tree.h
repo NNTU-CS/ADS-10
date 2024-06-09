@@ -27,7 +27,7 @@ class Tree {
     void generatePermutationsRecursive(Node* node, std::vector<char> current);
 
  public:
-    explicit Tree(const std::vector<char>& values);
+    explicit Tree(const std::vector<char>& values); // Добавьте explicit
     ~Tree();
 
     std::vector<char> getPermutation(int index) const;
