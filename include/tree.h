@@ -2,60 +2,51 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
-#include <algorithm>
-
-class Node {
-private:
-    char data;
-    std::vector<Node*> children;
-public:
-    Node(char newData) : data(newData) {}
-
-    char getData() const { return data; }
-    Node* getChild(int index) const { return children[index]; }
-    void addChild(Node* child) { children.push_back(child); }
-    int getChildrenCount() const { return children.size(); }
-};
-
 class Tree {
 private:
+    struct Node {
+        char value = '\0';
+        std::vector<Node*> children;
+    };
     Node* root;
-    std::vector<std::vector<char>> permutations;
-
-    void generatePermutations(Node* current, std::vector<char>& path) {
-        path.push_back(current->getData());
-
-        if (current->getChildrenCount() == 0) {
-            permutations.push_back(path);
-        } else {
-            for (int i = 0; i < current->getChildrenCount(); i++) {
-                generatePermutations(current->getChild(i), path);
-            }
-        }
-
-        path.pop_back();
-    }
+    std::vector<std::vector<char>> constant;
 
 public:
-    Tree(const std::vector<char>& elements) {
-        root = new Node('\0');
-
-        std::vector<char> sortedElements = elements;
-        std::sort(sortedElements.begin(), sortedElements.end());
-
-        for (char elem : sortedElements) {
-            root->addChild(new Node(elem));
+    explicit Tree(std::vector<char> entr) {
+        std::vector<char> vec;
+        root = new Node;
+        build(root, entr);
+        сonsts(root, vec);
+    }
+    void build(Node* root, std::vector<char> entr) {
+        if (entr.size() != 0) {
+            for (int i = 0; i < entr.size(); i++) {
+                std::vector<char> temp = entr;
+                Node* next = new Node;
+                next->value = entr[i];
+                root->children.push_back(next);
+                temp.erase(temp.begin() + i);
+                build(root->children.back(), temp);
+            }
         }
     }
-
-    Node* getRoot() const { return root; }
-    int getTotalPerms() const { return permutations.size(); }
-    std::vector<char> getPerm(int n) const { return permutations[n - 1]; }
-
-    void generateAllPermutations() {
-        std::vector<char> path;
-        generatePermutations(root, path);
+    void сonsts(Node* root, const std::vector<char> vec) {
+        std::vector<char> temp = vec;
+        for (int i = 0; i < root->children.size(); i++) {
+            temp.push_back(root->children[i]->value);
+            if (root->children[i]->children.size() == 0) {
+                constant.push_back(temp);
+            }
+            сonsts(root->children[i], temp);
+            temp.pop_back();
+        }
+    }
+    std::vector<char> getPrem(int i) const {
+        if (i > constant.size() - 1) {
+            std::vector<char> null;
+            return null;
+        }
+        return constant[i];
     }
 };
-
 #endif  // INCLUDE_TREE_H_
