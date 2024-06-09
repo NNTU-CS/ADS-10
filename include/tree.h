@@ -10,6 +10,8 @@ struct Node {
         char value;
     };
     Node* root;
+
+ public:
     explicit Tree(std::vector<char> entr) {
         std::vector<char> vec;
         root = new Node;
