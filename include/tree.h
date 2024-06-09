@@ -48,6 +48,7 @@ class Tree {
         vCopyCur.pop_back();
     }
 }
+
  public:
     explicit Tree(std::vector<char> values): root(nullptr) {
         root = new Node;
@@ -56,6 +57,9 @@ class Tree {
         genPer(root, vCur);
     }
     std::vector<char> getPermutation(int i) const {
+        if (n >= allPer.size()) {
+            return std::vector<char>();
+        }
         return allPer[i-1];
     }
 };
