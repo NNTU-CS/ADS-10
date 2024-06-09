@@ -13,10 +13,35 @@ char value;
 std::vector<std::vector<char>> constan;
 
  public:
-    explicit Tree(std::vector<char> entr) {
+void Tree::buildTree(Node* root, std::vector<char> enter) {
+    if (enter.size() == 0) {
+        return;
+    } else {
+        for (int i = 0; i < enter.size(); i++) {
+            std::vector<char> temp = enter;
+            Node* nextknot = new Node;
+            nextknot->value = enter[i];
+            root->children.push_back(nextknot);
+            temp.erase(temp.begin() + i);
+            buildTree(root->children.back(), temp);
+        }
+    }
+}
+void Tree::constan(Node* root, const std::vector<char> vect) {
+    std::vector<char> temp1 = vect;
+    for (int i = 0; i < root->children.size(); i++) {
+        temp1.push_back(root->children[i]->value);
+        if (root->children[i]->children.size() == 0) {
+            constant.push_back(temp1);
+        }
+        constan(root->children[i], temp1);
+        temp1.pop_back();
+    }
+}
+    explicit Tree(std::vector<char> enter) {
         std::vector<char> vec;
         root = new Node;
-        buildTree(root, entr);
+        buildTree(root, enter);
         constan(root, vec);
     }
     std::vector<char> getPerm(const Tree& tree, int n) {
