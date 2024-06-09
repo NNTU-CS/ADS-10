@@ -29,7 +29,8 @@ void findP(Node* root, std::vector<char> Vector) {
     if (root->Permut.empty()) pr.push_back(Vector);
     for (Node* child : root->Permut) findP(child, Vector);
 }
- public:
+ 
+public:
   explicit Tree(const std::vector<char>& Vector) {
       root = new Node;
       root->Root = true;
