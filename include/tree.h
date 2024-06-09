@@ -23,7 +23,7 @@ std::vector<std::vector<char>> const;
         if (n == 0) {
             return permutation;
         }
-        for (Node* child : node->children) {
+        for (Node* child : Node->children) {
             permutation.push_back(child->data);
             std::vector<char> result = getperm(child, --n, permutation);
             if (!result.empty()) {
@@ -35,7 +35,7 @@ std::vector<std::vector<char>> const;
     }
 std::vector<char> getperm(const Tree& tree, int n) {
     std::vector<char> permutation;
-    return tree.getperm(tree.root, n, permutation);
+    return Tree::getperm(Tree::Node* const&, int&, std::vector<char>&) const);
 }
 };
 
