@@ -62,9 +62,10 @@ class Tree {
         if (n->value != '\0')
             cur.push_back(n->value);
 
-        if (n->children.empty())
+        if (n->children.empty()) {
             p.push_back(cur);
             return;
+        }
 
         for (auto child : n->children)
             genPerm(child, cur, p);
