@@ -6,5 +6,7 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+  std::vector<std::vector<char>> permutations = tree.getPerm();
+  if (n > permutations.size()) return {};
+  return permutations[n - 1];
 }
