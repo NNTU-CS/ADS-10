@@ -81,7 +81,7 @@ void Tree::perm(int num, std::vector<char>* vector) const {
     perm(num - next * (g - 1), vector, (root->down[g - 1]));
 }
 int Tree::GetPermCount() const {
-    return perm_countl;
+    return perm_count;
 }
 Tree::~Tree() {
     if (root) {
