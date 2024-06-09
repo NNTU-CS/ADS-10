@@ -51,7 +51,7 @@ void Tree::generatePermutations(Node* parent, std::string symbs = "") {
         symbs += parent->nvalue;
     }
     for (int i = 0; i < parent->newN.size(); i++) {
-        perms(parent->newN[i], symbs);
+        generatePermutations(parent->newN[i], symbs);
     }
 }
 
