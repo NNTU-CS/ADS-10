@@ -8,11 +8,10 @@ class Tree {
  public:
     explicit Tree(const std::vector<char>&);
     std::vector<std::vector<char>> getPermutations() const;
-	
  private:
     struct Node {
         char chu;
-		Node() : chu('*') {}
+	Node() : chu('*') {}
         std::vector<Node*> vec;
     };
     Node* newNode = nullptr;
@@ -24,8 +23,8 @@ class Tree {
 
 void Tree::treeMaker(Node* newNode, const std::vector<char>& sequence) {
     if (!newNode) {
-		return;
-	}
+        return;
+    }
 
     for (const char& symbols : sequence) {
         Node* nd = new Node;
@@ -66,7 +65,7 @@ void Tree::treePermutationsMaker(const std::vector<char>& vectorr) {
     permutationMaker(newNode, {});
 }
 
-std::vector<std::vector<char>> Tree::getPermutations() const { 
+std::vector<std::vector<char>> Tree::getPermutations() const {
     return permutations;
 }
 #endif  // INCLUDE_TREE_H_
