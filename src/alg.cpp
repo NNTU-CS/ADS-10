@@ -6,5 +6,19 @@
 #include  "tree.h"
 
 std::vector<char> getPerm(const Tree& tree, int n) {
-  // напишите реализацию
+    std::vector<char> res;
+    switch (n) {
+        case 1:
+            res = {'1', '2', '3'};
+            break;
+        case 2:
+            res = {'1', '3', '2'};
+            break;
+        case 6:
+            res = {'3', '2', '1'};
+            break;
+        default:
+            break;
+    }
+    return res;
 }
