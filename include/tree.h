@@ -57,7 +57,7 @@ class Tree {
     GeneratePerm(root);
   }
   std::vector<char> GetPermute(int i) {
-    return permuts[i-1];
+    return permuts[i];
   }
 };
 
