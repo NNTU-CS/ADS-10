@@ -6,7 +6,7 @@
 #include <memory>
 
 class TreeNode {
-public: 
+ public:
     char value;
     std::vector<std::shared_ptr<TreeNode>> children;
 
@@ -14,11 +14,11 @@ public:
 };
 
 class Tree {
-public: 
+ public:
     explicit Tree(const std::vector<char>& elements);
     std::vector<std::vector<char>> generateAllPermutations() const;
 
-private: 
+ private:
     std::shared_ptr<TreeNode> root;
     void buildTree(std::shared_ptr<TreeNode> node, std::vector<char> elements);
     void traverseTree(std::shared_ptr<TreeNode> node,
