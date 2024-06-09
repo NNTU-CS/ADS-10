@@ -2,50 +2,49 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
-
 class Tree {
- private:
+private:
     struct Node {
-        std::vector<Node *> perems;
+        std::vector<Node *> children;
         char value;
     };
     Node *root;
     std::vector<std::vector<char>> permutations;
 
-    void buildTree(Node *node, std::vector<char> val) {
-     if (!node) {
-      node = new Node;
-     }
-     if (val.empty()) {
-      return;
-     }
-     for (int i = 0; i < val.size(); i++) {
-      std::vector<char> rValues = val;
-      Node *perem = new Node;
-      perem->value = val[i];  // Заменяем perem->val на perem->value
-      node->perems.push_back(perem);
-      rValues.erase(rValues.begin() + i);
-      buildTree(node->perems.back(), rValues);
-     }
+    void buildTree(Node *node, std::vector<char> values) {
+        if (!node) {
+            node = new Node;
+        }
+        if (values.empty()) {
+            return;
+        }
+        for (int i = 0; i < values.size(); i++) {
+            std::vector<char> remainingValues = values;
+            Node *child = new Node;
+            child->value = values[i];
+            node->children.push_back(child);
+            remainingValues.erase(remainingValues.begin() + i);
+            buildTree(node->children.back(), remainingValues);
+        }
     }
-void generatePermutations(Node* node, std::vector<char>& current) {
- std::vector<char> upCurrent = current;
- for (int i = 0; i < node->perems.size(); i++) {
-  upCurrent.push_back(node->perems[i]->value);  // Заменяем node->perems[i]->val на node->perems[i]->value
-  if (node->perems[i]->perems.empty()) {
-   if (current.size() != 1) {
-    permutations.push_back(upCurrent);
-   }
-  }
-  generatePermutations(node->perems[i], upCurrent);
-  upCurrent.pop_back();
- }
-}
+    void generatePermutations(Node* node, const std::vector<char>& current) {
+        std::vector<char> updatedCurrent = current;
+        for (int i = 0; i < node->children.size(); i++) {
+            updatedCurrent.push_back(node->children[i]->value);
+            if (node->children[i]->children.empty()) {
+                if (current.size() != 1) {
+                    permutations.push_back(updatedCurrent);
+                }
+            }
+            generatePermutations(node->children[i], updatedCurrent);
+            updatedCurrent.pop_back();
+        }
+    }
 
  public:
-    explicit Tree(std::vector<char> val): root(nullptr) {
+    explicit Tree(std::vector<char> values): root(nullptr) {
         root = new Node;
-        buildTree(root, val);
+        buildTree(root, values);
         std::vector<char> current;
         generatePermutations(root, current);
     }
@@ -55,5 +54,4 @@ void generatePermutations(Node* node, std::vector<char>& current) {
         }
         return permutations[index];
     }
-};
-#endif  // INCLUDE_TREE_H_
+};  // INCLUDE_TREE_H_
