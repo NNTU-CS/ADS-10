@@ -3,69 +3,69 @@
 #include  <cstdlib>
 #include  "tree.h"
 
-std::vector<char> getPerm(const Tree& tree, int n) {
-    std::string Permutations_string = tree[n - 1];
-    std::vector<char> Permutationsdone;
-    for (int i = 0; i < Permutations_string.length(); i++) {
-        Permutationsdone.push_back(Permutations_string[i]);
+std::vector<char> getPerm(const Drevo& drevo, int p) {
+    std::string Permut_string = drevo[p - 1];
+    std::vector<char> PermutDone;
+    for (int y = 0; y < Permut_string.length(); y++) {
+        PermutDone.push_back(Permut_string[y]);
     }
-    return Permutationsdone;
+    return PermutDone;
 }
 
-struct Tree::Node {
-    char nvalues;
-    std::vector<Node*> newNNN;
+struct Drevo::Nd {
+    char NVal;
+    std::vector<Nd*> NewN;
 };
 
-void Tree::buildTree(Node* root, std::vector<char> trail) {
-    if (!trail.size()) {
+void Drevo::buildDrevo(Nd* prava, std::vector<char> sled) {
+    if (!sled.size()) {
         return;
     }
-    if (root->nvalues != '*') {
-        for (auto i = trail.begin(); i < trail.end(); i++) {
-            if (*i == root->nvalues) {
-                trail.erase(i);
+    if (prava->NVal != '*') {
+        for (auto y = sled.begin(); y < sled.end(); y++) {
+            if (*y == prava->NVal) {
+                sled.erase(y);
                 break;
             }
         }
     }
-    for (int i = 0; i < trail.size(); i++) {
-        root->newNNN.push_back(new Node);
+    for (int y = 0; y < sled.size(); y++) {
+        prava->NewN.push_back(new Nd);
     }
-    for (int i = 0; i < root->newNNN.size(); i++) {
-        root->newNNN[i]->nvalues = trail[i];
+    for (int y = 0; y < prava->NewN.size(); y++) {
+        prava->NewN[y]->NVal = sled[y];
     }
-    for (int i = 0; i < root->newNNN.size(); i++) {
-        buildTree(root->newNNN[i], trail);
-    }
-}
-
-void Tree::generatePermutations(Node* parent, std::string symbol = "") {
-    if (!parent->newNNN.size()) {
-        symbol += parent->nvalues;
-        permutations.push_back(symbol);
-    }
-    if (parent->nvalues != '*') {
-        symbol += parent->nvalues;
-    }
-    for (int i = 0; i < parent->newNNN.size(); i++) {
-        generatePermutations(parent->newNNN[i], symbol);
+    for (int y = 0; y < prava->NewN.size(); y++) {
+        buildDrevo(prava->NewN[y], sled);
     }
 }
 
-Tree::Tree(const std::vector<char> value) {
-    root = new Node();
-    root->nvalues = '*';
-    buildTree(root, value);
-    generatePermutations(root);
+void Drevo::generatePermut(Nd* roditel, std::string symvol = "") {
+    if (!roditel->NewN.size()) {
+        symvol += roditel->NVal;
+        Permut.push_back(symvol);
+    }
+    if (roditel->NVal != '*') {
+        symvol += roditel->NVal;
+    }
+    for (int y = 0; y < roditel->NewN.size(); y++) {
+        generatePermut(roditel->NewN[y], symvol);
+    }
 }
 
-std::string Tree::operator[] (unsigned int i) const {
-    if (i >= permutations.size()) {
+Drevo::Drevo(const std::vector<char> Val) {
+    prava = new Nd();
+    prava->NVal = '*';
+    buildDrevo(prava, Val);
+    generatePermut(prava);
+}
+
+std::string Drevo::operator[] (unsigned int y) const {
+    if (y >= Permut.size()) {
         return "";
     }
-    if (i < 0) {
-        throw std::string("wrong index lol");
+    if (y < 0) {
+        throw std::string("ne prvilno");
     }
-    return permutations[i];
+    return Permut[y];
 }
