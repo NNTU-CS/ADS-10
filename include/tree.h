@@ -50,7 +50,7 @@ void Tree::constan(Node* root, const std::vector<char> vect) {
         }
         for (Node* child : Node->children) {
             permutation.push_back(child->data);
-            std::vector<char> result = getperm(child, --n, permutation);
+            std::vector<char> result = getPerm(child, --n, permutation);
             if (!result.empty()) {
                 return result;
             }
