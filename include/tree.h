@@ -52,10 +52,10 @@ class Tree {
         recieverecurs(orig, l, rec, recs);
         return recs;
     }
-    void recieverecurs(Knot* knot, int residual, std::vector<char> rec, 
+    void recieverecurs(Knot* knot, int residual, std::vector<char> rec,
         const std::vector<std::vector<char>>& recs) const {
         if (residual == 0) {
-            std::vector<std::vector<char>>& recsno = 
+            std::vector<std::vector<char>>& recsno =
                 const_cast<std::vector<std::vector<char>>&>(recs);
             recsno.push_back(rec);
             return;
