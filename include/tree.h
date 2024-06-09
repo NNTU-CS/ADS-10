@@ -10,7 +10,7 @@ std::vector<Node*> children;
 char value;
 };
     Node* root;
-std::vector<std::vector<char>> const;
+std::vector<std::vector<char>> constan;
 
  public:
     explicit Tree(std::vector<char> entr) {
@@ -19,7 +19,7 @@ std::vector<std::vector<char>> const;
         buildTree(root, entr);
         constan(root, vec);
     }
-    std::vector<char> getPerm(const Tree& tree, int n) {
+    std::vector<char> getPerm(constan Tree& tree, int n) {
         if (n == 0) {
             return permutation;
         }
@@ -33,9 +33,9 @@ std::vector<std::vector<char>> const;
         }
         return {};
     }
-std::vector<char> getperm(const Tree& tree, int n) {
+std::vector<char> getperm(constan Tree& tree, int n) {
     std::vector<char> permutation;
-    return Tree::getperm(Tree::Node* const&, int&, std::vector<char>&) const);
+    return Tree::getperm(Tree::Node* constan&, int&, std::vector<char>&) constan);
 }
 };
 
