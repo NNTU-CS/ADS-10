@@ -37,8 +37,8 @@ class Tree {
         std::vector<std::string> permutations;
         genPerm(root, "", &permutations);
 
-        for(auto perm : permutations)
-        std::cout << perm << std::endl;
+        for (auto perm : permutations)
+            std::cout << perm << std::endl;
 
         return permutations;
     }
@@ -63,7 +63,7 @@ class Tree {
             cur.push_back(n->value);
 
         if (n->children.empty()) {
-            p.push_back(cur);
+            p->push_back(cur);
             return;
         }
 
