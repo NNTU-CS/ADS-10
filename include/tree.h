@@ -6,7 +6,7 @@
 
 class Tree {
 public:
-    Tree(const std::vector<char>& in);
+    explicit Tree(const std::vector<char>& in);
     std::vector<char> getPerm(int n);
 private:
     void buildTree(const std::vector<char>& in);
