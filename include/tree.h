@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 class Node {
  public:
@@ -41,6 +42,7 @@ class Tree {
  private:
     void buildTree(Node* node, const std::vector<char>& elements) {
         for (char element : elements) {
+            std::cout << element << std::endl;
             Node* child = new Node(element);
 
             node->children.push_back(child);
