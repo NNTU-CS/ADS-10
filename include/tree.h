@@ -35,9 +35,9 @@ class Tree {
 
     std::vector<std::string> getAllPermutations() const {
         std::vector<std::string> permutations;
-        genPerm(root, "", permutations);
+        genPerm(root, "", &permutations);
 
-        for( auto perm : permutations )
+        for(auto perm : permutations)
         std::cout << perm << std::endl;
 
         return permutations;
@@ -58,7 +58,7 @@ class Tree {
         }
     }
 
-    void genPerm(Node* n, std::string cur, std::vector<std::string>& p) const {
+    void genPerm(Node* n, std::string cur, std::vector<std::string>* p) const {
         if (n->value != '\0')
             cur.push_back(n->value);
 
@@ -69,7 +69,6 @@ class Tree {
 
         for (auto child : n->children)
             genPerm(child, cur, p);
-
     }
 };
 
