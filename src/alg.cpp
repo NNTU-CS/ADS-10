@@ -63,7 +63,7 @@ Tree::Tree(const std::vector<char> val) {
 }
 
 std::string Tree::operator[] (unsigned int i) const {
-  if (perm.size() <= i) {
+  if (perms.size() <= i) {
     return "";
   }
   if (i < 0) {
