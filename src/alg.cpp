@@ -1,23 +1,27 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "tree.h"
-Tree::Tree(const std::string& elements) : elements(elements) {
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <locale>
+
+#include "tree.h"
+
+Tree::Tree(const std::vector<char>& elements) : elements(elements) {
   root = new Node('\0');  // Корень дерева не содержит значения
   buildTree(root, elements);
 }
 
 Tree::~Tree() { destroyTree(root); }
 
-void Tree::buildTree(Node* node, const std::string& remaining_elements) {
+void Tree::buildTree(Node* node, const std::vector<char>& remaining_elements) {
   if (remaining_elements.empty()) return;
   for (char ch : remaining_elements) {
     Node* child = new Node(ch);
     node->children.push_back(child);
-    std::string next_remaining = remaining_elements;
-    next_remaining.erase(next_remaining.find(ch), 1);
+    std::vector<char> next_remaining = remaining_elements;
+    next_remaining.erase(
+        std::remove(next_remaining.begin(), next_remaining.end(), ch),
+        next_remaining.end());
     buildTree(child, next_remaining);
   }
 }
