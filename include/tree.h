@@ -4,14 +4,15 @@
 #include <vector>
 
 class Tree {
-  private:
+ private:
         struct Node {
         char value = '\0';
         std::vector<Node*> children;
         };
     Node* root;
     std::vector<std::vector<char>> constant;
-  public:
+
+ public:
     explicit Tree(std::vector<char> entr) {
         std::vector<char> vec;
         root = new Node;
