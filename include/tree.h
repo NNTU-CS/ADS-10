@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 struct Node {
 bool Root = false;
 char value;
@@ -11,10 +12,10 @@ std::vector<Node*> Permut;
 };
 
 class Tree {
- private:
-  Node* root;
-  std::vector<std::vector<char>> pr;
-  void append(Node* root, const std::vector<char>& Vector) {
+  private:
+   Node* root;
+   std::vector<std::vector<char>> pr;
+   void append(Node* root, const std::vector<char>& Vector) {
       for (char c : Vector) {
           Node* temp = new Node;
           temp->value = c;
@@ -30,8 +31,8 @@ void findP(Node* root, std::vector<char> Vector) {
     for (Node* child : root->Permut) findP(child, Vector);
 }
  
-public:
-  explicit Tree(const std::vector<char>& Vector) {
+ public:
+   explicit Tree(const std::vector<char>& Vector) {
       root = new Node;
       root->Root = true;
       append(root, Vector);
