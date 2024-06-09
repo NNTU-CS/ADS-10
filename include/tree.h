@@ -21,7 +21,7 @@ class Tree {
       temp->val = c;
       root->permutations.push_back(temp);
       std::vector<char> remainingChars(vect_perm);
-      remainingChars.erase(std::find(remainingChars.begin(), 
+      remainingChars.erase(std::find(remainingChars.begin(),
         remainingChars.end(), c));
       append(temp, remainingChars);
     }
