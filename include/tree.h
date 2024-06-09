@@ -7,7 +7,7 @@
 struct Leaf {
     std::vector<Leaf*> leaves;
     char symb;
-    Leaf(char symb) : symb(symb) {}
+    explicit Leaf(char symb) : symb(symb) {}
 };
 
 class Tree {
@@ -46,7 +46,7 @@ class Tree {
  public:
     Tree() : host(nullptr) {}
 
-    Tree(std::vector<char> in) {
+    explicit Tree(std::vector<char> in) {
         host = new Leaf(' ');
         LeafAd(in, host);
     }
