@@ -3,7 +3,7 @@
 #define INCLUDE_TREE_H_
 #include <iostream>
 #include <vector>
-std::vector<char> delete(std::vector<char> digit, int code);
+std::vector<char> delete_del(std::vector<char> digit, int code);
 struct Vertex {
     char memory;
     std::vector<Vertex*> childs;
@@ -24,7 +24,7 @@ class Tree {
         }
         for (int i = 0; i < in.size(); i++) {
             std::vector<char> pace = in;
-            pace = delete(pace, i);
+            pace = delete_del(pace, i);
             add_childs(pace, origin->childs[i]);
         }
     }
@@ -42,7 +42,7 @@ class Tree {
             newVertex->memory = in[i];
             par->childs.push_back(newVertex);
             std::vector<char> pace = in;
-            pace = delete(pace, i);
+            pace = delete_del(pace, i);
             add_childs(pace, newVertex);
         }
     }
@@ -70,4 +70,5 @@ std::vector<char> perm, const std::vector<std::vector<char>>& perms) const {
 std::vector<char> getPerm(const Tree& tree, int r);
 
 #endif  // INCLUDE_TREE_H_
+
 
