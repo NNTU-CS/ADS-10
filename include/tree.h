@@ -57,7 +57,10 @@ class Tree {
     buildTree(root, values);
     GeneratePerm(root);
   }
-  std::vector<char> GetPermute(int i) {
+  std::vector<char> GetPermute(int i) const {
+    if (i < 0 || index >= permuts.size()) {
+      return std::vector<char>();
+    }
     return permuts[i];
   }
 };
