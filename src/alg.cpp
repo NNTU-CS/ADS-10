@@ -14,8 +14,7 @@ std::vector<char> getPerm(const Tree& tree, int n) {
 std::vector<char> createNumber(stem* cur, int n, std::vector<char> kol) {
     if (cur->leaves.size() == 0) {
         return kol;
-    }
-    else {
+    } else {
         int group = factorial(cur->leaves.size() - 1);
         int pos = n / group;
         if (pos >= cur->leaves.size()) {
@@ -30,8 +29,7 @@ std::vector<char> createNumber(stem* cur, int n, std::vector<char> kol) {
 int factorial(int n) {
     if (n == 0 || n == 1) {
         return 1;
-    }
-    else {
+    } else {
         return n * factorial(n - 1);
     }
 }
