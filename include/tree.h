@@ -21,7 +21,9 @@ public:
 private:
     std::shared_ptr<TreeNode> root;
     void buildTree(std::shared_ptr<TreeNode> node, std::vector<char> elements);
-    void traverseTree(std::shared_ptr<TreeNode> node, std::vector<char>& currentPermutation, std::vector<std::vector<char>>& permutations) const;
+    void traverseTree(std::shared_ptr<TreeNode> node,
+        std::vector<char>& currentPermutation, 
+        std::vector<std::vector<char>>& permutations) const;
 };
 
 std::vector<char> getPerm(const Tree& tree, int n);
