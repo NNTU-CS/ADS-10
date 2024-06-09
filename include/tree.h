@@ -13,7 +13,7 @@ struct stem {
 };
 
 class Tree {
-private:
+ private:
     stem* root;
 
     std::vector<char> filterSymbols(std::vector<char> numbers, char symbol) {
@@ -44,7 +44,7 @@ private:
         }
     }
 
-public:
+ public:
     Tree() : root(nullptr) {}
 
     explicit Tree(std::vector<char> sym) {
@@ -68,8 +68,7 @@ public:
                 }
                 displayBranches(node->leaves[i]);
             }
-        }
-        else {
+        } else {
             std::cout << std::endl;
         }
     }
