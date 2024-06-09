@@ -13,6 +13,7 @@ std::vector<char> getPerm(const Tree& tree, int n) {
   }
   return Perms_done;
 }
+
 struct Tree::Node {
   char n_val;
   std::vector<Node*> new_nnn;
@@ -34,7 +35,7 @@ void Tree::buildTree(Node* root, std::vector<char> trl) {
     root->new_nnn.push_back(new Node);
   }
   for (int i = 0; i < root->new_nnn.size(); i++) {
-    root->new_nnn[i]->n_val = trail[i];
+    root->new_nnn[i]->n_val = trl[i];
   }
   for (int i = 0; i < root->new_nnn.size(); i++) {
     buildTree(root->new_nnn[i], trl);
@@ -61,7 +62,7 @@ Tree::Tree(const std::vector<char> val) {
   gen_perms(root);
 }
 
-std::string Tree::opertr[] (unsigned int i) const {
+std::string Tree::operator[] (unsigned int i) const {
   if (perm.size() <= i) {
     return "";
   }
