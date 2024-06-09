@@ -10,8 +10,8 @@ class Drevo {
     struct Nd;
     std::vector<std::string> Premut;
     Nd* prava;
-    void buildDrevo(Node* sir, std::vector<char> sled);
-    void generatePermut(Node* sir, std::string Sim);
+    void buildDrevo(Nd* sir, std::vector<char> sled);
+    void generatePermut(Nd* sir, std::string Sim);
  public:
     explicit Drevo(const std::vector<char>);
     std::string operator[] (unsigned int y) const;
