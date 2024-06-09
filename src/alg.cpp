@@ -7,4 +7,9 @@
 
 std::vector<char> getPerm(const Tree& tree, int n) {
   // напишите реализацию
+    std::vector<char> temp;
+    if (n <= tree.GetPermCount()) {
+        tree.perm(n, &temp);
+    }
+    return temp;
 }
