@@ -12,7 +12,6 @@ class Tree {
 
     int perm_count;
     Node* root;
-    
     Node* addNode(Node* root, char value, int size);
     void makeTree(Node* root, std::vector<char>& in);
     int calculateperm(int k);
