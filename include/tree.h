@@ -23,8 +23,7 @@ class Tree {
             root = new Node;
         }
         for (int i = 0; i < values.size(); i++) {
-            std::vector<char> vCopyVal;
-            copy(values.begin(), values.end(), vCopyVal.begin());
+            std::vector<char> vCopyVal = values;
             Node *child = new Node;
             child->value = values[i];
             root->vch.push_back(child);
@@ -34,8 +33,7 @@ class Tree {
     }
 
   void genPer(Node* node, const std::vector<char>& vCur) {
-    std::vector<char> vCopyCur;
-    copy(vCur.begin(), vCur.end(), vCopyCur.begin());
+    std::vector<char> vCopyCur = vCur ;
     for (int i = 0; i < node->vch.size(); i++) {
         vCopyCur.push_back(node->vch[i]->value);
         if (node->vch[i]->vch.empty()) {
