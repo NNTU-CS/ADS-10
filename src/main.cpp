@@ -4,16 +4,15 @@
 std::vector<char> getPerm(const Tree& tree, int n);
 
 int main() {
-  // определяем входной вектор для дерева
-  std::vector<char> in = {'1', '2', '3'};
+// определяем входной вектор для дерева
+std::vector<char> in = { '1', '2', '3' };
 
-  // создаем дерево
-  Tree tree(in);
+// создаем дерево
+Tree tree(in);
 
-  // запрашиваем первую перестановку
-  std::vector<char> result1 = getPerm(tree, 1);  //  123
+// запрашиваем первую перестановку
+std::vector<char> result1 = getPerm(tree, 1);  //  123
 
-  // запрашиваем вторую перестановку
-  std::vector<char> result2 = getPerm(tree, 2);  //  132
-  return 0;
+// запрашиваем вторую перестановку
+std::vector<char> result2 = getPerm(tree, 2);  //  132
 }
