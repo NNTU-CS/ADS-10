@@ -1,10 +1,10 @@
 // Copyright 2022 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "tree.h"
+#include <iostream>
+#include <fstream>
+#include <locale>
+#include <cstdlib>
 #include <algorithm>
+#include "tree.h"
 
 void generatePermutations(std::shared_ptr<TreeNode> node,
                           std::vector<char>* current_permutation,
