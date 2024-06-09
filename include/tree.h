@@ -41,7 +41,6 @@ class Tree {
       Perm = {};
       return;
     }
-      std::cout << node->childs.size() << std::endl;
       for (int i = 0; i < node->childs.size(); ++i) {
         if (node && node->value) {
           char Token = node->value;
