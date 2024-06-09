@@ -35,7 +35,7 @@ public:
 	explicit Tree(const std::vector<char>& counter) {
 		root = new Node(' ');
 		newTree(counter, root);
-		Perestanovki({}, root);
+		Perestanovki(root, {});
 	}
 	const int Size() const {
 		return root->nodes.size();
