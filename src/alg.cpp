@@ -19,11 +19,11 @@ void Tree::buildTree(const std::vector<char>& in) {
   buildTree(right);
 }
 
-std::vector<char> Tree::getPerm(int n) {
+std::vector<char> getPerm(const Tree& tree, int n) {
   if (n < 1) {
     return {};
   }
-  return getPermRecursive(n, 0);
+  return tree.getPermRecursive(n, 0);
 }
 
 std::vector<char> Tree::getPermRecursive(int n, int level) {
